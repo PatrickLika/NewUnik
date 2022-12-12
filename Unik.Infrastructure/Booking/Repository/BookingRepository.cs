@@ -77,8 +77,7 @@ public class BoookingRepository
         
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
         {
-            var test = _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe)
-                .SelectMany(a => a.BookingListe).ToList();
+            var test = _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe).SelectMany(a => a.BookingListe)
                 
                 //.OrderBy(a => a.SlutDato < DateTime.Now || a.SlutDato == null).Select(a => a.MedarbejderId).ToList();
 
