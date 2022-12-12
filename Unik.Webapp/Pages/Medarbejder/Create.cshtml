@@ -1,0 +1,24 @@
+﻿@page
+@model Unik.WebApp.Pages.Medarbejder.CreateModel
+@{
+}
+
+<form method="post">
+        <h1>Medarbejder Opretter</h1>
+
+        <label for="navn">Navn:</label>
+    <input type="text" asp-for="MedarbejderModel.Navn">
+    <span asp-validation-for="@Model.MedarbejderModel.Navn" class="text-danger"></span>
+        <br>
+
+    <label for="tlf">Tlf:</label>
+    <input type="text" asp-for="MedarbejderModel.Tlf">
+    <span asp-validation-for="@Model.MedarbejderModel.Tlf" class="text-danger"></span>
+    <br>
+    
+    <label for="Titel">Titel:</label>
+    <input type="text" asp-for="MedarbejderModel.Titel">
+    <span asp-validation-for="@Model.MedarbejderModel.Titel" class="text-danger"></span>
+    <br>
+    <button>Opret</button>
+    </form>

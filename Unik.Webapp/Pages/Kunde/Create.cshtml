@@ -1,0 +1,41 @@
+﻿@page
+@model Unik.WebApp.Pages.Kunde.CreateModel
+@{
+}
+
+<form method="post">
+    <section class="container">
+        <section class="row ">
+
+            <section class="col-md-6">
+                <fieldset>
+                    <br />
+                    <h1>Opret kunde</h1>
+                    <section class="form-group row">
+                    </Section>
+                    <label for="staticEmail">Virksomhed information</label>
+                    <section class="col-sm-10">
+                    </Section>
+                    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+                    <section class="col-sm-10">
+                    </Section>
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputNavn" placeholder="Kontaktperson navn" asp-for="@Model.KundeCreateViewModel.Navn">
+                        <label>Kontaktperson navn</label>
+                    </section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputVirksomhedNavn" placeholder="Virksomhed navn" asp-for="@Model.KundeCreateViewModel.VirksomhedsNavn">
+                        <label >Virksomhedens navn</label>
+                    </section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputVirksomhedTlf" placeholder="Virksomhed tlf" asp-for="@Model.KundeCreateViewModel.Tlf">
+                        <label>Kontaktperson tlf</label>
+                    </section>
+                    <button type="submit" class="btn btn-success rounded">Opret kunde</button>
+                </fieldset>
+            </section>
+        </section>
+    </section>
+</form>

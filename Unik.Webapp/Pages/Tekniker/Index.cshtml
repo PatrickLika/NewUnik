@@ -1,0 +1,92 @@
+﻿@page
+@model Unik.WebApp.Pages.Tekniker.IndexModel
+@{
+}
+
+<br/>
+<section class="container">
+    <section class="row">
+        <h3 class="col-9 fw-bold">Projekter</h3>
+        <hr style="height: 1px; border: none; color: #000000; background-color: #000000; opacity: 1"/>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Status</th>
+                <th scope="col">Virksomhed</th>
+                <th scope="col">Adresse </th>
+                <th scope="col">Opgave</th>
+                <th scope="col">Tlf/Mail</th>
+                <th scope="col">Noter</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-default" >
+                <th scope="row">Nuværende</th>
+                <td>Lejehuse Hedensted</td>
+                <td>Niels Espes vej 8</td>
+                <td>SQL Server</td>
+                <td>+45 1234 5678</td>
+                <td>
+                    <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Klik for at åbne noter
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                            <div class="accordion-body">
+                               Se det her kan åbne!
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                </td>
+            </tr>
+                <tr class="table-default">
+                    <th scope="row">Kommende</th>
+                    <td>AAB Vejle</td>
+                    <td>Mindegade 17A</td>
+                    <td>Indkøb af hardware</td>
+                    <td>aab@vejle.dk</td>
+                    <td>
+                        <div class="accordion" id="accordionExample">
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Klik for at åbne noter
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample" style="">
+                                <div class="accordion-body">
+                                        Se det her kan også åbne!
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+        </table>
+        @*<label class="col-4">kontakt information<br>opgave information</label>
+        <label class="text-dark">Dette er testen til Aktuelle side</label>
+        <label class="col-6">yderligere kontakt information<br>yderligere information</label>*@
+    </section>
+    <br/>
+    <button type="button" class="btn btn-success">Afslut projekt</button>
+    @*<hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />*@
+</section>
+
+@*<section class="container">
+    <section class="row">
+        <h3 class="col-9">Kommende Projekter</h3>
+        <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+
+        <label class="col-4">kontakt information<br>opgave information</label>
+        <label class="col-6">yderligere kontakt information<br>yderligere information</label>
+    </section>
+    <button type="button" class="btn btn-success">Afslut projekt</button>
+    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+</section>*@
+
+

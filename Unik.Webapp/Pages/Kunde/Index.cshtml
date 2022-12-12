@@ -1,0 +1,39 @@
+﻿@page
+@model Unik.WebApp.Pages.Kunde.IndexModel
+@{
+}
+<form metod="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kunde Id</th>
+                <th>Virksomheden</th>
+                <th>Kontakt Person</th>
+                <th>Email</th>
+                <th>Kontakt nummer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.KundeIndexViewModels.Any())
+        {
+            foreach (var kunde in Model.KundeIndexViewModels)
+            {
+                <tr>
+                    <td> @kunde.Id </td>
+                    <td> @kunde.Navn </td>
+                    <td>@kunde.VirksomhedNavn</td>
+                    <td>@kunde.Email</td>
+                    <td>
+                        <!-- <snippet_Edit> -->
+                        <a asp-page="./Edit" asp-route-id="@kunde.Id">Edit</a>
+                        <!-- </snippet_Edit> -->
+                        <!-- <snippet_Delete> -->
+                        <a asp-page="./Delete" asp-route-id="@kunde.Id">Delete</a>
+                        <!-- </snippet_Delete> -->
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</form>

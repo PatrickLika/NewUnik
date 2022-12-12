@@ -1,0 +1,66 @@
+﻿@page
+@model Unik.WebApp.Pages.Projekt.DetailsModel
+@{
+}
+<form metod="post">
+    <h2>Oversigt over tilknyttede opgaver</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Projekt Id</th>
+            <th>Noter</th>
+            <th>Sælger ID</th>
+            <th>Kunde ID</th>
+            <th>Antal Boliger</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.DetailsViewModel.Any())
+        {
+            foreach (var projekt in Model.DetailsViewModel)
+            {
+                <tr>
+                    <td>@projekt.Id</td>
+                    <td>@projekt.Noter</td>
+                    <td>@projekt.SalesId</td>
+                    <td>@projekt.kundeID</td>
+                    <td>@projekt.AntalBoliger</td>
+
+                    @if (@projekt.Opgaver.Any())
+                    {
+
+                        <thead>
+                        <tr>
+                            <th>opgave Id</th>
+                            <th>Opgave Navn</th>
+                            <th>Opgave Medarbejder Id</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach (var opgave in projekt.Opgaver)
+                        {
+                            <tr>
+                                <td>@opgave.Id</td>
+                                <td>@opgave.Navn</td>
+                                <td>@opgave.MedarbejderId</td>
+                            </tr>
+                        }
+                        </tbody>
+                    }
+                    <td>
+
+                        <a asp-page="./index">Tilbage til Oversigt</a>
+
+                    </td>
+
+                </tr>
+
+            }
+
+        }
+        </tbody>
+
+    </table>
+</form>

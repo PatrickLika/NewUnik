@@ -1,0 +1,24 @@
+﻿@page
+@model Unik.WebApp.Pages.Sales.CreateModel
+@{
+} 
+
+    
+<form method="post">
+    <section>
+        <br>
+        Navn: <input type="text" asp-for="CreateViewModel.Navn"/>
+        <br>
+        Titel: <input type="text" asp-for="CreateViewModel.Titel" />
+        <br>
+        Email: <input type="text" asp-for="CreateViewModel.Email" />
+        <br>
+        TLF: <input type="text" asp-for="CreateViewModel.Tlf" />
+        <br>
+        UserId: <input type="text" asp-for="CreateViewModel.UserId" />
+        <br>
+        <button type="submit">Opret Sælger</button>
+    </section>
+</form>
+
+

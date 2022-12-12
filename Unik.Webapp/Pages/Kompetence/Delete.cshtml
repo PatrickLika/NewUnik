@@ -1,0 +1,30 @@
+﻿@page
+@model Unik.WebApp.Pages.Kompetence.DeleteModel
+@{
+}
+
+<br/>
+<section class="container">
+    <section class="row">
+        <h3 class="col-9 fw-bold">Slet kompetence</h3>
+        <hr style="height: 1px; border: none; color: #000000; background-color: #000000; opacity: 1"/>
+        <table class="table table-hover">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                 <input type="hidden" asp-for="DeleteViewModel.Id" class="form-control"/>
+                 <div class="form-group">
+                     <label asp-for="DeleteViewModel.Id"></label>
+                 </div>
+                 @*<div class="form-group">
+                     <label asp-for="DeleteViewModel.Weight"></label>
+                     <input asp-for="DeleteViewModel.Weight" class="form-control"/>
+                     <span asp-validation-for="DeleteViewModel.Weight" class="text-danger"></span>
+                 </div>*@
+
+                 <button type="button" class="btn btn-danger rounded">Slet  kompetence</button>
+                 </form>
+        </table>
+    </section>
+    <br/>
+</section>

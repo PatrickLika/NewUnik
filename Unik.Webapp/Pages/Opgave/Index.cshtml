@@ -1,0 +1,45 @@
+﻿@page
+@model Unik.WebApp.Pages.Opgave.IndexModel
+@{
+}
+<form method="post">
+    <table class="table">
+
+        <br>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Navn</th>
+            <th>Type</th>
+            <th>Projekt Id</th>
+            <th>Booking Id</th>
+            <th>Medarbejder Id</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.OpgaveIndexViewModel.Any())
+        {
+                foreach (var opgave in Model.OpgaveIndexViewModel)
+                {
+                <tr>
+                        <td>@opgave.Id </td>
+                        <td>@opgave.Navn </td>
+                        <td>@opgave.Type</td>
+                        <td>@opgave.ProjektId</td>
+                        <td>@opgave.BookingId</td>
+                        <td>@opgave.MedarbejderId</td>
+                    <td>
+                        <!-- <snippet_Edit> -->
+                        <a asp-page="./Edit" asp-route-id="@opgave.Id">Rediger</a> |
+                        <!-- </snippet_Edit> -->
+                            <a asp-page="/Booking/index" asp-route-id="@opgave.Id">Tilføj Medarbejder</a>
+                        <!-- <snippet_Delete> -->
+                        <a asp-page="./Delete" asp-route-id="@opgave.Id">Delete</a>
+                        <!-- </snippet_Delete> -->
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</form>

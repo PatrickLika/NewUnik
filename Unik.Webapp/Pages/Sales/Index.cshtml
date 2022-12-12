@@ -1,0 +1,39 @@
+﻿@page
+@model Unik.WebApp.Pages.Sales.IndexModel
+@{
+}
+<h1>Oversigt over Sælgere</h1>
+<form metod="post">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Sælger Id</th>
+            <th>Navn</th>
+            <th>Titel</th>
+            <th>Telefon Nummer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.IndexViewModel.Any())
+        {
+            foreach (var sælger in Model.IndexViewModel)
+            {
+                <tr>
+                    <td>@sælger.Id</td>
+                    <td>@sælger.Navn</td>
+                    <td>@sælger.Titel</td>
+                    <td>@sælger.Tlf</td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@sælger.Id">Details</a>
+                            <a asp-page="./Edit" asp-route-Id="@sælger.Id">Edit</a>
+                            <a asp-page="./Delete" asp-route-id="@sælger.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+
+    </table>
+    <a asp-page="Create">Create now</a>
+</form>

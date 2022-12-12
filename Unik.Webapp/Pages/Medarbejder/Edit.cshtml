@@ -1,0 +1,28 @@
+﻿@page
+@model Unik.WebApp.Pages.Medarbejder.EditModel
+@{
+}
+<form method="post">
+    <h1>Medarbejder opdater</h1>
+
+
+    <input type="hidden" asp-for="MedarbejderModel.Id" class="form-control" />
+    <input type="hidden" asp-for="MedarbejderModel.RowVersion" class="form-control" />
+    <input type="hidden" asp-for="MedarbejderModel.Email" class="form-control" />
+    <input type="hidden" asp-for="MedarbejderModel.UserId" class="form-control" />
+    <input type="hidden" asp-for="MedarbejderModel.Titel" class="form-control" />
+
+
+    <label for="navn">Navn:</label>
+    <input type="text" asp-for="MedarbejderModel.Navn">
+    <span asp-validation-for="@Model.MedarbejderModel.Navn" class="text-danger"></span>
+    <br>
+
+    <br>
+    <label for="tlf">Tlf:</label>
+    <input type="text" asp-for="MedarbejderModel.Tlf">
+    <span asp-validation-for="@Model.MedarbejderModel.Tlf" class="text-danger"></span>
+    <br>
+
+    <button>Update Medarbejder</button>
+</form>

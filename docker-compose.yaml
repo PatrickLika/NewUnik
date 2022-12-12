@@ -1,0 +1,42 @@
+version: '3.4'
+services:
+  db:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    container_name: "sql2019"
+    user: root
+    ports:
+      - "14300:1433"
+    environment:
+      MSSQL_SA_PASSWORD: "SqlPassw0rd!"
+      ACCEPT_EULA: "Y"
+    networks:
+      - "unik_network"
+  
+
+  frontend: 
+    build: "Unik.Webapp/."
+    container_name: "webapp"
+    ports: 
+      - "8080:8080"
+    depends_on:
+      - "backend"
+    networks:
+      - "unik_network"
+  
+
+  backend: 
+    build: "Unik.Api/."
+    container_name: "backend"
+    ports:
+      - "7160:7160"
+    environment:
+      UnikConnection: "Server=localhost;Database=Unik;Trusted_Connection=True;MultipleActiveResultSets=true;User id=SA;Password=SqlPassw0rd!;"
+    depends_on: 
+      - "db" 
+    networks:
+      - "unik_network"
+
+
+networks:
+  unik_network:
+    name: "unik_network"

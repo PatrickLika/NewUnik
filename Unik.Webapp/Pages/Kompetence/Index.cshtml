@@ -1,0 +1,49 @@
+﻿@page "{SearchString?}"
+@model Unik.WebApp.Pages.Kompetence.IndexModel
+@{
+}
+<form method="post">
+    <table class="table">
+
+        <br>
+        <form>
+            <p>
+
+                Navn: <input type="text" asp-for="@Model.SearchString"/>
+                <input type="submit" value="Søg"/>
+                <a href="/Kompetence">Nulstil</a>
+
+            </p>
+        </form>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Navn</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.IndexViewModel.Any())
+        {
+            foreach (var Kompetence in Model.IndexViewModel)
+            {
+                <tr>
+                    <td> @Kompetence.Id </td>
+                    <td> @Kompetence.Navn </td>
+                    <td>@Kompetence.Type</td>
+                    <td>
+                        <!-- <snippet_Edit> -->
+                        <a asp-page="./Edit" asp-route-id="@Kompetence.Id">Edit</a> |
+                        <!-- </snippet_Edit> -->
+                        <!-- <snippet_Delete> -->
+                        <a asp-page="./Delete" asp-route-id="@Kompetence.Id">Delete</a>
+                        <!-- </snippet_Delete> -->
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+    <a asp-page="Create">Opret ny</a>
+</form>

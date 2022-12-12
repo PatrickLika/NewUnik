@@ -1,0 +1,48 @@
+﻿@page
+@model Unik.WebApp.Pages.Opgave.TilføjMedarbejderModel
+@{
+}
+
+ProjektId: <input type="hidden" asp-for="EditViewModel.ProjektId" />
+ProjektId: <input type="hidden" asp-for="EditViewModel.RowVersion" />
+Id: <input type="hidden" asp-for="EditViewModel.Id" />
+
+Navn: <input type="text" asp-for="EditViewModel.Navn" />
+MedarbejderId :<input type="text" asp-for="EditViewModel.MedarbejderId" />
+
+
+<h1>Liste over Medarbejdere</h1>
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Navn</th>
+    <th>Email</th>
+    <th>Telefon Nummer</th>
+</tr>
+</thead>
+<tbody>
+@if (Model.MedarbejderViewModelListe.Any())
+{
+    foreach (var medarbejder in Model.MedarbejderViewModelListe)
+    {
+        <tr>
+            <td> @medarbejder.Id </td>
+            <td> @medarbejder.Navn </td>
+            <td>@medarbejder.Email</td>
+            <td>@medarbejder.Tlf</td>
+            <td>@foreach (var kompetence in medarbejder.KompetenceListe)
+            {<thead>
+             <tr>
+                 <th>Kompetence Navn</th>
+                 <th>Kompetence Id</th>
+             </tr>
+            </thead>
+                
+                    <td>@kompetence.Navn</td>
+                    <td>@kompetence.Id</td>
+                }
+            </td>
+        </tr>
+    }
+}
+</tbody>

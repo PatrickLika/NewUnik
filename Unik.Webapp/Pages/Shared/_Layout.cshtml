@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Unik.WebApp</title>
+    <link rel="stylesheet" href="~/css/pulse.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Unik.WebApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+<header>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">Unik</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            @if (User.HasClaim(a => a.Type == "Sælger"))
+                            {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" asp-page="/Kompetence/Index" role="button" aria-haspopup="true" aria-expanded="false">Kompetence</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuKompetence">
+                                    <a class="dropdown-item" asp-page="/Kompetence/Create">Ny Kompetence</a>
+                                    <a class="dropdown-item" asp-page="/Kompetence/Index">Kompetence oversigt</a>
+                                </ul>
+                            </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" asp-page="/Projekt/Index" role="button" aria-haspopup="true" aria-expanded="false">Projekt</a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuProjekt">
+                                        <li><a class="dropdown-item" asp-page="/Projekt/Create">Opret projekt</a></li>
+                                        <li><a class="dropdown-item" asp-page="/Projekt/Index">Projekt Oversigt</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Opgave/index">Opgaver</a>
+                                </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" asp-page="/medarbejder/Index" role="button" aria-haspopup="true" aria-expanded="false">Medarbejder</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuTekniker">
+                                    <li><a class="dropdown-item" asp-page="/Medarbejder/Index">Medarbejder oversigt</a></li>
+                                </ul>
+                            </li>
+                                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" asp-page="/Booking/Index" role="button" aria-haspopup="true" aria-expanded="false">Booking</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuBooking">
+                                    <li><a class="dropdown-item" asp-page="/Booking/Index">Se bookings</a></li>
+                                </ul>
+                            </li>                            
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" asp-page="/Kunde/Index" role="button" aria-haspopup="true" aria-expanded="false">Kunde</a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuKunde">
+                                        <a class="dropdown-item" asp-page="/Kunde/Create">Ny Kunde</a>
+                                        <a class="dropdown-item" asp-page="/Kunde/Index">Kunde Oversigt</a>
+                                    </ul>
+                                    </li>
+                            }
+                            <li class="nav-item">
+                                    <a class="nav-link" asp-page="/Minside/Index" role="button" aria-expanded="false">Booking</a>
+                                <li><a class="nav-item" asp-page="/Minside/Index">Se min side</a>
+                                    </li>
+                                </li>
+                        </ul>
+                    </div>
+                }
+                <partial name="_LoginPartial" />
+                    </div >
+                    </nav>
+
+</header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Unik - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

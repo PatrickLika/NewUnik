@@ -1,0 +1,44 @@
+﻿@page
+@model Unik.WebApp.Pages.Medarbejder.IndexModel
+@{
+}
+
+<form metod="post">
+    <br>
+    <h1>Medarbejder</h1>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+            <th>Id</th>
+            <th>Navn</th>
+            <th>Email</th>
+            <th>Tlf</th>
+            <th>Titel</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.IndexGetAllViewModel.Any())
+            {
+                foreach (var medarbejder in Model.IndexGetAllViewModel)
+                {
+                    <tr>
+                        <td>@medarbejder.Id</td>
+                        <td>@medarbejder.Navn</td>
+                        <td>@medarbejder.Email</td>
+                        <td>@medarbejder.Tlf</td>
+                        <td>@medarbejder.Titel</td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@medarbejder.Id">Edit</a>
+                            <a asp-page="./Delete" asp-route-id="@medarbejder.Id">Delete</a>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+        </tbody>
+    </table>
+    <a asp-page="Create">Opret ny</a>
+</form>

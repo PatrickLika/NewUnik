@@ -1,0 +1,86 @@
+﻿@page
+@model Unik.WebApp.Pages.Opgave.EditModel
+@{
+}
+
+
+<form method="post">
+<h1>Opgave</h1>
+
+
+<input type="hidden" asp-for="OpgaveEditViewModel.RowVersion" class="form-control" />
+
+
+<br>
+<label for="Id">Id:</label>
+<input type="text" asp-for="OpgaveEditViewModel.Id">
+<br>
+
+<label for="Navn">Navn:</label>
+<input type="text" asp-for="OpgaveEditViewModel.Navn">
+<br>
+
+<br>
+<label for="ProjektId">Projekt ID:</label>
+<input type="text" asp-for="OpgaveEditViewModel.ProjektId">
+<br>
+
+<br>
+<label for="Type">Type:</label>
+<input type="text" asp-for="OpgaveEditViewModel.Type">
+<br>
+
+<br>
+<label for="Varighed">Varighed:</label>
+<input type="text" asp-for="OpgaveEditViewModel.Varighed">
+<br>
+
+<button>Update</button>
+
+</form>
+
+
+
+
+
+@*<form method="post">
+    <input type="hidden" asp-for="OpgaveEditViewModel.RowVersion" class="form-control" />
+    <input type="hidden" asp-for="OpgaveEditViewModel.Id" class="form-control" />
+
+    <section class="container">
+        <section class="row ">
+            <section class="col-md-6">
+                <fieldset>
+                    <br />
+                    <h2>Rediger opgave @Model.OpgaveEditViewModel.Id </h2>
+                    <hr style="height: 1px; border: none; color: #000000; background-color: #000000; opacity: 1" />
+                    <div class="col-sm-10">
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputNavn" placeholder="Sales Id" asp-for="@Model.OpgaveEditViewModel.Navn">
+                        <label>Opgave navn</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputType" placeholder="Kunde Id" asp-for="@Model.OpgaveEditViewModel.Type">
+                        <label>Opgave type</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputBookingId" placeholder="Kunde Id" asp-for="@Model.OpgaveEditViewModel.BookingId">
+                        <label>Booking Id</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputMedarbejderId" placeholder="Kunde Id" asp-for="@Model.OpgaveEditViewModel.MedarbejderId">
+                        <label>Medarbejder Id</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputProjektId" placeholder="ProjektId" asp-for="@Model.OpgaveEditViewModel.ProjektId">
+                        <label>Projekt Id</label>
+                    </div>
+
+                </fieldset>
+            </section>
+            <button type="submit" class="btn btn-success rounded">Rediger opgaven</button>
+        </section>
+    </section>
+
+</form>*@

@@ -1,0 +1,64 @@
+﻿@page
+@model Unik.WebApp.Pages.Sales.DetailsModel
+@{
+}
+<form metod="post">
+    <h2> Oversigt over tilnyttede projekter</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Sælger Id</th>
+            <th>Navn</th>
+            <th>Titel</th>
+            <th>Telefon nummer</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.DetailsViewModel.Any())
+        {
+            foreach (var sælger in Model.DetailsViewModel)
+            {
+                <tr>
+                    <td>@sælger.Id</td>
+                    <td>@sælger.Navn</td>
+                    <td>@sælger.Titel</td>
+                    <td>@sælger.Tlf</td>
+
+                    @if (@sælger.Projekter.Any())
+                    {
+
+                        <thead>
+                        <tr>
+                            <th>Projekt Id</th>
+                            <th>Noter</th>
+                            <th>Kunde Id</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach (var projekt in sælger.Projekter)
+                        {
+                            <tr>
+                                <td>@projekt.Id</td>
+                                <td>@projekt.Noter</td>
+                                <td>@projekt.kundeID</td>
+                            </tr>
+                        }
+                        </tbody>
+                    }
+                    <td>
+
+                        <a asp-page="./index">Tilbage til Oversigt</a>
+
+                    </td>
+
+                </tr>
+
+            }
+
+        }
+        </tbody>
+
+    </table>
+</form>

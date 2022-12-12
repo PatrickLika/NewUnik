@@ -1,0 +1,29 @@
+﻿@page
+@model Unik.WebApp.Pages.Kompetence.DetailsModel
+@{
+}
+<h1>Kompetencer!</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Navn</th>
+        <th>Type</th>
+        <th>RowVersion</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.DetailsViewModel.Any())
+    {
+        foreach (var kompetence in Model.DetailsViewModel)
+        {
+            <tr>
+                <td> @kompetence.Id </td>
+                <td> @kompetence.Navn </td>
+                <td>@kompetence.Type</td>
+                <td>@kompetence.RowVersion</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

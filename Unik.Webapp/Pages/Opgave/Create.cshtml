@@ -1,0 +1,61 @@
+﻿@page
+@model Unik.WebApp.Pages.Opgave.CreateModel
+@{
+}
+<form method="post">
+    <input type="hidden" asp-for="Opgaveviewmodel.ProjektId" class="form-control" />
+    <section class="container">
+        <section class="row ">
+            <section class="col-md-6">
+                <fieldset>
+                    <br/>
+                    <h2>Tilføj opgave til Projekt @Model.Opgaveviewmodel.ProjektId </h2>
+                    <hr style="height: 1px; border: none; color: #000000; background-color: #000000; opacity: 1"/>
+                    <div class="col-sm-10">
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputNavn" placeholder="Sales Id" asp-for="@Model.Opgaveviewmodel.Navn">
+                        <label>Opgave navn</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputKundeId" placeholder="Kunde Id" asp-for="@Model.Opgaveviewmodel.Type">
+                        <label>Opgave type</label>
+                    </div>
+                </fieldset>
+            </section>
+            <button type="submit" class="btn btn-success rounded">Opret Projekt</button>
+        </section>
+    </section>
+
+</form>
+
+
+
+
+@*<section>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Kompetence Id</th>
+            <th>Kompetence Navn</th>
+            <th>Kompetence Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.KompetenceListe.Any())
+        {
+            foreach (var k in Model.KompetenceListe)
+            {
+                <tr>
+                    <td>@k.Id</td>
+                    <td>@k.Navn</td>
+                    <td>@k.Type</td>
+                </tr>
+                
+            }
+
+        }
+        </tbody>
+        
+    </table>
+</section>*@
