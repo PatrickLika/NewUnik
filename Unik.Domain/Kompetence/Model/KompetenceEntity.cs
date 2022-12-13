@@ -20,8 +20,14 @@ namespace Unik.Domain.Kompetence.Model
             Navn = navn;
             Type = type;
         }
-
-        public void Edit( string navn, string type, byte[] rowVersion, List<MedarbejderEntity> medarbejderListe)
+        // Kun til Tests
+        public KompetenceEntity(string navn, string type, List<MedarbejderEntity> medarbejderEntities)
+        {
+            Navn = navn;
+            Type = type;
+            MedarbejderListe = medarbejderEntities;
+        }
+        public void Edit(string navn, string type, byte[] rowVersion, List<MedarbejderEntity> medarbejderListe)
         {
             Navn = navn;
             Type = type;

@@ -74,13 +74,11 @@ public class BoookingRepository
         }
 
 
-        IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
+        List<BookingEntity> IBookingRepository.FindMedarbejder(string type)
         {
 
 
-            
 
-            type = "azure";
 
             var a = _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe).SelectMany(a => a.MedarbejderListe).ToList();
 
@@ -89,46 +87,11 @@ public class BoookingRepository
                 .Where(a => a.SlutDato > DateTime.Today || a.SlutDato == null).OrderBy(a => a.SlutDato).ToList();
 
 
-            var b =_db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe)
+            var b = _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe)
                 .SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe).SelectMany(a => a.BookingListe)
                 .Where(a => a.SlutDato > DateTime.Now).ToList();
 
-
-
-
-            //var a = _db.MedarbejderEntities.Include(a => a.KompetenceListe).Include(a => a.BookingListe)
-            //    .SelectMany(a => a.BookingListe)
-            //    .Where(a => a.SlutDato > DateTime.Today).Include(a => a.Medarbejder).OrderBy(a => a.SlutDato);
-
-
-
-
-
-            //var k = _db.KompetenceEntities.Include(a => a.MedarbejderListe).Where(a => a.Navn == type)
-            //    .SelectMany(a => a.MedarbejderListe);
-
-
-            //var b = k.SelectMany(a => a.BookingListe).Where(a => a.SlutDato > DateTime.Today).ToList();
-
             throw new NotImplementedException();
-
-            //_db.MedarbejderEntities.Include(a => a.KompetenceListe).Where(a => )
-            // var test = _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe).SelectMany(a => a.BookingListe);
-
-            //     //.OrderBy(a => a.SlutDato < DateTime.Now || a.SlutDato == null).Select(a => a.MedarbejderId).ToList();
-
-
-            // var medarbejdereMedkompetencer =
-            //    _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe);
-
-
-
-            ////var c = b.Select(a => a.MedarbejderId).ToList();
-
-
-
-
-
             //foreach (var item in medarbejdereMedkompetencer)
 
             //    yield return new FindMedarbejderDto

@@ -36,6 +36,13 @@ namespace Unik.Domain.Medarbejder.Model
             Titel = titel;
             UserId = userId;
         }
+        //Kun til TEST
+        public MedarbejderEntity(int id, string navn, List<BookingEntity> bookingListe)
+        {
+            Id = id;
+            Navn = navn;
+            BookingListe = bookingListe;
+        }
 
         public void Edit(string navn, string email, string tlf, string titel, byte[] rowversion)
         {

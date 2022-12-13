@@ -31,7 +31,7 @@ public class BookingEntity
 
         if (IsDoubleBooking()) throw new ArgumentException("Fejl dobbelt booking!");
     }
-
+    //Kun til Test!!
     public BookingEntity(int medarbejderId, DateTime startDato, DateTime slutDato)
     {
         MedarbejderId = medarbejderId;

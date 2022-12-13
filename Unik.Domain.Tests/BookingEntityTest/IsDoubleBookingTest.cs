@@ -4,11 +4,11 @@ using Unik.Domain.Booking.Model;
 
 namespace Unik.Domain.Tests.BookingEntityTest
 {
-    public class BookingEntityCreateTest
+    public class IsDoubleBookingTest
     {
         private readonly Mock<IBookingDomainService> domainServiceMock;
 
-        public BookingEntityCreateTest()
+        public IsDoubleBookingTest()
         {
             domainServiceMock = new Mock<IBookingDomainService>();//opsætning af domain service
             var eksiterendeBookiongs = new List<BookingEntity>(new[]
