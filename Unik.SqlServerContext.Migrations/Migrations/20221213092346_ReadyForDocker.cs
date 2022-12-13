@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Unik.SqlServerContext.Migrations.Migrations
 {
-    public partial class Unik : Migration
+    /// <inheritdoc />
+    public partial class ReadyForDocker : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
@@ -26,27 +28,6 @@ namespace Unik.SqlServerContext.Migrations.Migrations
 
             migrationBuilder.EnsureSchema(
                 name: "sales");
-
-            migrationBuilder.CreateTable(
-                name: "Booking",
-                schema: "booking",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjektId = table.Column<int>(type: "int", nullable: false),
-                    OpgaveId = table.Column<int>(type: "int", nullable: false),
-                    MedarbejderId = table.Column<int>(type: "int", nullable: false),
-                    StartDato = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SlutDato = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Dato = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Varighed = table.Column<int>(type: "int", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Booking", x => x.Id);
-                });
 
             migrationBuilder.CreateTable(
                 name: "Kompetence",
@@ -119,6 +100,31 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sales", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Booking",
+                schema: "booking",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OpgaveId = table.Column<int>(type: "int", nullable: false),
+                    MedarbejderId = table.Column<int>(type: "int", nullable: false),
+                    StartDato = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SlutDato = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
+                    MedarbejderEntityId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Booking_Medarbejder_MedarbejderEntityId",
+                        column: x => x.MedarbejderEntityId,
+                        principalSchema: "medarbejder",
+                        principalTable: "Medarbejder",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -217,6 +223,12 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Booking_MedarbejderEntityId",
+                schema: "booking",
+                table: "Booking",
+                column: "MedarbejderEntityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_KompetenceEntityMedarbejderEntity_MedarbejderListeId",
                 table: "KompetenceEntityMedarbejderEntity",
                 column: "MedarbejderListeId");
@@ -251,6 +263,7 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                 column: "SalesId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
@@ -269,11 +282,11 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                 schema: "booking");
 
             migrationBuilder.DropTable(
-                name: "Medarbejder",
-                schema: "medarbejder");
+                name: "ProjektEntities");
 
             migrationBuilder.DropTable(
-                name: "ProjektEntities");
+                name: "Medarbejder",
+                schema: "medarbejder");
 
             migrationBuilder.DropTable(
                 name: "Kunde",

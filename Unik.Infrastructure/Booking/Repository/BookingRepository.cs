@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+﻿
+using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Booking.Queries;
 using Unik.Applicaiton.Booking.Repositories;
 using Unik.Domain.Booking.Model;
-using Unik.Domain.Medarbejder.Model;
 using Unik.SqlServerContext;
 
 namespace Unik.Infrastructure.Booking.Repository;
@@ -66,49 +65,49 @@ public class BoookingRepository
 
                 yield return new BookingResultDto
                 {
-                       Id = dbEntity.Id,
-                       MedarbejderId = dbEntity.MedarbejderId,
-                       OpgaveId = dbEntity.OpgaveId,
-                       SlutDato = dbEntity.SlutDato,
-                       StartDato = dbEntity.StartDato
+                    Id = dbEntity.Id,
+                    MedarbejderId = dbEntity.MedarbejderId,
+                    OpgaveId = dbEntity.OpgaveId,
+                    SlutDato = dbEntity.SlutDato,
+                    StartDato = dbEntity.StartDato
                 };
         }
 
-        
+
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
         {
 
-            var k = _db.KompetenceEntities.Include(a => a.MedarbejderListe).FirstOrDefault(a => a.Id == 1);
-            var b = k.MedarbejderListe.SelectMany(a => a.BookingListe).OrderByDescending(a => a.SlutDato);
-            b.
+            //var k = _db.KompetenceEntities.Include(a => a.MedarbejderListe).FirstOrDefault(a => a.Id == 1);
+            //var b = k.MedarbejderListe.SelectMany(a => a.BookingListe).OrderByDescending(a => a.SlutDato);
+            //b.
 
 
-            _db.MedarbejderEntities.Include(a => a.KompetenceListe).Where(a => )
-           // var test = _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe).SelectMany(a => a.BookingListe);
-                
-           //     //.OrderBy(a => a.SlutDato < DateTime.Now || a.SlutDato == null).Select(a => a.MedarbejderId).ToList();
+            //_db.MedarbejderEntities.Include(a => a.KompetenceListe).Where(a => )
+            // var test = _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe).SelectMany(a => a.BookingListe);
+
+            //     //.OrderBy(a => a.SlutDato < DateTime.Now || a.SlutDato == null).Select(a => a.MedarbejderId).ToList();
 
 
-           // var medarbejdereMedkompetencer =
-           //    _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe);
-
-
-
-           ////var c = b.Select(a => a.MedarbejderId).ToList();
+            // var medarbejdereMedkompetencer =
+            //    _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe);
 
 
 
+            ////var c = b.Select(a => a.MedarbejderId).ToList();
 
 
-           //foreach (var item in medarbejdereMedkompetencer)
 
-           //    yield return new FindMedarbejderDto
-           //    {
-           //        //Id = item
-           //    };
-           
-           throw new NotImplementedException();
-            
+
+
+            //foreach (var item in medarbejdereMedkompetencer)
+
+            //    yield return new FindMedarbejderDto
+            //    {
+            //        //Id = item
+            //    };
+
+            throw new NotImplementedException();
+
         }
     }
 }
