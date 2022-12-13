@@ -22,7 +22,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Unik.Crosscut\Unik.Crosscut.csproj" />
     <ProjectReference Include="..\Unik.Infrastructure\Unik.Infrastructure.csproj" />
-    <ProjectReference Include="..\Unik.UserContext\Unik.UserContext.csproj" />
+    <ProjectReference Include="..\Unik.SqlServerContext.Migrations\Unik.SqlServerContext.Migrations.csproj" />
+    <ProjectReference Include="..\Unik.SqlServerContext\Unik.SqlServerContext.csproj" />
   </ItemGroup>
 
 </Project>
