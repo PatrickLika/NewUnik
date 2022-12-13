@@ -58,6 +58,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Docker
+builder.Configuration.AddEnvironmentVariables();
+
 //Connectionstring
 
 builder.Services.AddDbContext<UnikContext>(

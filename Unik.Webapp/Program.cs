@@ -29,6 +29,10 @@ builder.Services.AddDbContext<WebAppUserDbContext>(options =>
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
+//Docker 
+builder.Configuration.AddEnvironmentVariables();
+
+
 //Medarbejder IHttpClientFactory
 //IHttpClientFactory
 
