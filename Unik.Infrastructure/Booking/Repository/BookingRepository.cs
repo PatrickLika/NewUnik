@@ -77,29 +77,30 @@ public class BoookingRepository
         
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
         {
-            var test = _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe).SelectMany(a => a.BookingListe)
+           // var test = _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe).SelectMany(a => a.BookingListe);
                 
-                //.OrderBy(a => a.SlutDato < DateTime.Now || a.SlutDato == null).Select(a => a.MedarbejderId).ToList();
+           //     //.OrderBy(a => a.SlutDato < DateTime.Now || a.SlutDato == null).Select(a => a.MedarbejderId).ToList();
 
 
-            var medarbejdereMedkompetencer =
-               _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe);
-
-
-
-           //var c = b.Select(a => a.MedarbejderId).ToList();
+           // var medarbejdereMedkompetencer =
+           //    _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe);
 
 
 
+           ////var c = b.Select(a => a.MedarbejderId).ToList();
 
 
-           foreach (var item in medarbejdereMedkompetencer)
 
-               yield return new FindMedarbejderDto
-               {
-                   //Id = item
-               };
+
+
+           //foreach (var item in medarbejdereMedkompetencer)
+
+           //    yield return new FindMedarbejderDto
+           //    {
+           //        //Id = item
+           //    };
            
+           throw new NotImplementedException();
             
         }
     }
