@@ -10,8 +10,6 @@ services:
       ACCEPT_EULA: "Y"
     container_name: "sql2019"
     hostname: sql1
-    # networks:
-    #   - unik_network
   
 
   webapp:
@@ -23,12 +21,11 @@ services:
       - "8080:80"
     environment:
       "ASPNETCORE_ENVIRONMENT": "Development"
-      "ConnectionStrings:UserDb": "Server=db;Database=Unik.WebAppUsers;MultipleActiveResultSets=true;TrustServerCertificate=True;Trusted_Connection=False;"
+      "ConnectionStrings:UserDb": "Server=db;Database=Unik.WebAppUsers;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"
+      "UnikBaseUrl": "https://unik.api"
     depends_on:
       - db
       - unik.api
-    # networks:
-    #   - unik_network
   
 
   unik.api:
@@ -43,8 +40,6 @@ services:
       "ConnectionStrings:UnikConnection" : "Server=db;Database=Unik;Trusted_Connection=True;MultipleActiveResultSets=true;User id=SA;Password=SqlPassw0rd!;TrustServerCertificate=True;"
     depends_on: 
       - db 
-    # networks:
-    #   - unik_network
 
 
 # networks:
