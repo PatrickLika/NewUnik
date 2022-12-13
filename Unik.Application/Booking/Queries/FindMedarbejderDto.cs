@@ -9,10 +9,9 @@ namespace Unik.Applicaiton.Booking.Queries
 {
     public class FindMedarbejderDto
     {
-        public int Id { get; set; }
-        public string Navn { get; set; }
-        public string type { get; set; }
-
-        public List<int> Liste { get; set; }
+        public int MedarbejderId { get; set; }
+        public string MedarbejderNavn { get; set; }
+        public DateTime startDato { get; set; }
+        public DateTime SlutDato { get; set;}
     }
 }
