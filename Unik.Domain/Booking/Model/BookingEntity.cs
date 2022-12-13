@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Unik.Domain.Booking.DomainServices;
+using Unik.Domain.Medarbejder.Model;
 
 namespace Unik.Domain.Booking.Model;
 
@@ -10,7 +11,6 @@ public class BookingEntity
 
     }
     private readonly IBookingDomainService _domainService;
-
     public int Id { get; set; }
     public int OpgaveId { get; set; }
     public int MedarbejderId { get; set; }
@@ -18,6 +18,9 @@ public class BookingEntity
     public DateTime SlutDato { get; set; }
     [Timestamp]
     public byte[] RowVersion { get; private set; }
+    public MedarbejderEntity Medarbejder { get; set; }
+
+
     public BookingEntity(IBookingDomainService domainService, int opgaveId, int medarbejderId, DateTime startDato, DateTime slutDato)
     {
         _domainService = domainService;

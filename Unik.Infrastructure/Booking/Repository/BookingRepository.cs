@@ -77,10 +77,40 @@ public class BoookingRepository
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
         {
 
-            //var k = _db.KompetenceEntities.Include(a => a.MedarbejderListe).FirstOrDefault(a => a.Id == 1);
-            //var b = k.MedarbejderListe.SelectMany(a => a.BookingListe).OrderByDescending(a => a.SlutDato);
-            //b.
 
+            
+
+            type = "Sql";
+
+            var a = _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe).SelectMany(a => a.MedarbejderListe).ToList();
+
+
+            var c = _db.BookingEntities.Where(e => a.Contains(e.Medarbejder))
+                .Where(a => a.SlutDato > DateTime.Today || a.SlutDato == null).OrderBy(a => a.SlutDato).ToList();
+
+
+            var b =_db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe)
+                .SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe).SelectMany(a => a.BookingListe)
+                .Where(a => a.SlutDato > DateTime.Now).ToList();
+
+
+
+
+            //var a = _db.MedarbejderEntities.Include(a => a.KompetenceListe).Include(a => a.BookingListe)
+            //    .SelectMany(a => a.BookingListe)
+            //    .Where(a => a.SlutDato > DateTime.Today).Include(a => a.Medarbejder).OrderBy(a => a.SlutDato);
+
+
+
+
+
+            //var k = _db.KompetenceEntities.Include(a => a.MedarbejderListe).Where(a => a.Navn == type)
+            //    .SelectMany(a => a.MedarbejderListe);
+
+
+            //var b = k.SelectMany(a => a.BookingListe).Where(a => a.SlutDato > DateTime.Today).ToList();
+
+            throw new NotImplementedException();
 
             //_db.MedarbejderEntities.Include(a => a.KompetenceListe).Where(a => )
             // var test = _db.KompetenceEntities.Where(a => a.Navn == type).SelectMany(a => a.MedarbejderListe).SelectMany(a => a.BookingListe);
@@ -106,7 +136,6 @@ public class BoookingRepository
             //        //Id = item
             //    };
 
-            throw new NotImplementedException();
 
         }
     }
