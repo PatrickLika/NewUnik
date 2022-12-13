@@ -29,11 +29,10 @@ public class BookingEntity
         if (IsDoubleBooking()) throw new ArgumentException("Fejl dobbelt booking!");
     }
 
-    public BookingEntity(IBookingDomainService domainService, int medarbejderId, DateTime startDato, DateTime slutDato)
+    public BookingEntity(int medarbejderId, DateTime startDato, DateTime slutDato)
     {
         MedarbejderId = medarbejderId;
         StartDato = startDato;
-        _domainService = domainService;
         SlutDato = slutDato;
     }
     public void Edit(int opgaveId, int medarbejderNr, DateTime startDato, DateTime slutDato, byte[] rowVersion)
@@ -47,7 +46,7 @@ public class BookingEntity
 
     private bool IsDoubleBooking()
     {
-        return _domainService.GetBookings(MedarbejderId).Any(a => a.StartDato <= SlutDato && a.SlutDato >= StartDato);
+        return _domainService.GetBookings(MedarbejderId).Any(a => a.StartDato < SlutDato && a.SlutDato > StartDato);
 
     }
 }

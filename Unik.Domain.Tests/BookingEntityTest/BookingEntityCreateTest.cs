@@ -6,36 +6,51 @@ namespace Unik.Domain.Tests.BookingEntityTest
 {
     public class BookingEntityCreateTest
     {
-        private readonly IBookingDomainService _domainService;
+        private readonly Mock<IBookingDomainService> domainServiceMock;
 
-        Mock<IBookingDomainService> test = new Mock<IBookingDomainService>();
-        public BookingEntityCreateTest(IBookingDomainService domainService)
+        public BookingEntityCreateTest()
         {
-
+            domainServiceMock = new Mock<IBookingDomainService>();//opsætning af domain service
             var eksiterendeBookiongs = new List<BookingEntity>(new[]
             {
-                new BookingEntity(_domainService,1,new DateTime(2023, 1, 1, 1, 0, 0), new DateTime(2022, 1, 1, 3, 0, 0)),
-                new BookingEntity(_domainService,1, new DateTime(2023, 1, 1, 5, 0, 0), new DateTime(2022, 1, 1, 6, 0, 0))
+                new BookingEntity(1,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)) // 1. jan 2023 til 1. feb 2023
             });
-
-
-           test.Setup(foo => foo.GetBookings(1)).Returns(eksiterendeBookiongs);
-
-
+            domainServiceMock.Setup(a => a.GetBookings(It.IsAny<int>()))
+                .Returns(eksiterendeBookiongs);
         }
 
-        [Fact]
-        public void Given_StartDato_is_valid_Then_BookingEntity_is_Created()
+        [Theory]
+        [InlineData("2023-01-10", "2023-04-20")]// hvis stardato lige indenfor booking
+        [InlineData("2022-01-10", "2023-01-20")]// hvis slut dato ligger indenfor booking
+        [InlineData("2023-01-10", "2023-01-20")]// hvis begge datoer ligger indenfor booking
+        [InlineData("2022-01-10", "2024-01-20")]// hvis begge datoer ligger udenfor booking
+        public void Given_DoubleBooking_Then_Throw_Exception(string startDatotext, string slutDatotext)
         {
             //Arrange
-            var startDato = DateTime.Parse("2023-1-1 04:00");
-            var slutdato = DateTime.Parse("2023-1-1 04:59");
-
+            var startDato = DateTime.Parse(startDatotext);
+            var slutDato = DateTime.Parse(slutDatotext);
             //Act
-           // var sut = new BookingEntity(test,1, startDato, slutdato);
+            var action = () => new BookingEntity(domainServiceMock.Object, 1, 1, startDato, slutDato);//Det er meget vigtigt at man skriver .object, ellers tager den ikke mock objektet
             //Assert
-            
-            
+            Assert.Throws<ArgumentException>(action);//Tjekker for den exception som bliver smidt i booking entity når vi kalder IsDoubleBooking() i booking entity
+        }
+
+
+        [Theory]
+        [InlineData("2022-01-10", "2022-04-20")]// hvis datoerne var før booking
+        [InlineData("2024-01-10", "2024-01-20")]// hvis Datoerne var efter booking
+        [InlineData("2023-02-01", "2023-04-01")]// hvis start dato start på slut dato
+        [InlineData("2022-01-10", "2023-01-1")]//  Hvis Slutdato slutter på startdato
+        public void Given_No_DoubleBooking_Then_Dont_Throw_Exception(string startDatotext, string slutDatotext)
+        {
+            //Arrange
+
+            var startDato = DateTime.Parse(startDatotext);
+            var slutDato = DateTime.Parse(slutDatotext);
+            //Act
+            var exception = Record.Exception(() => new BookingEntity(domainServiceMock.Object, 1, 1, startDato, slutDato));//Den "optager/records" om der er en exception, men vi ved den er null, så vi tjekker for null i assert
+            //Assert
+            Assert.Null(exception);
         }
     }
 }
