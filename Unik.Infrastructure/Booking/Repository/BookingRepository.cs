@@ -80,7 +80,7 @@ public class BoookingRepository
 
             
 
-            type = "Sql";
+            type = "azure";
 
             var a = _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe).SelectMany(a => a.MedarbejderListe).ToList();
 
