@@ -11,7 +11,7 @@
             <tbody>
             @if (@Model.MedarbejderModel.OpgaverListe !=null)
             {
-                    foreach (var booking in Model.MedarbejderModel.OpgaverListe)
+                foreach (var booking in Model.MedarbejderModel.OpgaverListe)
                 {
                      
                     <tr>
@@ -24,8 +24,8 @@
                     <tr>
                         <td> @booking.booking?.Id</td>
                         <td> @booking.booking?.OpgaveId</td>
-                            <td> @booking.booking?.StartDato.ToString("dd/MM/yyyy")</td>
-                            <td> @booking.booking?.SlutDato.ToString("dd/MM/yyyy")</td>
+                        <td> @booking.booking?.StartDato.ToString("dd/MM/yyyy")</td>
+                        <td> @booking.booking?.SlutDato.ToString("dd/MM/yyyy")</td>
                         <td> @booking.Type</td>
                     </tr>
                 }
@@ -35,6 +35,7 @@
             </tr>
             </tbody>
         </table>
+        <a asp-page="./TilføjKompetence" asp-route-id="">Tilføj kompetence</a>
     </form>
 }
 else
