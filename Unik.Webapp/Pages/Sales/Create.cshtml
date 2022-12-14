@@ -1,23 +1,53 @@
 ﻿@page
 @model Unik.WebApp.Pages.Sales.CreateModel
 @{
-} 
+}
 
-    
 <form method="post">
-    <section>
-        <br>
-        Navn: <input type="text" asp-for="CreateViewModel.Navn"/>
-        <br>
-        Titel: <input type="text" asp-for="CreateViewModel.Titel" />
-        <br>
-        Email: <input type="text" asp-for="CreateViewModel.Email" />
-        <br>
-        TLF: <input type="text" asp-for="CreateViewModel.Tlf" />
-        <br>
-        UserId: <input type="text" asp-for="CreateViewModel.UserId" />
-        <br>
-        <button type="submit">Opret Sælger</button>
+    <section class="container">
+        <section class="row ">
+
+            <section class="col-md-6">
+                <fieldset>
+                    <br />
+                    <h1>Opret Sælger</h1>
+                    <section class="form-group row">
+                    </Section>
+                    <section class="col-sm-10">
+                    </Section>
+                    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+                    <section class="col-sm-10">
+                    </Section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputNavn" placeholder="Navn" asp-for="CreateViewModel.Navn">
+                        <label>Navn</label>
+                    </section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputTitel" placeholder="Titel" asp-for="CreateViewModel.Titel">
+                        <label>Titel</label>
+                    </section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputEmail" placeholder="Email" asp-for="CreateViewModel.Email">
+                        <label >Email</label>
+                    </section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputTlf" placeholder="Tlf" asp-for="CreateViewModel.Tlf">
+                        <label>Tlf</label>
+                    </section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputUserId" placeholder="UserId" asp-for="CreateViewModel.UserId">
+                        <label>User Id</label>
+                    </section>
+
+                    <button type="submit" class="btn btn-success rounded">Opret sælger</button>
+                </fieldset>
+            </section>
+        </section>
     </section>
 </form>
 
