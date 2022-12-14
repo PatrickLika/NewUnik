@@ -1,7 +1,9 @@
-﻿namespace Unik.Applicaiton.Booking.Queries
+﻿using Unik.Application.Booking.Queries.Implementation;
+
+namespace Unik.Applicaiton.Booking.Queries
 {
     public interface IBookingGetAllQuery
     {
-        IEnumerable<BookingResultDto> GetAll();
+        IEnumerable<BookingGetAllResulstDto> GetAll();
     }
 }

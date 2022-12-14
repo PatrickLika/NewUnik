@@ -32,11 +32,6 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
             throw new Exception(messages);
         }
 
-        async Task<IEnumerable<FindMedarbejderDto>?> IBookingService.FindMedarbejder(string type)
-        {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<FindMedarbejderDto>>($"api/Booking/Type/{type}");
-        }
-
         async Task<BookingResultDto> IBookingService.Get(int bookingId)
         {
             return await _httpClient.GetFromJsonAsync<BookingResultDto>($"api/Booking/{bookingId}");
@@ -45,6 +40,11 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
         async Task<IEnumerable<BookingResultDto>> IBookingService.GetAll()
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<BookingResultDto>>("api/Booking");
+        }
+
+        async Task<IEnumerable<FindMedarbejderDto>?> IBookingService.FindMedarbejder(string type)
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<FindMedarbejderDto>>($"api/Booking/Type/{type}");
         }
     }
 }

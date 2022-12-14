@@ -25,9 +25,9 @@
             {
                 <tr>
                     <td>@medarbejder.MedarbejderId</td>
-                    <td>@medarbejder.startDato.ToShortDateString()</td>
+                    <td>@medarbejder.StartDato.ToShortDateString()</td>
                     <td>@medarbejder.SlutDato.ToShortDateString()</td>
-                    <td><a asp-page="./Create" asp-route-id="@medarbejder.MedarbejderId"asp-route-startDato="@medarbejder.SlutDato"asp-route-varighed="@medarbejder.Varighed"asp-route-opgaveId="@medarbejder.OpgaveId">Book</a></td>
+                        <td><a asp-page="./Create" asp-route-medarbejderId="@medarbejder.MedarbejderId" asp-route-slutDato="@medarbejder.SlutDato.ToString()" asp-route-varighed="@medarbejder.Varighed" asp-route-opgaveId="@medarbejder.OpgaveId">Book</a></td>
                 </tr>
             }
         }

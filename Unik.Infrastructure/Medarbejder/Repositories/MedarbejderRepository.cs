@@ -35,7 +35,7 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
                     Tlf = entity.Tlf,
                     RowVersion = entity.RowVersion,
                     UserId = entity.UserId,
-                    KompetenceListe = entity.KompetenceListe
+                    KompetenceListe = entity.KompetenceListe,
                 };
             }
 

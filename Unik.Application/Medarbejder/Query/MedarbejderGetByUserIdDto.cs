@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unik.Domain.Booking.Model;
-using Unik.Domain.Kompetence.Model;
-using Unik.Domain.Opgave.Model;
+﻿using Unik.Crosscut.Dto;
 
 namespace Unik.Applicaiton.Medarbejder.Query
 {
@@ -18,8 +11,8 @@ namespace Unik.Applicaiton.Medarbejder.Query
         public string Titel { get; set; }
         public byte[] RowVersion { get; set; }
         public string UserId { get; set; }
-        public List<KompetenceEntity>? KompetenceListe { get; set; }
-        public List<OpgaveEntity>? OpgaverListe { get; set; }
-        public List<BookingEntity>? BookingListe { get; set; }
+        public List<KompetenceEntityDto>? KompetenceListe { get; set; }
+        public List<OpgaveEntityDto>? OpgaverListe { get; set; }
+        public List<BookingEntityDto>? BookingListe { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Unik.Domain.Medarbejder.Model;
+﻿using Unik.Crosscut.Dto;
 
 namespace Unik.Applicaiton.Kompetence.Query
 {
@@ -8,7 +8,7 @@ namespace Unik.Applicaiton.Kompetence.Query
         public string Navn { get; set; }
         public string Type { get; set; }
         public byte[] RowVersion { get; set; }
-        public List<MedarbejderEntity>? MedarbejderListe { get; set; }
+        public List<MedarbejderEntityDto>? MedarbejderListe { get; set; }
         public string UserId { get; set; }
 
 

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Booking.Queries;
 using Unik.Applicaiton.Booking.Repositories;
+using Unik.Application.Booking.Queries.Implementation;
 using Unik.Domain.Booking.Model;
 using Unik.SqlServerContext;
 
@@ -58,19 +59,45 @@ public class BoookingRepository
             };
         }
 
-        IEnumerable<BookingResultDto> IBookingRepository.GetAll()
+        IEnumerable<BookingGetAllResulstDto> IBookingRepository.GetAll()
         {
-            foreach (var dbEntity in _db.BookingEntities.AsNoTracking().ToList())
+            var p = _db.OpgaveEntities.AsNoTracking().ToList();
 
-                yield return new BookingResultDto
+
+
+
+            //    var b = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
+            //    .ToList();
+            //var c = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
+            //    .ToList();
+
+            //var a = _db.BookingEntities.Include(a => a.Medarbejder).Select(a => a.Medarbejder)
+            //    .Include(a => a.BookingListe);
+
+
+            
+
+
+            foreach (var dbEntity in _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking).ToList())
+
+                yield return new BookingGetAllResulstDto
                 {
-                    Id = dbEntity.Id,
-                    MedarbejderId = dbEntity.MedarbejderId,
+                    MedarbejderId = dbEntity.Medarbejder.Id,
+                    MedarbejderNavn = dbEntity.Medarbejder.Navn,
+                    MedarbejderTitel = dbEntity.Medarbejder.Titel,
                     OpgaveId = dbEntity.OpgaveId,
-                    SlutDato = dbEntity.SlutDato,
-                    StartDato = dbEntity.StartDato
+                    //OpgaveType = dbEntity.OpgaveId,
+                    StartDato = dbEntity.StartDato,
+                    SlutDato = dbEntity.SlutDato
                 };
+
+
+
+            throw new NotImplementedException();
+
         }
+
+
 
 
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)

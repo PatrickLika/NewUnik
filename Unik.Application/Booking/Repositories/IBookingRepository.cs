@@ -1,4 +1,5 @@
 ﻿using Unik.Applicaiton.Booking.Queries;
+using Unik.Application.Booking.Queries.Implementation;
 using Unik.Domain.Booking.Model;
 
 namespace Unik.Applicaiton.Booking.Repositories
@@ -10,7 +11,7 @@ namespace Unik.Applicaiton.Booking.Repositories
         void Delete(int id);
         BookingEntity Load(int bookingId);
         BookingResultDto Get(int bookingId);
-        IEnumerable<BookingResultDto> GetAll();
+        IEnumerable<BookingGetAllResulstDto> GetAll();
         IEnumerable<FindMedarbejderDto> FindMedarbejder(string type);
     }
 }
