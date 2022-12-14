@@ -11,7 +11,7 @@ public class IndexMedarbejderModel
     public string Titel { get; set; }
     public byte[] RowVersion { get; set; }
     public string UserId { get; set; }
-    public List<KompetenceEntityDto>? KompetenceListe { get; set; }
+    public List<medarbejderkompetenceEntityDto>? KompetenceListe { get; set; }
     public List<OpgaveEntityDto>? OpgaverListe { get; set; }
     public List<BookingEntityDto>? BookingListe { get; set; }
 }
