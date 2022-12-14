@@ -13,9 +13,14 @@ namespace Unik.WebApp.Pages.Projekt
         {
             _projektService = projektService;
         }
-        public async Task OnGet()
+        public async Task<IActionResult> OnGet()
         {
             var projekter = await _projektService.ProjektGetAll();
+
+            if (projekter == null)
+            {
+                throw new Exception("der er ingen projekter oprettet endnu");
+            }
 
             projekter.ToList().ForEach(dto => IndexViewModel.Add(new ProjektIndexViewModel
             {
@@ -28,7 +33,7 @@ namespace Unik.WebApp.Pages.Projekt
                 AntalBoliger = dto.AntalBoliger
             }));
 
-
+            return Page();
         }
     }
 }
