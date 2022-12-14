@@ -29,6 +29,26 @@ namespace Unik.Webapp.Pages.Booking
 
         public async Task<IActionResult> OnPost()
         {
+            if (!ModelState.IsValid) return Page();
+
+
+            var dto = new BookingCreateRequestDto()
+            {
+                OpgaveId = OpgaveCreateViewModel.OpgaveId,
+                MedarbejderId = OpgaveCreateViewModel.MedarbejderId,
+                startDato = OpgaveCreateViewModel.startDato,
+                SlutDato = OpgaveCreateViewModel.SlutDato,
+            };
+
+            try
+            {
+                await _bookingService.Create(dto);
+            }
+
+            catch (Exception e)
+            {
+                ModelState.AddModelError(string.Empty, e.Message);
+            }
 
             return new RedirectToPageResult("./Index");
         }
