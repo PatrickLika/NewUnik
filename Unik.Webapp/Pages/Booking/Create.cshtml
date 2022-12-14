@@ -2,31 +2,3 @@
 @model Unik.Webapp.Pages.Booking.CreateModel
 @{
 }
-<form metod="post">
-    <br>
-    <h1>Mulige Medarbedjere</h1>
-    <br>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>StartDato</th>
-            <th>SlutDato</th>
-        </tr>
-        </thead>
-        <tbody>
-            @if (Model.FindMedarbejderViewModel.Any())
-        {
-                foreach (var medarbejder in Model.FindMedarbejderViewModel)
-            {
-                <tr>
-                    <td>@medarbejder.MedarbejderId</td>
-                    <td>@medarbejder.startDato.ToShortDateString()</td>
-                    <td>@medarbejder.SlutDato.ToShortDateString()</td>
-                </tr>
-            }
-        }
-        </tbody>
-    </table>
-    <a asp-page="Create">Opret</a>
-</form>

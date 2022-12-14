@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Unik.WebApp.Infrastructure.Booking.Contract.Dto;
-using Unik.WebApp.Infrastructure.Booking.Implementation;
 using Unik.WebApp.Pages.Booking;
 
 namespace Unik.Webapp.Pages.Booking
@@ -14,33 +13,24 @@ namespace Unik.Webapp.Pages.Booking
         {
             _bookingService = bookingService;
         }
-        [BindProperty] public List<FindMedarbejderViewModel> FindMedarbejderViewModel { get; set; } = new();
-
-        public async Task<IActionResult> OnGet(int? opgaveId, string navn, int varighed)
+        [BindProperty] public BookingCreateViewModel OpgaveCreateViewModel { get; set; } = new();
+        public async Task<IActionResult> OnGet(int MedarbejderId,DateTime SlutDato, int opgaveId, int varighed)
         {
             if (opgaveId == null) return NotFound();
 
-            var businessModel = await _bookingService.FindMedarbejder(navn);
-
-            if (businessModel == null)
-            {
-                throw new Exception("Ingen Medarbejder kan sættes på opgaven");
-            }
-
-            businessModel.ToList().ForEach(dto => FindMedarbejderViewModel.Add(new FindMedarbejderViewModel
-            {
-                MedarbejderId = dto.MedarbejderId,
-                startDato = dto.startDato,
-                SlutDato = dto.SlutDato
-            }));
+            OpgaveCreateViewModel.MedarbejderId = MedarbejderId;
+            OpgaveCreateViewModel.startDato = SlutDato.AddDays(1);
+            OpgaveCreateViewModel.OpgaveId = opgaveId;
+            OpgaveCreateViewModel.Varighed = varighed;
+            OpgaveCreateViewModel.SlutDato = SlutDato.AddDays(varighed+1);
 
             return Page();
         }
 
         public async Task<IActionResult> OnPost()
         {
-            throw NotFound();
-        }
 
+            return new RedirectToPageResult("./Index");
+        }
     }
 }

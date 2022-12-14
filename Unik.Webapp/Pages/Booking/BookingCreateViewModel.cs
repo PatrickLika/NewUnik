@@ -8,5 +8,6 @@ namespace Unik.WebApp.Pages.Booking
         public int MedarbejderId { get; set; }
         public DateTime startDato { get; set; }
         public DateTime SlutDato { get; set;}
+        public int Varighed { get; set; }
     }
 }
