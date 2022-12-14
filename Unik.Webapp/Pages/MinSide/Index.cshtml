@@ -3,64 +3,41 @@
 @{
 }
 
-@if (User.HasClaim(a => a.Type == "Tekniker"))
+@if (User.HasClaim(a => a.Type == "Tekniker") || User.HasClaim(a => a.Type == "Konsulent") || User.HasClaim(a => a.Type == "Konverter"))
 {
+    <h2>@Model.MedarbejderModel.Navn's' side</h2>
     <form method="post">
         <table class="table">
-
-            <br>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Navn</th>
-                <th>Projekt Id</th>
-                <th></th>
-            </tr>
-            </thead>
             <tbody>
-            @if (Model.OpgaveIndexViewModels.Any())
+            @if (@Model.MedarbejderModel.OpgaverListe !=null)
             {
-                foreach (var opgave in Model.OpgaveIndexViewModels)
+                    foreach (var booking in Model.MedarbejderModel.OpgaverListe)
                 {
+                     
                     <tr>
-                        <td> @opgave.Id </td>
-                        <td> @opgave.Navn </td>
-                        <td>@opgave.ProjektId</td>
+                        <th>Booking id</th>
+                        <th>Opgave Id</th>
+                        <th>Start Dato</th>
+                        <th>Slut Dato</th>
+                        <th>Type af opgave</th>
+                    </tr>
+                    <tr>
+                        <td> @booking.booking?.Id</td>
+                        <td> @booking.booking?.OpgaveId</td>
+                            <td> @booking.booking?.StartDato.ToString("dd/MM/yyyy")</td>
+                            <td> @booking.booking?.SlutDato.ToString("dd/MM/yyyy")</td>
+                        <td> @booking.Type</td>
                     </tr>
                 }
             }
+            <tr>
+                <th></th>
+            </tr>
             </tbody>
         </table>
     </form>
 }
-@if (User.HasClaim(a => a.Type == "Kunde"))
+else
 {
-        <form method="post">
-            <table class="table">
-
-                <br>
-                <thead>
-                <tr>
-                    <th>Projekt Id</th>
-                    <th>Sælger Id</th>
-                    <th>Kunde Id</th>
-                    <th>Noter</th>
-                </tr>
-                </thead>
-                <tbody>
-                @if (Model.OpgaveIndexViewModels.Any())
-                {
-                    foreach (var projekt in Model.ProjektIndexViewModels)
-                    {
-                                <tr>
-                                    <td> @projekt.Id </td>
-                                    <td> @projekt.SalesId </td>
-                                    <td> @projekt.kundeID </td>
-                                    <td> @projekt.Noter </td>
-                                </tr>
-                    }
-                }
-                </tbody>
-            </table>
-        </form>
+    <h2>ÆV DU SKAL IKKE NOGET HERINDE</h2>
 }

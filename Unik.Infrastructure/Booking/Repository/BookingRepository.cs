@@ -1,4 +1,3 @@
-﻿
 using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Booking.Queries;
 using Unik.Applicaiton.Booking.Repositories;
@@ -92,6 +91,7 @@ public class BoookingRepository
             //var a = _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe).SelectMany(a => a.MedarbejderListe).ToList();
             //var c = _db.BookingEntities.Where(e => a.Contains(e.Medarbejder))
             //    .Where(a => a.SlutDato > DateTime.Today || a.SlutDato == null).OrderBy(a => a.SlutDato).ToList();
+
         }
     }
 }

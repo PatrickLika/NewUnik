@@ -41,7 +41,6 @@ namespace Unik.Infrastructure.Opgave.Repositories
                 ProjektId = dbEntity.ProjektId,
                 Type = dbEntity.Type,
                 BookingId = dbEntity.BookingId,
-                MedarbejderId = dbEntity.MedarbejderId,
                 Varighed = dbEntity.Varighed,
                 RowVersion = dbEntity.RowVersion
             };
@@ -59,7 +58,6 @@ namespace Unik.Infrastructure.Opgave.Repositories
                     RowVersion = entity.RowVersion,
                     ProjektId = entity.ProjektId,
                     BookingId = entity.BookingId,
-                    MedarbejderId = entity.MedarbejderId,
                     Varighed = entity.Varighed,
                     Type = entity.Type
                 };
