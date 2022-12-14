@@ -15,12 +15,12 @@
             <div class="container-fluid">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a class="navbar-brand text-white" asp-area="" asp-page="/Index">Unik</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <a class="navbar-brand text-white" asp-page="/Index">Unik</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarColor01" data-bs-target="#navbarColor01" aria-controls="#navbarColor01" aria-expanded="False" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
+                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between" id="navbarColor01">
+                        <ul class="navbar-nav me-auto flex-grow-1">
                             @if (User.HasClaim(a => a.Type == "Sælger"))
                             {
                             <li class="nav-item dropdown">
@@ -91,7 +91,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 
     @await RenderSectionAsync("Scripts", required: false)
+    
 </body>
 </html>
