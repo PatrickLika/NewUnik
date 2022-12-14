@@ -36,5 +36,11 @@ namespace Unik.Webapp.Pages.Booking
 
             return Page();
         }
+
+        public async Task<IActionResult> OnPost()
+        {
+            throw NotFound();
+        }
+
     }
 }
