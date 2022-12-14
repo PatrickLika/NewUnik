@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using Unik.Domain.Booking.Model;
 using Unik.Domain.Kompetence.Model;
-using Unik.Domain.Opgave.Model;
 
 namespace Unik.Domain.Medarbejder.Model
 
@@ -19,7 +18,6 @@ namespace Unik.Domain.Medarbejder.Model
         public byte[] RowVersion { get; set; }
         public string UserId { get; set; }
         public List<KompetenceEntity>? KompetenceListe { get; set; }
-        public List<OpgaveEntity>? OpgaverListe { get; set; }
         public List<BookingEntity>? BookingListe { get; set; }
 
 

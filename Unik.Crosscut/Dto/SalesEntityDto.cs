@@ -1,11 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using Unik.Domain.Kompetence.Model;
-using Unik.Domain.Opgave.Model;
-using Unik.Domain.Projekt.Model;
 
-namespace Unik.Domain.Sales.Model
-{ 
-    public  class SalesEntityDto
+namespace Unik.Crosscut.Dto
+{
+    public class SalesEntityDto
     {
         public int Id { get; set; }
         public string Navn { get; set; }

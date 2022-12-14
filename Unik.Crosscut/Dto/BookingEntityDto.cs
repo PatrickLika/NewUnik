@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Unik.Domain.Booking.DomainServices;
 
-namespace Unik.Domain.Booking.Model;
+namespace Unik.Crosscut.Dto;
 
 public class BookingEntityDto
 {

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Unik.Domain.Projekt.Model;
 
-namespace Unik.Domain.Kunde.Model
+namespace Unik.Crosscut.Dto
 {
     public class KundeEntityDto
     {
