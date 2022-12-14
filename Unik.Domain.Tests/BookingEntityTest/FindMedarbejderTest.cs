@@ -17,29 +17,47 @@ namespace Unik.Domain.Tests.BookingEntityTest
 
 
         }
-
-        public void IsGiveTypeThenReturnSQLBooking(string type)
+        [Theory]
+        [InlineData("Sql")]
+        public void Is_Give_Type_Then_Return_Medarbejde_Som_Kan_Bookes(string type)
         {
             //Arrange
-            var bookingListe = new List<BookingEntity>(new[]
-           {
+            var expectedBookingListe = new List<BookingEntity>(new[]
+            {
+                new BookingEntity(1,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
+                new BookingEntity(1,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
                 new BookingEntity(1,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
                 new BookingEntity(2,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
-                new BookingEntity(3,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
-                new BookingEntity(4,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1))
+                new BookingEntity(2,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
+                new BookingEntity(2,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1))
+            });
+            var bookingListepatrick = new List<BookingEntity>(new[]
+            {
+                new BookingEntity(1,new DateTime(2020, 1, 1), new DateTime(2000, 2, 1)),
+                new BookingEntity(1,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
+                new BookingEntity(1,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
+                new BookingEntity(1,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1))
+            });
+
+            var bookingListeDissing = new List<BookingEntity>(new[]
+           {
+                new BookingEntity(2,new DateTime(2020, 1, 1), new DateTime(2000, 2, 1)),
+                new BookingEntity(2,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
+                new BookingEntity(2,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1)),
+                new BookingEntity(2,new DateTime(2023, 1, 1), new DateTime(2023, 2, 1))
             });
 
 
             var sqlMedarbejderListe = new List<MedarbejderEntity>(new[]
             {
-                new MedarbejderEntity(1,"Patrick",bookingListe),
-                new MedarbejderEntity(2,"Dissing",bookingListe),
+                new MedarbejderEntity(1,"Patrick",bookingListepatrick),
+                new MedarbejderEntity(2,"Dissing",bookingListeDissing),
             });
             var azureMedarbejderListe = new List<MedarbejderEntity>(new[]
             {
 
-                new MedarbejderEntity(3,"Olli",bookingListe),
-                new MedarbejderEntity(4,"Rallan",bookingListe)
+                new MedarbejderEntity(3,"Olli",bookingListepatrick),
+                new MedarbejderEntity(4,"Rallan",bookingListepatrick)
             });
 
             var kompetenceListe = new List<KompetenceEntity>(new[]
@@ -47,11 +65,14 @@ namespace Unik.Domain.Tests.BookingEntityTest
                 new KompetenceEntity("Sql","Tekniker", sqlMedarbejderListe),
                 new KompetenceEntity("Azure","Tekniker", azureMedarbejderListe)
             });
-            BookingRepositoryMock.Setup(a => a.FindMedarbejder("Sql")).Returns(bookingListe);
 
             //Act
-            var typeList = kompetenceListe.Where(a => a.Navn == type).SelectMany(b => b.MedarbejderListe);
+            var medarbejderListe = kompetenceListe.Where(a => a.Navn == type)
+                .SelectMany(b => b.MedarbejderListe).ToList();
+            var actBookingListe = medarbejderListe.SelectMany(a => a.BookingListe).ToList();
+            var specifikBooking = actBookingListe.Where(a => a.SlutDato > DateTime.Now).ToList();
             //Assert
+            Assert.Equal(expectedBookingListe, specifikBooking);
         }
     }
 }

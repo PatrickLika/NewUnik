@@ -12,7 +12,9 @@ namespace Unik.Applicaiton.Booking.Queries.Implementation
         }
         IEnumerable<FindMedarbejderDto> IFindMedarbejder.FindMedarbejder(string type)
         {
-            return _bookingRepository.FindMedarbejder(type);
+            //return _bookingRepository.FindMedarbejder(type);
+
+            throw new NotImplementedException();
         }
     }
 }
