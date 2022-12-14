@@ -21,7 +21,7 @@ services:
       - "8080:80"
     environment:
       "ASPNETCORE_ENVIRONMENT": "Development"
-      "ConnectionStrings:UserDb": "Server=db;Database=Unik.WebAppUsers;Trusted_Connection=False;MultipleActiveResultSets=true;TrustServerCertificate=True"
+      "ConnectionStrings:UserDb": "Server=db;Database=Unik.WebAppUsers;Trusted_Connection=false;MultipleActiveResultSets=true;TrustServerCertificate=True;User Id=SA;Password=SqlPassw0rd!;"
       "UnikBaseUrl": "https://unik.api"
     depends_on:
       - db
@@ -37,7 +37,7 @@ services:
     container_name: "unik.api"
     environment:
       "ASPNETCORE_ENVIRONMENT": "Development"
-      "ConnectionStrings:UnikConnection" : "Server=db;Database=Unik;Trusted_Connection=True;MultipleActiveResultSets=true;User id=SA;Password=SqlPassw0rd!;TrustServerCertificate=True;"
+      "ConnectionStrings:UnikConnection" : "Server=db;Database=Unik;Trusted_Connection=false;MultipleActiveResultSets=true;TrustServerCertificate=True;User Id=SA;Password=SqlPassw0rd!;"
     depends_on: 
       - db 
 

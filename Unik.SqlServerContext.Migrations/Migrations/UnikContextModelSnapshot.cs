@@ -45,9 +45,6 @@ namespace Unik.SqlServerContext.Migrations.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("MedarbejderEntityId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MedarbejderId")
                         .HasColumnType("int");
 
@@ -68,7 +65,7 @@ namespace Unik.SqlServerContext.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MedarbejderEntityId");
+                    b.HasIndex("MedarbejderId");
 
                     b.ToTable("Booking", "booking");
                 });
@@ -316,9 +313,13 @@ namespace Unik.SqlServerContext.Migrations.Migrations
 
             modelBuilder.Entity("Unik.Domain.Booking.Model.BookingEntity", b =>
                 {
-                    b.HasOne("Unik.Domain.Medarbejder.Model.MedarbejderEntity", null)
+                    b.HasOne("Unik.Domain.Medarbejder.Model.MedarbejderEntity", "Medarbejder")
                         .WithMany("BookingListe")
-                        .HasForeignKey("MedarbejderEntityId");
+                        .HasForeignKey("MedarbejderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medarbejder");
                 });
 
             modelBuilder.Entity("Unik.Domain.Opgave.Model.OpgaveEntity", b =>

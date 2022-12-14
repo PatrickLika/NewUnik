@@ -1,0 +1,37 @@
+﻿@page
+@model Unik.Webapp.Pages.Booking.FindMedarbejderModel
+@{
+}
+<form metod="post">
+    <br>
+    <h1>Mulige Medarbedjere</h1>
+    <br>
+    
+
+    <table class="table">
+
+
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>StartDato</th>
+            <th>SlutDato</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.FindMedarbejderViewModel.Any())
+        {
+            foreach (var medarbejder in Model.FindMedarbejderViewModel)
+            {
+                <tr>
+                    <td>@medarbejder.MedarbejderId</td>
+                    <td>@medarbejder.startDato.ToShortDateString()</td>
+                    <td>@medarbejder.SlutDato.ToShortDateString()</td>
+                    <td><a asp-page="./Create" asp-route-id="@medarbejder.MedarbejderId"asp-route-startDato="@medarbejder.SlutDato"asp-route-varighed="@medarbejder.Varighed"asp-route-opgaveId="@medarbejder.OpgaveId">Book</a></td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+    <a asp-page="Create">Opret</a>
+</form>

@@ -1,4 +1,6 @@
-﻿using Unik.WebApp.Infrastructure.Booking.Contract.Dto;
+﻿using Unik.Webapp.Infrastructure.Booking.Contract.Dto;
+using Unik.WebApp.Infrastructure.Booking.Contract.Dto;
+using Unik.WebApp.Infrastructure.Kunde.Contract.Dto;
 
 namespace Unik.WebApp.Infrastructure.Booking.Implementation
 {
@@ -28,6 +30,11 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
             if (response.IsSuccessStatusCode) return;
             var messages = await response.Content.ReadAsStringAsync();
             throw new Exception(messages);
+        }
+
+        async Task<IEnumerable<FindMedarbejderDto>?> IBookingService.FindMedarbejder(string type)
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<FindMedarbejderDto>>($"api/Booking/Type/{type}");
         }
 
         async Task<BookingResultDto> IBookingService.Get(int bookingId)
