@@ -77,34 +77,21 @@ public class BoookingRepository
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
         {
 
+            foreach (var entity in _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe)
+                .SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe)
+                .SelectMany(a => a.BookingListe).OrderBy(a => a.SlutDato).ToList())
+                     
+            yield return new FindMedarbejderDto
+            {
+                MedarbejderId = entity.MedarbejderId,
+                startDato = entity.StartDato,
+                SlutDato = entity.SlutDato
+            };
+
 
             //var a = _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe).SelectMany(a => a.MedarbejderListe).ToList();
-
-
             //var c = _db.BookingEntities.Where(e => a.Contains(e.Medarbejder))
             //    .Where(a => a.SlutDato > DateTime.Today || a.SlutDato == null).OrderBy(a => a.SlutDato).ToList();
-
-
-            var b =_db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe)
-                .SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe).SelectMany(a => a.BookingListe)
-                .Where(a => a.SlutDato > DateTime.Now).ToList();
-
-
-
-
-            foreach (var entity in _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe)
-                .SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe).SelectMany(a => a.BookingListe)
-                .Where(a => a.SlutDato > DateTime.Now).ToList())
-
-                yield return new FindMedarbejderDto
-                {
-                    //MedarbejderId = entity.Medarbejder.Id,
-                   // MedarbejderNavn = entity.Medarbejder.Navn,
-                    startDato = entity.StartDato,
-                    SlutDato = entity.SlutDato
-                };
-
-
         }
     }
 }

@@ -47,7 +47,7 @@ public class BookingEntity
         SlutDato = slutDato;
     }
 
-    private bool IsDoubleBooking()
+    public bool IsDoubleBooking()
     {
         return _domainService.GetBookings(MedarbejderId).Any(a => a.StartDato < SlutDato && a.SlutDato > StartDato);
 

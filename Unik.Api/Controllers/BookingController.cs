@@ -109,7 +109,7 @@ namespace Unik.Api.Controllers
         [HttpGet("Type/{type}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<FindMedarbejderDto>> Find(string type)
+        public ActionResult <IEnumerable<FindMedarbejderDto>> Find(string type)
         {
             try
             {

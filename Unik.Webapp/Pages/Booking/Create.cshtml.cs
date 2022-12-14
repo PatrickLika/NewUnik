@@ -4,7 +4,7 @@ using Unik.WebApp.Infrastructure.Booking.Contract.Dto;
 using Unik.WebApp.Infrastructure.Booking.Implementation;
 using Unik.WebApp.Pages.Booking;
 
-namespace Unik.WebApp.Pages.Booking
+namespace Unik.Webapp.Pages.Booking
 {
     public class CreateModel : PageModel
     {
@@ -14,20 +14,27 @@ namespace Unik.WebApp.Pages.Booking
         {
             _bookingService = bookingService;
         }
-        [BindProperty] public BookingCreateViewModel BookingCreateViewModel { get; set; }
+        [BindProperty] public List<FindMedarbejderViewModel> FindMedarbejderViewModel { get; set; } = new();
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet(int? opgaveId, string navn, int varighed)
         {
-        }
+            if (opgaveId == null) return NotFound();
 
-        public async Task<IActionResult> OnPost()
-        {
-            var BookingDto = new BookingCreateRequestDto()
+            var businessModel = await _bookingService.FindMedarbejder(navn);
+
+            if (businessModel == null)
             {
-                
-            };
-            await _bookingService.Create(BookingDto);
-            return new RedirectToPageResult("./index");
+                throw new Exception("Ingen Medarbejder kan sættes på opgaven");
+            }
+
+            businessModel.ToList().ForEach(dto => FindMedarbejderViewModel.Add(new FindMedarbejderViewModel
+            {
+                MedarbejderId = dto.MedarbejderId,
+                startDato = dto.startDato,
+                SlutDato = dto.SlutDato
+            }));
+
+            return Page();
         }
     }
 }

@@ -1,130 +1,32 @@
 ﻿@page
-@model Unik.WebApp.Pages.Booking.CreateModel
+@model Unik.Webapp.Pages.Booking.CreateModel
 @{
 }
-
-<form>
-    <section class="container">
-        <section class="row ">
-
-            <section class="col-md-6">
-                <fieldset>
-                    <br />
-                    <h1>Opret kunde</h1>
-                    <div class="form-group row">
-                    </div>
-                    <label for="staticEmail">Virksomhed information</label>
-                    <div class="col-sm-10">
-                    </div>
-                    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
-                    <div class="col-sm-10">
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputKontaktpersonNavn" placeholder="Kontaktperson navn">
-                        <label for="floatingInput">Kontaktperson navn</label>
-                    </div>
-                    
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputVirksomhedNavn" placeholder="Virksomhed navn">
-                        <label for="floatingInput">Virksomhedens navn</label>
-                    </div>
-                   
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputKontaktpersonEmail" placeholder="Kontaktperson email">
-                        <label for="floatingInput">Kontaktperson Email</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputVirksomhedTlf" placeholder="Virksomhed tlf">
-                        <label for="floatingInput">Kontaktperson tlf</label>
-                    </div>
-                    @* </div>*@
-                   @* <div class="container">
-                        <div class="row ">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInputAdresse" placeholder="Adresse">
-                                    <label for="floatingInput">Adresse</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInputPostNr" placeholder="Post nr">
-                                    <label for="floatingInput">Post nr</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
-                    @*<div class="form-group">
-                    <label for="exampleInputPassword1" class="form-label mt-4">Kunde password</label>
-                    <input type="password" class="form-control" id="exampleInputKundePassword" placeholder="Password">
-                    </div>*@
-                   @* <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputKundePassword" placeholder="Passowrd">
-                        <label for="floatingInput">Password</label>
-                    </div>*@
-                        @*<div class="form-floating mb-3">
-                    <div class="form-group">
-                        <label class="form-label mt-4">Opret Kunde</label>
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
-                        </div>*@
-                   @* <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Password</label>
-                    </div>*@
-                </fieldset>
-            </section>
-            <section class="col-md-6">
-                <h1 style="color:white">Opret projekt</h1>
-                <br />
-                <label for="staticEmail">Kunde ekstra information</label>
-                <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
-                <div class="col-sm-10">
-                </div>
-                @*<div class="form-group">
-                    <label for="exampleSelect1" class="form-label mt-4">Example select</label>
-                    <select class="form-select" id="exampleSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="exampleSelect2" class="form-label mt-4">Vælg kompetencer til projektet</label>
-                    <select multiple="" class="form-select" id="exampleSelect2">
-                        <option>SQL</option>
-                        <option>MSSQL</option>
-                        <option>MongoDB</option>
-                        <option>Citrix opsætning</option>
-                        <option>Telefon guide af opsætning</option>
-                    </select>
-                </div>*@
-                <div class="form-group">
-                    <label for="exampleTextarea" class="form-label mt-4">Noter</label>
-                    <textarea class="form-control" id="noter" rows="3"></textarea>
-                </div>
-                @*<fieldset class="form-group">
-                    <legend class="mt-4">Checkboxes til Komptencer</legend>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Default checkbox
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked="">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Checked checkbox
-                        </label>
-                    </div>
-                </fieldset>*@
-                <fieldset class="form-group">
-                </fieldset>
-                <br />
-                <button type="submit" class="btn btn-success rounded">Opret kunde</button>
-            </section>
-        </section>
-    </section>
+<form metod="post">
+    <br>
+    <h1>Mulige Medarbedjere</h1>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>StartDato</th>
+            <th>SlutDato</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if (Model.FindMedarbejderViewModel.Any())
+        {
+                foreach (var medarbejder in Model.FindMedarbejderViewModel)
+            {
+                <tr>
+                    <td>@medarbejder.MedarbejderId</td>
+                    <td>@medarbejder.startDato.ToShortDateString()</td>
+                    <td>@medarbejder.SlutDato.ToShortDateString()</td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+    <a asp-page="Create">Opret</a>
 </form>
