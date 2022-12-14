@@ -44,7 +44,7 @@ public class Repositories : IProjektRepositories
         return new ProjektQueryResultDto
         {
             RowVersion = projekt.RowVersion,
-            Opgaver = opgaver,
+           // Opgaver = opgaver,
             Id = projekt.Id,
             Noter = projekt.Noter,
             kundeID = projekt.KundeId,
@@ -52,6 +52,8 @@ public class Repositories : IProjektRepositories
             AntalBoliger = projekt.AntalBoliger
 
         };
+
+        throw new NotImplementedException();
     }
 
     IEnumerable<ProjektQueryResultDto> IProjektRepositories.GetAll()
@@ -62,13 +64,15 @@ public class Repositories : IProjektRepositories
             yield return new ProjektQueryResultDto
             {
                 RowVersion = dbEntity.RowVersion,
-                Opgaver = dbEntity.Opgaver,
+               // Opgaver = dbEntity.Opgaver,
                 Id = dbEntity.Id,
                 Noter = dbEntity.Noter,
                 SalesId = dbEntity.SalesId,
                 kundeID = dbEntity.KundeId,
                 AntalBoliger = dbEntity.AntalBoliger
             };
+
+        throw new NotImplementedException();
     }
 
     ProjektEntity IProjektRepositories.Load(int id)

@@ -65,35 +65,34 @@ public class BoookingRepository
 
 
 
-
-            //    var b = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
-            //    .ToList();
-            //var c = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
-            //    .ToList();
-
-            //var a = _db.BookingEntities.Include(a => a.Medarbejder).Select(a => a.Medarbejder)
-            //    .Include(a => a.BookingListe);
-
-
-            
-
-
-            foreach (var dbEntity in _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking).ToList())
-
-                yield return new BookingGetAllResulstDto
+           var bookingliste = _db.MedarbejderEntities.Include(a => a.BookingListe).ThenInclude(a => a.OpgaveId).SelectMany(
+                a => a.BookingListe, (entity, bookingEntity) => new BookingGetAllResulstDto
                 {
-                    MedarbejderId = dbEntity.Medarbejder.Id,
-                    MedarbejderNavn = dbEntity.Medarbejder.Navn,
-                    MedarbejderTitel = dbEntity.Medarbejder.Titel,
-                    OpgaveId = dbEntity.OpgaveId,
-                    //OpgaveType = dbEntity.OpgaveId,
-                    StartDato = dbEntity.StartDato,
-                    SlutDato = dbEntity.SlutDato
-                };
+                    MedarbejderId = entity.Id,
+                    MedarbejderNavn = entity.Navn,
+                    MedarbejderTitel = entity.Titel,
+                    StartDato = bookingEntity.StartDato,
+                    SlutDato = bookingEntity.SlutDato,
+                    OpgaveId = bookingEntity.OpgaveId
+                });
+
+           return bookingliste;
+
+           //    var b = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
+           //    .ToList();
+           //var c = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
+           //    .ToList();
+
+           //var a = _db.BookingEntities.Include(a => a.Medarbejder).Select(a => a.Medarbejder)
+           //    .Include(a => a.BookingListe);
 
 
 
-            throw new NotImplementedException();
+
+
+
+
+
 
         }
 

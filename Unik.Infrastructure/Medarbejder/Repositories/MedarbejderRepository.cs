@@ -35,9 +35,11 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
                     Tlf = entity.Tlf,
                     RowVersion = entity.RowVersion,
                     UserId = entity.UserId,
-                    KompetenceListe = entity.KompetenceListe,
+                    //KompetenceListe = entity.KompetenceListe,
                 };
             }
+
+            throw new NotImplementedException();
 
         }
 
@@ -124,10 +126,12 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
                 Titel = medarbejder.Titel,
                 RowVersion = medarbejder.RowVersion,
                 UserId = medarbejder.UserId,
-                KompetenceListe = kompetencer,
-                OpgaverListe = booking
+               // KompetenceListe = kompetencer,
+              //  OpgaverListe = booking
 
             };
+
+            throw new NotImplementedException();
         }
     }
 }

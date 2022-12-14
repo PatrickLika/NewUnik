@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Kompetence.Query;
 using Unik.Applicaiton.Kompetence.Repositories;
+using Unik.Application.Booking.Queries.Implementation;
+using Unik.Crosscut.Dto;
 using Unik.Domain.Kompetence.Model;
 using Unik.Domain.Medarbejder.Model;
 using Unik.SqlServerContext;
@@ -32,18 +34,22 @@ namespace Unik.Infrastructure.Kompetence.Repositories
         KompetenceQueryResultDto IKompetenceRepository.Get(int id)
         {
 
-            var Kompetence = _db.KompetenceEntities.AsNoTracking().FirstOrDefault(a => a.Id == id);
-            var medarbejderListe = _db.KompetenceEntities.AsNoTracking().Where(a => a.Id == id).SelectMany(b => b.MedarbejderListe).ToList();
+            //var bookingliste = _db.MedarbejderEntities.Include(a => a.BookingListe).ThenInclude(a => a.OpgaveId).SelectMany(
+            //    a => a.BookingListe, (entity, bookingEntity) => new BookingGetAllResulstDto
 
-            if(Kompetence == null) throw new Exception($"Kompetence med {id} findes ikke");
+            var test = _db.MedarbejderEntities.Include(a => a.KompetenceListe).SelectMany(
+                a => a.KompetenceListe, (entity, kompetenceEntity) => new KompetenceQueryResultDto
+                {
+                    Id = entity.Id,
+                    Navn = entity.Navn,
+                    Type = kompetenceEntity.Type,
+                    RowVersion = kompetenceEntity.RowVersion,
+                    UserId = entity.UserId,
+                    //MedarbejderListe = her mangler liste.
+                });
 
-            return new KompetenceQueryResultDto 
-            {       Id = Kompetence.Id,
-                    Navn = Kompetence.Navn,
-                    Type = Kompetence.Type,
-                    RowVersion = Kompetence.RowVersion,
-                    MedarbejderListe = medarbejderListe
-            };
+            throw new NotImplementedException();
+
         }
 
 
@@ -58,10 +64,18 @@ namespace Unik.Infrastructure.Kompetence.Repositories
                     Id = entity.Id,
                     Type = entity.Type,
                     Navn = entity.Navn,
-                    MedarbejderListe = medarbejderListe
+                   // MedarbejderListe = medarbejderListe
                 };
+
             }
+
+            throw new NotImplementedException();
+
         }
+
+
+
+
 
         KompetenceEntity IKompetenceRepository.Load(int KompetenceId)
         {

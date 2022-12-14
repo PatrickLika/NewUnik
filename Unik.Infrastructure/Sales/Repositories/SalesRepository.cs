@@ -90,8 +90,18 @@ namespace Unik.Infrastructure.Sales.Repositories
             if (dbEntity == null) throw new Exception("Sælger findes ikke i databasen");
 
             return new SalesGetQueryDto
-            { Id = dbEntity.Id, Navn = dbEntity.Navn, Email = dbEntity.Email, Tlf = dbEntity.Tlf, Titel = dbEntity.Titel, RowVersion = dbEntity.RowVersion, UserId = dbEntity.UserId, ProjektListe = projekter };
+            { Id = dbEntity.Id,
+                Navn = dbEntity.Navn,
+                Email = dbEntity.Email,
+                Tlf = dbEntity.Tlf, 
+                Titel = dbEntity.Titel,
+                RowVersion = dbEntity.RowVersion,
+                UserId = dbEntity.UserId, 
+                //ProjektListe = projekter
+            };
+        throw new NotImplementedException();
         }
+
 
     }
 }
