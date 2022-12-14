@@ -108,7 +108,10 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
 
             var kompetencer = _db.MedarbejderEntities.AsNoTracking().Where(a => a.Id == medarbejder.Id).SelectMany(b => b.KompetenceListe).ToList();
 
-            var opgaver = _db.MedarbejderEntities.AsNoTracking().Where(a => a.Id == medarbejder.Id).SelectMany(b => b.OpgaverListe).ToList();
+            var booking = _db.OpgaveEntities.
+                Include(b => b.booking)
+                .Where(a => a.booking.MedarbejderId == medarbejder.Id).
+                ToList();
 
 
 
@@ -122,7 +125,7 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
                 RowVersion = medarbejder.RowVersion,
                 UserId = medarbejder.UserId,
                 KompetenceListe = kompetencer,
-                OpgaverListe = opgaver
+                OpgaverListe = booking
 
             };
         }

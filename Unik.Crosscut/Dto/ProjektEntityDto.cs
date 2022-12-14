@@ -1,10 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Unik.Domain.Kunde.Model;
-using Unik.Domain.Medarbejder.Model;
-using Unik.Domain.Opgave.Model;
-using Unik.Domain.Sales.Model;
 
-namespace Unik.Domain.Projekt.Model;
+namespace Unik.Crosscut.Dto;
 
 public class ProjektEntityDto
 {
@@ -12,7 +8,7 @@ public class ProjektEntityDto
     public int Id { get; set; }
     public string Noter { get; set; }
     public int AntalBoliger { get; set; }
-    [Timestamp] 
+    [Timestamp]
     public byte[] RowVersion { get; private set; }
     public List<OpgaveEntityDto>? Opgaver { get; set; }
     public KundeEntityDto Kunde { get; set; }
