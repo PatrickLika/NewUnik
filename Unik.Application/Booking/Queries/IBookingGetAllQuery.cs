@@ -1,4 +1,4 @@
-﻿using Unik.Application.Booking.Queries.Implementation;
+﻿using Unik.Application.Booking.Queries;
 
 namespace Unik.Applicaiton.Booking.Queries
 {

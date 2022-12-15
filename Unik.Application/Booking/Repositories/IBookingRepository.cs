@@ -1,5 +1,5 @@
 ﻿using Unik.Applicaiton.Booking.Queries;
-using Unik.Application.Booking.Queries.Implementation;
+using Unik.Application.Booking.Queries;
 using Unik.Domain.Booking.Model;
 
 namespace Unik.Applicaiton.Booking.Repositories

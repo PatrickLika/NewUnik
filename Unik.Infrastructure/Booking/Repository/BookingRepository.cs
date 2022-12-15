@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Booking.Queries;
 using Unik.Applicaiton.Booking.Repositories;
-using Unik.Application.Booking.Queries.Implementation;
+using Unik.Application.Booking.Queries;
 using Unik.Domain.Booking.Model;
 using Unik.SqlServerContext;
 

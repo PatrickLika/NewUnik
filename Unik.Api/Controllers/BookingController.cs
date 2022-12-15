@@ -2,7 +2,7 @@
 using System.Net.Mime;
 using Unik.Applicaiton.Booking.Command;
 using Unik.Applicaiton.Booking.Queries;
-using Unik.Application.Booking.Queries.Implementation;
+using Unik.Application.Booking.Queries;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -50,7 +50,7 @@ namespace Unik.Api.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<BookingResultDto>> GetAll()
+        public ActionResult<IEnumerable<BookingGetAllResulstDto>> GetAll()
         {
             var result = _bookingGetAllQuery.GetAll().ToList();
             if (!result.Any())
