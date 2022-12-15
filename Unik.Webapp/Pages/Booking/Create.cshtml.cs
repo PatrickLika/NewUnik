@@ -31,16 +31,16 @@ namespace Unik.Webapp.Pages.Booking
 
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid || !OpgaveCreateViewModel.OpgaveId.HasValue || !OpgaveCreateViewModel.MedarbejderId.HasValue || !OpgaveCreateViewModel.SlutDato.HasValue || !OpgaveCreateViewModel.startDato.HasValue) return Page();
+            if (!ModelState.IsValid || !BookingCreateViewModel.OpgaveId.HasValue || !BookingCreateViewModel.MedarbejderId.HasValue || !BookingCreateViewModel.SlutDato.HasValue || !BookingCreateViewModel.StartDato.HasValue) return Page();
 
 
             var dto = new BookingCreateRequestDto()
             {
 
-                OpgaveId = OpgaveCreateViewModel.OpgaveId.Value,
-                MedarbejderId = OpgaveCreateViewModel.MedarbejderId.Value,
-                startDato = OpgaveCreateViewModel.startDato.Value,
-                SlutDato = OpgaveCreateViewModel.SlutDato.Value,
+                OpgaveId = BookingCreateViewModel.OpgaveId.Value,
+                MedarbejderId = BookingCreateViewModel.MedarbejderId.Value,
+                startDato = BookingCreateViewModel.StartDato.Value,
+                SlutDato = BookingCreateViewModel.SlutDato.Value,
             };
 
             try
