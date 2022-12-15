@@ -45,13 +45,15 @@ namespace Unik.Infrastructure.Kompetence.Repositories
                     Type = kompetenceEntity.Type,
                     RowVersion = kompetenceEntity.RowVersion,
                     UserId = entity.UserId,
-                    //MedarbejderListe = her mangler liste.
+                    MedarbejderListe = FillMedarbejderListe(kompetenceEntity.MedarbejderListe)
                 });
 
             throw new NotImplementedException();
 
         }
 
+
+     
 
         IEnumerable<KompetenceQueryResultDto> IKompetenceRepository.getAll()
         {
@@ -64,13 +66,25 @@ namespace Unik.Infrastructure.Kompetence.Repositories
                     Id = entity.Id,
                     Type = entity.Type,
                     Navn = entity.Navn,
-                   // MedarbejderListe = medarbejderListe
+                    MedarbejderListe = FillMedarbejderListe(kompetenceEntity.MedarbejderListe)
                 };
 
             }
+            
+        }
+        private List<MedarbejderEntityDto> FillMedarbejderListe(List<MedarbejderEntity>? medarbejderListe)
+        {
+            if (medarbejderListe is null) throw new Exception("Kunne ikke finde medarbejder");
 
-            throw new NotImplementedException();
+            var res = new List<MedarbejderEntityDto>();
+            medarbejderListe.ForEach(m => res.Add(new MedarbejderEntityDto
+            {
+                Navn = m.Navn,
+                Titel = m.Titel,
 
+            }));
+
+            return res;
         }
 
 

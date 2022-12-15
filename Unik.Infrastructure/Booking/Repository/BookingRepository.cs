@@ -78,6 +78,8 @@ public class BoookingRepository
 
            return bookingliste;
 
+
+
            //    var b = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
            //    .ToList();
            //var c = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
