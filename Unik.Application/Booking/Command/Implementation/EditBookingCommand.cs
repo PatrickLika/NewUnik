@@ -14,7 +14,7 @@ public class EditBookingCommand : IEditBookingCommand
     {
         var model = _db.Load(dto.Id);
 
-        model.Edit(dto.OpgaveId, dto.MedarbejderNr,dto.StartDato,dto.SlutDato,dto.RowVersion);
+        model.Edit(dto.OpgaveId, dto.MedarbejderId,dto.StartDato,dto.SlutDato,dto.RowVersion);
 
         _db.Update(model);
     }

@@ -1,4 +1,6 @@
-﻿namespace Unik.Applicaiton.Booking.Queries
+﻿using Unik.Crosscut.Dto;
+
+namespace Unik.Applicaiton.Booking.Queries
 {
     public class BookingResultDto
     {
@@ -7,5 +9,6 @@
         public int MedarbejderId { get; set; }
         public DateTime StartDato { get; set; }
         public DateTime SlutDato { get; set; }
+        public string MedarbejderNavn { get; set; }
     }
 }

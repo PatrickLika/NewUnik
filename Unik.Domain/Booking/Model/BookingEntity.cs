@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Unik.Domain.Booking.DomainServices;
 using Unik.Domain.Medarbejder.Model;
+using Unik.Domain.Opgave.Model;
 
 namespace Unik.Domain.Booking.Model;
 
@@ -38,11 +39,11 @@ public class BookingEntity
         StartDato = startDato;
         SlutDato = slutDato;
     }
-    public void Edit(int opgaveId, int medarbejderNr, DateTime startDato, DateTime slutDato, byte[] rowVersion)
+    public void Edit(int opgaveId, int medarbejderId, DateTime startDato, DateTime slutDato, byte[] rowVersion)
     {
         RowVersion = rowVersion;
         OpgaveId = opgaveId;
-        MedarbejderId = medarbejderNr;
+        MedarbejderId = medarbejderId;
         StartDato = startDato;
         SlutDato = slutDato;
     }

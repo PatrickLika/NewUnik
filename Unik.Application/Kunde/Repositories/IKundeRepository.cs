@@ -1,4 +1,5 @@
 ﻿using Unik.Applicaiton.Kunde.Query;
+using Unik.Application.Kunde.Query;
 using Unik.Domain.Kunde.Model;
 
 namespace Unik.Applicaiton.Kunde.Repositories
@@ -10,6 +11,7 @@ namespace Unik.Applicaiton.Kunde.Repositories
         void Delete(int id);
         KundeEntity Load(int Id);
         KundeResultDto Get(int Id);
+        KundeUserResultDto GetUser(string userId);
         IEnumerable<KundeResultDto> GetAll();
     }
 }

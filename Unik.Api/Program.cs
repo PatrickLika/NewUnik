@@ -34,6 +34,8 @@ using Unik.Applicaiton.Sales.Commands.Implementation;
 using Unik.Applicaiton.Sales.Query;
 using Unik.Applicaiton.Sales.Query.Implementation;
 using Unik.Applicaiton.Sales.Repositories;
+using Unik.Application.Kunde.Query;
+using Unik.Application.Kunde.Query.Implementation;
 using Unik.Crosscut.TransactionHandling;
 using Unik.Crosscut.TransactionHandling.Implementation;
 using Unik.Domain.Booking.DomainServices;
@@ -104,6 +106,7 @@ builder.Services.AddScoped<IEditKundeCommand, EditKundeCommand>();
 builder.Services.AddScoped<IDeleteKundeCommand, DeleteKundeCommand>();
 builder.Services.AddScoped<IKundeGetAllQuery, KundeGetAllQuery>();
 builder.Services.AddScoped<IKundeGetQuery, KundeGetQuery>();
+builder.Services.AddScoped<IKundeGetByUser,KundeGetByUser>();
 
 //booking IoC
 builder.Services.AddScoped<ICreateBookingCommand, CreateBookingCommand>();

@@ -2,6 +2,7 @@
 using System.Net.Mime;
 using Unik.Applicaiton.Kunde.Commands;
 using Unik.Applicaiton.Kunde.Query;
+using Unik.Application.Kunde.Query;
 
 namespace Unik.Api.KundeControllers
 {
@@ -14,15 +15,18 @@ namespace Unik.Api.KundeControllers
         private readonly IEditKundeCommand _editKundeCommand;
         private readonly IKundeGetAllQuery _KundeGetAllQuery;
         private readonly IKundeGetQuery _KundeGetQuery;
+        private readonly IKundeGetByUser _getKundeUserId;
 
         public KundeController(ICreateKundeCommand createKundeCommand,
-            IDeleteKundeCommand deleteKundeCommand, IEditKundeCommand editKundeCommand, IKundeGetAllQuery KundeGetAllQuery, IKundeGetQuery KundeGetQuery)
+            IDeleteKundeCommand deleteKundeCommand, IEditKundeCommand editKundeCommand,
+            IKundeGetAllQuery KundeGetAllQuery, IKundeGetQuery KundeGetQuery, IKundeGetByUser getUserIdKunde)
         {
             _createKundeCommand = createKundeCommand;
             _deleteKundeCommand = deleteKundeCommand;
             _editKundeCommand = editKundeCommand;
             _KundeGetAllQuery = KundeGetAllQuery;
             _KundeGetQuery = KundeGetQuery;
+            _getKundeUserId = getUserIdKunde;
         }
         // POST api/<KundeController>
         [HttpPost]
@@ -62,6 +66,15 @@ namespace Unik.Api.KundeControllers
             return result;
         }
 
+        // GET api/<KundeController>/5
+        [HttpGet("/userId/{userId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<KundeUserResultDto> GetUser(string userId)
+        {
+            var result = _getKundeUserId.GetUser(userId);
+            return result;
+        }
 
 
         // PUT api/<KundeController>/5

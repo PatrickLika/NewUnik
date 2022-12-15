@@ -8,7 +8,7 @@ namespace Unik.WebApp.Infrastructure.Booking.Contract.Dto
         Task Edit(BookingEditRequestDto dto);
         Task Delete(int id);
         Task<BookingResultDto?> Get(int bookingId);
-        Task<IEnumerable<BookingResultDto>?> GetAll();
+        Task<IEnumerable<BookingIndexDto>?> GetAll();
         Task<IEnumerable<FindMedarbejderDto>?> FindMedarbejder(string type);
 
     }
