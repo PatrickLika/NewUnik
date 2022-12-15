@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Unik.Domain.Booking.DomainServices;
 using Unik.Domain.Booking.Model;
-using Unik.Domain.Medarbejder.Model;
 using Unik.Domain.Opgave.DomainService;
 using Unik.Domain.Projekt.Model;
 
@@ -21,14 +19,12 @@ namespace Unik.Domain.Opgave.Model
         public byte[] RowVersion { get; set; }
         public ProjektEntity Projekt { get; set; }
         public int ProjektId { get; set; }
-        public MedarbejderEntity? Medarbejder { get; set; }
-        public int? MedarbejderId { get; set; }
         public BookingEntity? booking { get; set; }
         public int? BookingId { get; set; }
         public int Varighed { get; set; }
         public string Type { get; set; }
-        
-        public OpgaveEntity(IOpgaveDomainService domainService,string navn, int projektId, string type)
+
+        public OpgaveEntity(IOpgaveDomainService domainService, string navn, int projektId, string type)
         {
             _domainService = domainService;
             Navn = navn;
@@ -42,7 +38,6 @@ namespace Unik.Domain.Opgave.Model
             Navn = navn;
             ProjektId = projektId;
             RowVersion = rowVersion;
-            MedarbejderId = medarbejderId;
             BookingId = bookingId;
             Type = type;
         }

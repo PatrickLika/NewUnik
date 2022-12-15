@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Unik.Crosscut\Unik.Crosscut.csproj" />
     <ProjectReference Include="..\Unik.UserContext.Migrations\Unik.UserContext.Migrations.csproj" />
     <ProjectReference Include="..\Unik.UserContext\Unik.UserContext.csproj" />
   </ItemGroup>

@@ -1,9 +1,6 @@
-
 using System.ComponentModel.DataAnnotations;
-using Unik.Domain.Kompetence.Model;
-using Unik.Domain.Opgave.Model;
 
-namespace Unik.Domain.Medarbejder.Model
+namespace Unik.Crosscut.Dto
 
 {
     public class MedarbejderEntityDto

@@ -1,11 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Unik.Domain.Booking.DomainServices;
-using Unik.Domain.Booking.Model;
-using Unik.Domain.Medarbejder.Model;
-using Unik.Domain.Opgave.DomainService;
-using Unik.Domain.Projekt.Model;
 
-namespace Unik.Domain.Opgave.Model
+namespace Unik.Crosscut.Dto
 {
     public class OpgaveEntityDto
     {
@@ -21,6 +16,6 @@ namespace Unik.Domain.Opgave.Model
         public int? BookingId { get; set; }
         public int Varighed { get; set; }
         public string Type { get; set; }
-        
+
     }
 }

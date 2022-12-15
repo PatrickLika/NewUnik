@@ -12,17 +12,18 @@ using Unik.SqlServerContext;
 namespace Unik.SqlServerContext.Migrations.Migrations
 {
     [DbContext(typeof(UnikContext))]
-    [Migration("20221207102849_Unik")]
-    partial class Unik
+    [Migration("20221213092346_ReadyForDocker")]
+    partial class ReadyForDocker
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "7.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("KompetenceEntityMedarbejderEntity", b =>
                 {
@@ -45,18 +46,15 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Dato")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("MedarbejderEntityId")
+                        .HasColumnType("int");
 
                     b.Property<int>("MedarbejderId")
                         .HasColumnType("int");
 
                     b.Property<int>("OpgaveId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjektId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("RowVersion")
@@ -71,10 +69,9 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                     b.Property<DateTime>("StartDato")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Varighed")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("MedarbejderEntityId");
 
                     b.ToTable("Booking", "booking");
                 });
@@ -85,7 +82,7 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Navn")
                         .IsRequired()
@@ -112,7 +109,7 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -151,7 +148,7 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -190,7 +187,7 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("BookingId")
                         .HasColumnType("int");
@@ -235,7 +232,7 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AntalBoliger")
                         .HasColumnType("int");
@@ -272,7 +269,7 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -318,6 +315,13 @@ namespace Unik.SqlServerContext.Migrations.Migrations
                         .HasForeignKey("MedarbejderListeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Unik.Domain.Booking.Model.BookingEntity", b =>
+                {
+                    b.HasOne("Unik.Domain.Medarbejder.Model.MedarbejderEntity", null)
+                        .WithMany("BookingListe")
+                        .HasForeignKey("MedarbejderEntityId");
                 });
 
             modelBuilder.Entity("Unik.Domain.Opgave.Model.OpgaveEntity", b =>
@@ -370,6 +374,8 @@ namespace Unik.SqlServerContext.Migrations.Migrations
 
             modelBuilder.Entity("Unik.Domain.Medarbejder.Model.MedarbejderEntity", b =>
                 {
+                    b.Navigation("BookingListe");
+
                     b.Navigation("OpgaverListe");
                 });
 
