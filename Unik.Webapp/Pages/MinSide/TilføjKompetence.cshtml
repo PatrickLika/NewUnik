@@ -21,19 +21,21 @@
                         <td> @kompetence.Id</td>
                         <td> @kompetence.Navn</td>
                         <td> @kompetence.Type</td>
-                        <td> <a asp-page="./tilføj" asp-route-id="@kompetence.Id">Tilføj kompetencen</a></td>
+                        <td> <a asp-page="./Tilføj" asp-route-id="@kompetence.Id">Tilføj kompetencen</a></td>
                     </tr>
                 }
+                    <br />
             }
             <tr>
             </tr>
+
             </tbody>
         </table>
-        <a asp-page="./TilføjKompetence" asp-route-id="">Tilføj kompetence</a>
-    </form>
+@*        <a asp-page="./TilføjKompetence" asp-route-id="">Tilføj kompetence</a>
+*@    </form>
 }
 else
 {
-    <h2>ÆV DU SKAL IKKE NOGET HERINDE</h2>
+    <h2>Hvad spiser en Datamatikker? <b class="alert-danger">DATABASSER!</b></h2>
 }
 

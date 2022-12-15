@@ -10,12 +10,12 @@
         <hr style="height: 1px; border: none; color: #000000; background-color: #000000; opacity: 1"/>
         <table class="table table-hover">
             <form method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <section asp-validation-summary="ModelOnly" class="text-danger"></section>
 
                  <input type="hidden" asp-for="DeleteViewModel.Id" class="form-control"/>
-                 <div class="form-group">
+                 <section class="form-group">
                      <label asp-for="DeleteViewModel.Id"></label>
-                 </div>
+                 </section>
                  @*<div class="form-group">
                      <label asp-for="DeleteViewModel.Weight"></label>
                      <input asp-for="DeleteViewModel.Weight" class="form-control"/>
