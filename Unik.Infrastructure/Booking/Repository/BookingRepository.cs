@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Unik.Applicaiton.Booking.Queries;
 using Unik.Applicaiton.Booking.Repositories;
 using Unik.Applicaiton.Kompetence.Query;
@@ -78,14 +80,14 @@ public class BoookingRepository
 
         }
 
-        IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
+        IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string navn)
         {
+            ///TODO DETTE SKAL FIXES!!!!
+            var test = _db.KompetenceEntities.AsNoTracking().Where(a => a.Navn == navn).Include(a => a.MedarbejderListe)
+                .ThenInclude(a => a.BookingListe).SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe)
+                .SelectMany(a => a.BookingListe).OrderBy(a => a.SlutDato).ToList();
 
-            //_db.MedarbejderEntities
-
-            foreach (var entity in _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe)
-                .SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe)
-                .SelectMany(a => a.BookingListe).OrderBy(a => a.SlutDato).ToList())
+            foreach (var entity in test)
                      
             yield return new FindMedarbejderDto
             {
