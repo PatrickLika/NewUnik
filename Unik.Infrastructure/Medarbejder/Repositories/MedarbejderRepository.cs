@@ -2,6 +2,7 @@
 using Unik.Applicaiton.Medarbejder.Commands;
 using Unik.Applicaiton.Medarbejder.Query;
 using Unik.Applicaiton.Medarbejder.Repositories;
+using Unik.Crosscut.Dto;
 using Unik.Domain.Medarbejder.Model;
 using Unik.SqlServerContext;
 
@@ -106,13 +107,21 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
             var medarbejder = _db.MedarbejderEntities.AsNoTracking().FirstOrDefault(a => a.UserId == userId);
             if (medarbejder == null) throw new Exception("Medarbejder findes ikke i databasen");
 
-            var kompetencer = _db.MedarbejderEntities.AsNoTracking().Where(a => a.Id == medarbejder.Id).SelectMany(b => b.KompetenceListe).ToList();
+            var kompetencer = _db.MedarbejderEntities.SelectMany(a => a.KompetenceListe, ((Medarbejder, kompetenceEntity) =>
+                new medarbejderkompetenceEntityDto
+                {
+                    KompetenceId = kompetenceEntity.Id,
+                    MedarbejderId = Medarbejder.Id,
+                    KompetenceNavn = kompetenceEntity.Navn
+                })).ToList();
 
             var booking = _db.OpgaveEntities.
-                Include(b => b.booking)
-                .Where(a => a.booking.MedarbejderId == medarbejder.Id).
-                ToList();
+            Include(b => b.booking)
+            .Where(a => a.booking.MedarbejderId == medarbejder.Id).
+            ToList();
 
+            //var query = db.Students
+            //    .SelectMany(student => student.Enrollments, (student, enrollment) => new { Student = student.Name, Course = enrollment.Course.Name });
 
 
             return new MedarbejderGetByUserIdDto
@@ -126,7 +135,6 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
                 UserId = medarbejder.UserId,
                 KompetenceListe = kompetencer,
                 OpgaverListe = booking
-
             };
         }
     }
