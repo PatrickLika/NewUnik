@@ -43,9 +43,9 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
             return await _httpClient.GetFromJsonAsync<BookingResultDto>($"api/Booking/{bookingId}");
         }
 
-        async Task<IEnumerable<BookingResultDto>?> IBookingService.GetAll()
+        async Task<IEnumerable<BookingIndexDto>?> IBookingService.GetAll()
         {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<BookingResultDto>>("api/Booking");
+            return await _httpClient.GetFromJsonAsync<IEnumerable<BookingIndexDto>>("api/Booking");
         }
 
     }

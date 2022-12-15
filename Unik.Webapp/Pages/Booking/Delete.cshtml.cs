@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Unik.WebApp.Infrastructure.Booking.Contract;
 using Unik.WebApp.Infrastructure.Booking.Contract.Dto;
-using Unik.WebApp.Infrastructure.Booking.Implementation;
 
 namespace Unik.WebApp.Pages.Booking
 {

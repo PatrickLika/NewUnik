@@ -1,7 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Unik.Applicaiton.Kunde.Query;
 using Unik.Applicaiton.Kunde.Repositories;
+using Unik.Application.Kunde.Query;
+using Unik.Crosscut.Dto;
+using Unik.Domain.Booking.Model;
 using Unik.Domain.Kunde.Model;
+using Unik.Domain.Opgave.Model;
 using Unik.SqlServerContext;
 
 namespace Unik.Infrastructure.Kunde.Repositories
@@ -35,15 +40,15 @@ namespace Unik.Infrastructure.Kunde.Repositories
             if (dbEntity == null) throw new Exception("Kunde findes ikke i databasen");
 
             return new KundeResultDto
-                {
-                    Id = dbEntity.Id,
-                    Navn = dbEntity.Navn,
-                    VirksomhedNavn = dbEntity.VirksomhedNavn,
-                    Email = dbEntity.Email,
-                    Tlf = dbEntity.Tlf,
-                    RowVersion = dbEntity.RowVersion,
-                    UserId = dbEntity.UserId
-                };
+            {
+                Id = dbEntity.Id,
+                Navn = dbEntity.Navn,
+                VirksomhedNavn = dbEntity.VirksomhedNavn,
+                Email = dbEntity.Email,
+                Tlf = dbEntity.Tlf,
+                RowVersion = dbEntity.RowVersion,
+                UserId = dbEntity.UserId
+            };
         }
         IEnumerable<KundeResultDto> IKundeRepository.GetAll()
         {
@@ -61,6 +66,42 @@ namespace Unik.Infrastructure.Kunde.Repositories
                 };
             }
         }
+
+        KundeUserResultDto IKundeRepository.GetUser(string userId)
+        {
+
+            var kunde = _db.KundeEntities.AsNoTracking().Include(a => a.Projekt).ThenInclude(a => a.Opgaver).FirstOrDefault(a => a.UserId == userId);
+
+            
+
+            if (kunde == null) throw new Exception($"kunde findes ikke");
+
+           return new KundeUserResultDto
+            {
+               VirksomhedNavn = kunde.VirksomhedNavn,
+               OpgaveListe = FillOpgaveListe(kunde.Projekt.Opgaver)
+            };
+
+           
+        }
+
+        private List<OpgaveEntityDto> FillOpgaveListe(List<OpgaveEntity>? opgaveListe)
+        {
+            if (opgaveListe is null) throw new Exception("Kunne ikke finde medarbejder");
+
+            var res = new List<OpgaveEntityDto>();
+            opgaveListe.ForEach(m => res.Add(new OpgaveEntityDto
+            {
+                Id = m.Id,
+                Navn = m.Navn,
+                Varighed = m.Varighed,
+                Type = m.Type
+
+            }));
+            return res;
+        }
+
+
 
         KundeEntity IKundeRepository.Load(int kundeId)
         {

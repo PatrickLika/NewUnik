@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unik.Application.Booking.Queries
+﻿namespace Unik.Webapp.Infrastructure.Booking.Contract.Dto
 {
-    public class BookingGetAllResulstDto
+    public class BookingIndexDto
     {
         public int Id { get; set; }
         public string MedarbejderNavn { get; set; }

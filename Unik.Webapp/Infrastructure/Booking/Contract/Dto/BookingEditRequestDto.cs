@@ -7,7 +7,7 @@ public class BookingEditRequestDto
     public int Id { get; set; }
     public int ProjektNr { get; set; }
     public int Opgaver { get; set; }
-    public int MedarbejderNr { get; set; }
+    public int MedarbejderId { get; set; }
     public DateTime Dato { get; set; }
     public int Varighed { get; set; }
     [Timestamp]

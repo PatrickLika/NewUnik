@@ -24,7 +24,7 @@ namespace Unik.WebApp.Pages.Kompetence
 
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid || !CreateViewModel.Navn.IsNullOrEmpty() || !CreateViewModel.Type.IsNullOrEmpty()) return Page();
+            if (!ModelState.IsValid) return Page();
 
 
             var dto = new KompetenceCreateRequestDto

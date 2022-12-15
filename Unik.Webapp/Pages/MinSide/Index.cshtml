@@ -12,24 +12,25 @@
     <form method="post">
         <table class="table">
             <tbody>
-            @if (@Model.MedarbejderModel.OpgaverListe !=null)
+            @if (@Model.MedarbejderModel.BookingListe !=null)
             {
-                foreach (var booking in Model.MedarbejderModel.OpgaverListe)
+                foreach (var booking in Model.MedarbejderModel.BookingListe)
                 {
                      
                     <tr>
-                        <th>Booking id</th>
+                        <th>Booking</th>
                         <th>Opgave Id</th>
                         <th>Start Dato</th>
                         <th>Slut Dato</th>
-                        <th>Type af opgave</th>
                     </tr>
                     <tr>
-                        <td> @booking.booking?.Id</td>
-                        <td> @booking.booking?.OpgaveId</td>
-                        <td> @booking.booking?.StartDato.ToString("dd/MM/yyyy")</td>
-                        <td> @booking.booking?.SlutDato.ToString("dd/MM/yyyy")</td>
-                        <td> @booking.Type</td>
+                        <td></td>
+                        <td> @booking.OpgaveId</td>
+                        <td> @booking.StartDato.ToString("dd/MM/yyyy")</td>
+                        <td> @booking.SlutDato.ToString("dd/MM/yyyy")</td>
+                        <td>
+                                <a asp-page="./OpgaveDetails" asp-route-id="@booking.OpgaveId">se detaljer for opgaven -></a>
+                        </td>
                     </tr>
                 }
             }
@@ -39,16 +40,16 @@
                     {
                         
                         <tr>
-                            <th>kompetence id</th>
                             <th>kompetence Navn</th>
+                            <th>kompetence type</th>
                         </tr>
                         <tr>
-                            <td> @kompetence.KompetenceId</td>
-                            <td> @kompetence.KompetenceNavn</td>
-                            <td> @Model.MedarbejderModel.Navn</td>
+                            <td> @kompetence.Navn</td>
+                            <td> @kompetence.Type</td>
                         </tr>
                     }
                 }
+            }
             <tr>
                 <th></th>
             </tr>
