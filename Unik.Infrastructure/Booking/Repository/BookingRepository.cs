@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Booking.Queries;
 using Unik.Applicaiton.Booking.Repositories;
+using Unik.Applicaiton.Kompetence.Query;
 using Unik.Application.Booking.Queries;
 using Unik.Domain.Booking.Model;
 using Unik.SqlServerContext;
@@ -46,11 +47,12 @@ public class BoookingRepository
 
         BookingResultDto IBookingRepository.Get(int bookingId)
         {
-            var dbEntity = _db.BookingEntities.AsNoTracking().FirstOrDefault(a => a.Id == bookingId);
+            var dbEntity = _db.BookingEntities.AsNoTracking().Include(a => a.Medarbejder).FirstOrDefault(a => a.Id == bookingId);
             if (dbEntity == null) throw new Exception("Booking findes ikke i databasen");
 
             return new BookingResultDto
             {
+                MedarbejderNavn = dbEntity.Medarbejder.Navn,
                 Id = dbEntity.Id,
                 MedarbejderId = dbEntity.MedarbejderId,
                 OpgaveId = dbEntity.OpgaveId,
@@ -61,45 +63,20 @@ public class BoookingRepository
 
         IEnumerable<BookingGetAllResulstDto> IBookingRepository.GetAll()
         {
-            var p = _db.OpgaveEntities.AsNoTracking().ToList();
-
-
-
-           var bookingliste = _db.MedarbejderEntities.Include(a => a.BookingListe).ThenInclude(a => a.OpgaveId).SelectMany(
-                a => a.BookingListe, (entity, bookingEntity) => new BookingGetAllResulstDto
+            foreach (var entity in _db.BookingEntities.Include(a => a.Medarbejder))
+            {
+                yield return new BookingGetAllResulstDto
                 {
-                    MedarbejderId = entity.Id,
-                    MedarbejderNavn = entity.Navn,
-                    MedarbejderTitel = entity.Titel,
-                    StartDato = bookingEntity.StartDato,
-                    SlutDato = bookingEntity.SlutDato,
-                    OpgaveId = bookingEntity.OpgaveId
-                });
+                    Id = entity.Id,
+                    MedarbejderNavn = entity.Medarbejder.Navn,
+                    MedarbejderTitel = entity.Medarbejder.Titel,
+                    StartDato = entity.StartDato,
+                    SlutDato = entity.SlutDato,
+                };
 
-           return bookingliste;
-
-
-
-           //    var b = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
-           //    .ToList();
-           //var c = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
-           //    .ToList();
-
-           //var a = _db.BookingEntities.Include(a => a.Medarbejder).Select(a => a.Medarbejder)
-           //    .Include(a => a.BookingListe);
-
-
-
-
-
-
-
-
+            }
 
         }
-
-
-
 
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
         {
@@ -115,10 +92,6 @@ public class BoookingRepository
                 SlutDato = entity.SlutDato
             };
 
-
-            //var a = _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe).SelectMany(a => a.MedarbejderListe).ToList();
-            //var c = _db.BookingEntities.Where(e => a.Contains(e.Medarbejder))
-            //    .Where(a => a.SlutDato > DateTime.Today || a.SlutDato == null).OrderBy(a => a.SlutDato).ToList();
 
         }
     }

@@ -26,7 +26,7 @@ namespace Unik.Applicaiton.Booking.Command.Implementation
             {
                 _unitOfWork.BeginTransaction(System.Data.IsolationLevel.Serializable);
 
-                var model = new BookingEntity(_domainService, requestDto.OpgaveId, requestDto.MedarbejderNr, requestDto.StartDato, requestDto.SlutDato);
+                var model = new BookingEntity(_domainService, requestDto.OpgaveId, requestDto.MedarbejderId, requestDto.StartDato, requestDto.SlutDato);
                 _repository.Create(model);
                 _unitOfWork.Commit();
             }

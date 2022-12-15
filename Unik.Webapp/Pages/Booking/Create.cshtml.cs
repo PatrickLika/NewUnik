@@ -25,7 +25,6 @@ namespace Unik.Webapp.Pages.Booking
             BookingCreateViewModel.Varighed = varighed;
             BookingCreateViewModel.SlutDato = DateTime.Parse(slutDato).AddDays(varighed + 1);
 
-
             return Page();
         }
 
