@@ -26,33 +26,10 @@ namespace Unik.Api.Controllers
             _salesGetQuery = salesGetQuery;
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<SalesGetQueryDto> Get(int id)
-        {
-            var result = _salesGetQuery.Get(id);
-
-            return result;
-        }
-
-
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
-        public ActionResult<IEnumerable<SalesGetAllQueryDto>> GetAll()
-        {
-            var result = _salesGetAllQuery.GetAll().ToList();
-            if (!result.Any())
-                return NotFound();
-
-            return result.ToList();
-        }
-
-
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult Post([FromBody] SalesCreateRequestDto request)
         {
 
@@ -68,23 +45,26 @@ namespace Unik.Api.Controllers
             }
         }
 
-
-        [HttpDelete("{id}")]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult Delete(int id)
+        public ActionResult<IEnumerable<SalesGetAllQueryDto>> GetAll()
         {
-            try
-            {
-                _deleteSalesCommand.Delete(id);
-                return Ok();
-            }
-            catch (Exception e)
-            {
+            var result = _salesGetAllQuery.GetAll().ToList();
+            if (!result.Any())
+                return NotFound();
 
-                return BadRequest(e.Message);
-            }
+            return result.ToList();
+        }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<SalesGetQueryDto> Get(int id)
+        {
+            var result = _salesGetQuery.Get(id);
+
+            return result;
         }
 
 
@@ -105,6 +85,27 @@ namespace Unik.Api.Controllers
             }
 
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _deleteSalesCommand.Delete(id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+
+        }
+
+
+
 
         #region Read many to many
         //public class dto

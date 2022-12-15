@@ -14,7 +14,7 @@ namespace Unik.Webapp.Pages.Booking
             _bookingService = bookingService;
         }
         [BindProperty] public BookingCreateViewModel OpgaveCreateViewModel { get; set; } = new();
-        public async Task<IActionResult> OnGet(int MedarbejderId,DateTime SlutDato, int opgaveId, int varighed)
+        public async Task<IActionResult> OnGet(int MedarbejderId, DateTime SlutDato, int opgaveId, int varighed)
         {
             if (opgaveId == null) return NotFound();
 
@@ -22,22 +22,22 @@ namespace Unik.Webapp.Pages.Booking
             OpgaveCreateViewModel.startDato = SlutDato.AddDays(1);
             OpgaveCreateViewModel.OpgaveId = opgaveId;
             OpgaveCreateViewModel.Varighed = varighed;
-            OpgaveCreateViewModel.SlutDato = SlutDato.AddDays(varighed+1);
+            OpgaveCreateViewModel.SlutDato = SlutDato.AddDays(varighed + 1);
 
             return Page();
         }
 
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid || !OpgaveCreateViewModel.OpgaveId.HasValue || !OpgaveCreateViewModel.MedarbejderId.HasValue || !OpgaveCreateViewModel.SlutDato.HasValue || !OpgaveCreateViewModel.startDato.HasValue) return Page();
 
 
             var dto = new BookingCreateRequestDto()
             {
-                OpgaveId = OpgaveCreateViewModel.OpgaveId,
-                MedarbejderId = OpgaveCreateViewModel.MedarbejderId,
-                startDato = OpgaveCreateViewModel.startDato,
-                SlutDato = OpgaveCreateViewModel.SlutDato,
+                OpgaveId = OpgaveCreateViewModel.OpgaveId.Value,
+                MedarbejderId = OpgaveCreateViewModel.MedarbejderId.Value,
+                startDato = OpgaveCreateViewModel.startDato.Value,
+                SlutDato = OpgaveCreateViewModel.SlutDato.Value,
             };
 
             try

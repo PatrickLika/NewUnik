@@ -26,6 +26,24 @@ namespace Unik.Api.Controllers
             _projektGetQuery = projektGetQuery;
         }
 
+        // POST api/<ProjektController>
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult Post([FromBody] ProjektCreateRequestDto request)
+        {
+            try
+            {
+                _createProjektCommand.Create(request);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         // GET: api/<ProjektController>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -40,7 +58,6 @@ namespace Unik.Api.Controllers
 
         // GET api/<ProjektController>/5
         [HttpGet("{id}")]
-        [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ProjektQueryResultDto> Get(int id)
@@ -49,28 +66,11 @@ namespace Unik.Api.Controllers
             return result;
         }
 
-        // POST api/<ProjektController>
-        [HttpPost]
-        [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult Post([FromBody] ProjektCreateRequestDto request)
-        {
-            try
-            {
-                _createProjektCommand.Create(request);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
 
         // PUT api/<ProjektController>/5
         [HttpPut]
         [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult Put([FromBody] ProjektEditRequestDto request)
         {

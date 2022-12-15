@@ -15,7 +15,7 @@ namespace Unik.Api.KundeControllers
         private readonly IKundeGetAllQuery _KundeGetAllQuery;
         private readonly IKundeGetQuery _KundeGetQuery;
 
-        public KundeController(ICreateKundeCommand createKundeCommand, 
+        public KundeController(ICreateKundeCommand createKundeCommand,
             IDeleteKundeCommand deleteKundeCommand, IEditKundeCommand editKundeCommand, IKundeGetAllQuery KundeGetAllQuery, IKundeGetQuery KundeGetQuery)
         {
             _createKundeCommand = createKundeCommand;
@@ -24,7 +24,23 @@ namespace Unik.Api.KundeControllers
             _KundeGetAllQuery = KundeGetAllQuery;
             _KundeGetQuery = KundeGetQuery;
         }
-
+        // POST api/<KundeController>
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult Post([FromBody] KundeCreateRequestDto requestDto)
+        {
+            try
+            {
+                _createKundeCommand.Create(requestDto);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
         // GET: api/<KundeController>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -46,29 +62,13 @@ namespace Unik.Api.KundeControllers
             return result;
         }
 
-        // POST api/<KundeController>
-        [HttpPost]
-        [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Post([FromBody] KundeCreateRequestDto requestDto)
-        {
-            try
-            {
-                _createKundeCommand.Create(requestDto);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+
 
         // PUT api/<KundeController>/5
         [HttpPut]
         [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult Put([FromBody] KundeEditRequestDto requestDto)
         {
             try

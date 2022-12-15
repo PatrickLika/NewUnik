@@ -29,31 +29,6 @@ namespace Unik.Api.Controllers
             _findMedarbejder = findMedarbejder;
         }
 
-
-        // GET: api/<BookingController>
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
-        public ActionResult<IEnumerable<BookingResultDto>> GetAll()
-        {
-            var result = _bookingGetAllQuery.GetAll().ToList();
-            if (!result.Any())
-                return NotFound();
-            return result;
-        }
-
-        // GET api/<BookingController>/5
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<BookingResultDto> Get(int id)
-        {
-            var result = _bookingGetQuery.Get(id);
-
-            return result;
-
-        }
-
-        // POST api/<BookingController>
         [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -71,7 +46,49 @@ namespace Unik.Api.Controllers
             }
         }
 
-        // PUT api/<BookingController>/5
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<BookingResultDto>> GetAll()
+        {
+            var result = _bookingGetAllQuery.GetAll().ToList();
+            if (!result.Any())
+                return NotFound();
+            return result;
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<BookingResultDto> Get(int id)
+        {
+            var result = _bookingGetQuery.Get(id);
+
+            return result;
+
+        }
+
+        [HttpGet("Type/{type}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<FindMedarbejderDto>> Find(string type)
+        {
+            try
+            {
+                var result = _findMedarbejder.FindMedarbejder(type).ToList();
+                if (!result.Any())
+                    return NotFound();
+                return result;
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
+
         [HttpPut]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
@@ -89,7 +106,10 @@ namespace Unik.Api.Controllers
             }
         }
 
-        // DELETE api/<BookingController>/5
+
+
+
+
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -104,26 +124,6 @@ namespace Unik.Api.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
-
-        [HttpGet("Type/{type}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult <IEnumerable<FindMedarbejderDto>> Find(string type)
-        {
-            try
-            {
-                var result = _findMedarbejder.FindMedarbejder(type).ToList();
-                if (!result.Any())
-                    return NotFound();
-                return result;
-
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
         }
     }
 }

@@ -27,7 +27,9 @@ namespace Unik.WebApp.Infrastructure.Medarbej.Implementation
 
         async Task IMedarbejderService.CreateMedarbejderKompetence(MedarbejderKompetenceCreateDto dto)
         {
-            await _httpClient.PostAsJsonAsync("api/Medarbejder/Kompetence", dto);
+            var response = await _httpClient.PostAsJsonAsync("api/Medarbejder/Kompetence", dto);
+            var messages = await response.Content.ReadAsStringAsync();
+            throw new Exception(messages);
         }
 
         async Task IMedarbejderService.Delete(int id)
@@ -44,17 +46,17 @@ namespace Unik.WebApp.Infrastructure.Medarbej.Implementation
 
         }
 
-        async Task<MedarbejderGetQueryDto> IMedarbejderService.Get(int id)
+        async Task<MedarbejderGetQueryDto?> IMedarbejderService.Get(int id)
         {
-           return await _httpClient.GetFromJsonAsync<MedarbejderGetQueryDto>($"api/Medarbejder/id/{id}");
+            return await _httpClient.GetFromJsonAsync<MedarbejderGetQueryDto>($"api/Medarbejder/id/{id}");
         }
 
-        async Task<IEnumerable<MedarbejderGetAllQueryDto>> IMedarbejderService.GetAll()
+        async Task<IEnumerable<MedarbejderGetAllQueryDto>?> IMedarbejderService.GetAll()
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<MedarbejderGetAllQueryDto>>("api/Medarbejder");
         }
 
-        async Task<MedarbejderGetByUserIdDto> IMedarbejderService.GetByUserId(string userId)
+        async Task<MedarbejderGetByUserIdDto?> IMedarbejderService.GetByUserId(string userId)
         {
             return await _httpClient.GetFromJsonAsync<MedarbejderGetByUserIdDto>($"api/Medarbejder/{userId}");
         }

@@ -26,7 +26,7 @@ namespace Unik.Api.Controllers
             _deletekompetenceCommand = deletekompetenceCommand;
             _getAllQuery = getAllQuery;
             _getQuery = getQuery;
-            
+
         }
 
         [HttpPost]
@@ -52,6 +52,7 @@ namespace Unik.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<KompetenceQueryResultDto>> GetAll()
         {
             var result = _getAllQuery.GetAll().ToList();

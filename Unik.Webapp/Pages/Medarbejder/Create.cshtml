@@ -24,18 +24,19 @@
 </form>*@
 
 <form method="post">
+    <section asp-validation-summary="ModelOnly" class="text-danger"></section>
     <section class="container">
         <section class="row ">
 
             <section class="col-md-6">
                 <fieldset>
-                    <br />
+                    <br/>
                     <h1>Opret Medarbejder</h1>
                     <section class="form-group row">
                     </Section>
                     <section class="col-sm-10">
                     </Section>
-                    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+                    <hr style="height: 1px; border: none; color: #000000; background-color: #000000; opacity: 1"/>
                     <section class="col-sm-10">
                     </Section>
 
@@ -49,7 +50,7 @@
                         <label>Titel</label>
                     </section>
 
-                   @* <section class="form-floating mb-3">
+                    @* <section class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInputEmail" placeholder="Email" asp-for="CreateViewModel.Email">
                         <label >Email</label>
                     </section>*@

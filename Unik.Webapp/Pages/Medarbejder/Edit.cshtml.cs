@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Unik.WebApp.Infrastructure.Medarbej.Contract;
 using Unik.WebApp.Infrastructure.Medarbej.Contract.Dto;
 
@@ -19,20 +18,22 @@ namespace Unik.WebApp.Pages.Medarbejder
         public MedarbejderEditViewModel MedarbejderModel { get; set; }
 
 
-        public async Task<IActionResult> OnGet(int id)
+        public async Task<IActionResult> OnGet(int? id)
         {
             if (id == null) return NotFound();
-            var dto = await _medarbejderService.Get(id);
 
-            if (dto ==null) return NotFound();
+            var dto = await _medarbejderService.Get(id.Value);
 
-            MedarbejderModel = new MedarbejderEditViewModel 
-            {   Id = dto.Id, 
-                Navn = dto.Navn, 
-                Email = dto.Email, 
-                Tlf = dto.Tlf, 
-                Titel = dto.Titel, 
-                RowVersion = dto.RowVersion, 
+            if (dto == null) return NotFound();
+
+            MedarbejderModel = new MedarbejderEditViewModel
+            {
+                Id = dto.Id,
+                Navn = dto.Navn,
+                Email = dto.Email,
+                Tlf = dto.Tlf,
+                Titel = dto.Titel,
+                RowVersion = dto.RowVersion,
                 UserId = dto.UserId
             };
 
@@ -45,16 +46,16 @@ namespace Unik.WebApp.Pages.Medarbejder
 
             try
             {
-                await _medarbejderService.Edit(new MedarbejderEditRequestDto 
-                { 
+                await _medarbejderService.Edit(new MedarbejderEditRequestDto
+                {
                     Id = MedarbejderModel.Id,
                     Navn = MedarbejderModel.Navn,
                     Email = MedarbejderModel.Email,
-                    Tlf = MedarbejderModel.Tlf, 
-                    Titel = MedarbejderModel.Titel, 
-                    RowVersion = MedarbejderModel.RowVersion, 
+                    Tlf = MedarbejderModel.Tlf,
+                    Titel = MedarbejderModel.Titel,
+                    RowVersion = MedarbejderModel.RowVersion,
                     UserId = MedarbejderModel.UserId,
-                    KompetenceListe = MedarbejderModel.KompetenceListe 
+                    KompetenceListe = MedarbejderModel.KompetenceListe
                 });
             }
 
