@@ -34,13 +34,14 @@
                 {
                     foreach (var kompetence in Model.MedarbejderModel.KompetenceListe)
                     {
-
+                        
                         <tr>
                             <th>kompetence id</th>
                             <th>kompetence Navn</th>
                         </tr>
                         <tr>
                             <td> @kompetence.KompetenceId</td>
+                            <td> @kompetence.KompetenceNavn</td>
                             <td> @Model.MedarbejderModel.Navn</td>
                         </tr>
                     }

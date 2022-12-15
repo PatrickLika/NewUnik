@@ -4,33 +4,6 @@
 }
 @if (User.HasClaim(a => a.Type == "Tekniker") || User.HasClaim(a => a.Type == "Konsulent") || User.HasClaim(a => a.Type == "Konverter"))
 {
-<form method="post">
-    <section class="container">
-        <section class="row ">
-
-            <section class="col-md-6">
-                <fieldset>
-                    <br />
-                    <h1>Tilføj kompetence</h1>
-                    <section class="form-group row">
-                    </Section>
-                    <section class="col-sm-10">
-                    </Section>
-                    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
-                    <section class="col-sm-10">
-                    </Section>
-                    <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputNavn" placeholder="Kompetence id" asp-for="@Model.TilføjKompetenceTilMdedarbejderModel.KompetenceId">
-                        <label>Kompetence id</label>
-                    </section>
-                    <button type="submit" class="btn btn-success rounded">tilføj Kompetence</button>
-                </fieldset>
-            </section>
-        </section>
-    </section>
-</form>
-
-
     <form method="post">
         <table class="table">
             <tbody>
@@ -38,22 +11,21 @@
             {
                 foreach (var kompetence in Model.KompetenceViewIndexModel)
                 {
-                     
+                       
                     <tr>
                         <th>Kompetence id</th>
                         <th>Kompentence navn</th>
                         <th>Medarbejder type</th>
-                        
                     </tr>
                     <tr>
                         <td> @kompetence.Id</td>
                         <td> @kompetence.Navn</td>
                         <td> @kompetence.Type</td>
+                        <td> <a asp-page="./tilføj" asp-route-id="@kompetence.Id">Tilføj kompetencen</a></td>
                     </tr>
                 }
             }
             <tr>
-                <th></th>
             </tr>
             </tbody>
         </table>

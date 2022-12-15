@@ -107,12 +107,12 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
             var medarbejder = _db.MedarbejderEntities.AsNoTracking().FirstOrDefault(a => a.UserId == userId);
             if (medarbejder == null) throw new Exception("Medarbejder findes ikke i databasen");
 
-            //var kompetencer = _db.MedarbejderEntities.AsNoTracking().Where(a => a.Id == medarbejder.Id).Include(b => b.KompetenceListe).ToList();
             var kompetencer = _db.MedarbejderEntities.SelectMany(a => a.KompetenceListe, ((Medarbejder, kompetenceEntity) =>
                 new medarbejderkompetenceEntityDto
                 {
                     KompetenceId = kompetenceEntity.Id,
-                    MedarbejderId = Medarbejder.Id
+                    MedarbejderId = Medarbejder.Id,
+                    KompetenceNavn = kompetenceEntity.Navn
                 })).ToList();
 
             var booking = _db.OpgaveEntities.
