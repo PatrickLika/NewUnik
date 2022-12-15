@@ -1,7 +1,4 @@
-using Unik.Domain.Booking.Model;
-using Unik.Domain.Kompetence.Model;
-using Unik.Domain.Opgave.Model;
-using Unik.Domain.Projekt.Model;
+using Unik.Crosscut.Dto;
 
 namespace Unik.Applicaiton.Medarbejder.Query
 
@@ -15,6 +12,6 @@ namespace Unik.Applicaiton.Medarbejder.Query
         public string Titel { get; set; }
         public byte[]? RowVersion { get; set; }
         public string UserId { get; set; }
-        public List<BookingEntity>? BookingListe { get; set; }
+        public List<BookingEntityDto>? BookingListe { get; set; }
     }
 }

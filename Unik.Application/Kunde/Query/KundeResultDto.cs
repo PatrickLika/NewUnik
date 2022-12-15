@@ -1,4 +1,4 @@
-﻿using Unik.Domain.Projekt.Model;
+﻿using Unik.Crosscut.Dto;
 
 namespace Unik.Applicaiton.Kunde.Query
 {
@@ -14,6 +14,6 @@ namespace Unik.Applicaiton.Kunde.Query
 
         public byte[] RowVersion { get; set; }
 
-        public List<ProjektEntity> ProjektListe { get; set; }
+        public List<ProjektEntityDto> ProjektListe { get; set; }
     }
 }

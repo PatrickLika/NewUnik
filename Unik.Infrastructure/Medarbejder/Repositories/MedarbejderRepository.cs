@@ -3,6 +3,9 @@ using Unik.Applicaiton.Medarbejder.Commands;
 using Unik.Applicaiton.Medarbejder.Query;
 using Unik.Applicaiton.Medarbejder.Repositories;
 using Unik.Crosscut.Dto;
+using Unik.Domain.Booking.Model;
+using Unik.Domain.Kompetence.Model;
+
 using Unik.Domain.Medarbejder.Model;
 using Unik.SqlServerContext;
 
@@ -36,7 +39,6 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
                     Tlf = entity.Tlf,
                     RowVersion = entity.RowVersion,
                     UserId = entity.UserId,
-                    KompetenceListe = entity.KompetenceListe
                 };
             }
 
@@ -44,18 +46,13 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
 
         void IMedarbejderRepository.Delete(int id)
         {
-
             var model = _db.MedarbejderEntities.SingleOrDefault(a => a.Id == id);
             if (model == null) throw new Exception("Medarbejder findes ikke i databasen");
 
             _db.MedarbejderEntities.Remove(model);
             _db.SaveChanges();
 
-            //_db.Remove(id);
-            //_db.SaveChanges();
         }
-
-
 
         MedarbejderEntity IMedarbejderRepository.Load(int id)
         {
@@ -64,8 +61,6 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
             return dbEntity;
 
         }
-
-
 
         void IMedarbejderRepository.Update(MedarbejderEntity model)
         {
@@ -104,24 +99,8 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
 
         MedarbejderGetByUserIdDto IMedarbejderRepository.GetByUserId(string userId)
         {
-            var medarbejder = _db.MedarbejderEntities.AsNoTracking().FirstOrDefault(a => a.UserId == userId);
-            if (medarbejder == null) throw new Exception("Medarbejder findes ikke i databasen");
-
-            var kompetencer = _db.MedarbejderEntities.SelectMany(a => a.KompetenceListe, ((Medarbejder, kompetenceEntity) =>
-                new medarbejderkompetenceEntityDto
-                {
-                    KompetenceId = kompetenceEntity.Id,
-                    MedarbejderId = Medarbejder.Id,
-                    KompetenceNavn = kompetenceEntity.Navn
-                })).ToList();
-
-            var booking = _db.OpgaveEntities.
-            Include(b => b.booking)
-            .Where(a => a.booking.MedarbejderId == medarbejder.Id).
-            ToList();
-
-            //var query = db.Students
-            //    .SelectMany(student => student.Enrollments, (student, enrollment) => new { Student = student.Name, Course = enrollment.Course.Name });
+            var medarbejder = _db.MedarbejderEntities.Include(a => a.KompetenceListe).Include(a => a.BookingListe).ThenInclude(a => a.OpgaveId)
+                .FirstOrDefault(a => a.UserId == userId);
 
 
             return new MedarbejderGetByUserIdDto
@@ -133,9 +112,38 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
                 Titel = medarbejder.Titel,
                 RowVersion = medarbejder.RowVersion,
                 UserId = medarbejder.UserId,
-                KompetenceListe = kompetencer,
-                OpgaverListe = booking
+                KompetenceListe = FillKompetenceListe(medarbejder.KompetenceListe),
+                BookingListe = FillBookingListe(medarbejder.BookingListe)
+
             };
+
+        }
+        private List<BookingEntityDto> FillBookingListe(List<BookingEntity>? bookingListe)
+        {
+            if (bookingListe is null) throw new Exception("Kunne ikke finde medarbejder");
+
+            var res = new List<BookingEntityDto>();
+            bookingListe.ForEach(m => res.Add(new BookingEntityDto
+            {
+                OpgaveId = m.OpgaveId,
+                StartDato = m.StartDato,
+                SlutDato = m.SlutDato,
+
+            }));
+
+            return res;
+        }
+        private List<KompetenceEntityDto> FillKompetenceListe(List<KompetenceEntity>? kompetenceListe)
+        {
+            if (kompetenceListe is null) throw new Exception("Kunne ikke finde medarbejder");
+            var res = new List<KompetenceEntityDto>();
+            kompetenceListe.ForEach(m => res.Add(new KompetenceEntityDto
+            {
+                Navn = m.Navn,
+                Type = m.Type,
+            }));
+
+            return res;
         }
     }
 }

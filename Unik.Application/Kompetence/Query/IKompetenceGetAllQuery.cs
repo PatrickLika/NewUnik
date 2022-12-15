@@ -1,7 +1,9 @@
-﻿namespace Unik.Applicaiton.Kompetence.Query
+﻿using Unik.Application.Kompetence.Query.Implementation;
+
+namespace Unik.Applicaiton.Kompetence.Query
 {
     public interface iKompetenceGetAllQuery
     {
-        IEnumerable<KompetenceQueryResultDto> GetAll();
+        IEnumerable<KompetenceGetAllQueryResultDto> GetAll();
     }
 }

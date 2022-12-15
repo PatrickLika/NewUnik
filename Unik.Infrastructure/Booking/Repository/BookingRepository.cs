@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Booking.Queries;
 using Unik.Applicaiton.Booking.Repositories;
+using Unik.Application.Booking.Queries.Implementation;
 using Unik.Domain.Booking.Model;
 using Unik.SqlServerContext;
 
@@ -58,19 +59,46 @@ public class BoookingRepository
             };
         }
 
-        IEnumerable<BookingResultDto> IBookingRepository.GetAll()
+        IEnumerable<BookingGetAllResulstDto> IBookingRepository.GetAll()
         {
-            foreach (var dbEntity in _db.BookingEntities.AsNoTracking().ToList())
+            var p = _db.OpgaveEntities.AsNoTracking().ToList();
 
-                yield return new BookingResultDto
+
+
+           var bookingliste = _db.MedarbejderEntities.Include(a => a.BookingListe).ThenInclude(a => a.OpgaveId).SelectMany(
+                a => a.BookingListe, (entity, bookingEntity) => new BookingGetAllResulstDto
                 {
-                    Id = dbEntity.Id,
-                    MedarbejderId = dbEntity.MedarbejderId,
-                    OpgaveId = dbEntity.OpgaveId,
-                    SlutDato = dbEntity.SlutDato,
-                    StartDato = dbEntity.StartDato
-                };
+                    MedarbejderId = entity.Id,
+                    MedarbejderNavn = entity.Navn,
+                    MedarbejderTitel = entity.Titel,
+                    StartDato = bookingEntity.StartDato,
+                    SlutDato = bookingEntity.SlutDato,
+                    OpgaveId = bookingEntity.OpgaveId
+                });
+
+           return bookingliste;
+
+
+
+           //    var b = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
+           //    .ToList();
+           //var c = _db.OpgaveEntities.Include(a => a.booking).ThenInclude(a => a.Medarbejder).Select(a => a.booking)
+           //    .ToList();
+
+           //var a = _db.BookingEntities.Include(a => a.Medarbejder).Select(a => a.Medarbejder)
+           //    .Include(a => a.BookingListe);
+
+
+
+
+
+
+
+
+
         }
+
+
 
 
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)

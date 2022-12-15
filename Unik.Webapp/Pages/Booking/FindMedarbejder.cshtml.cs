@@ -30,7 +30,7 @@ namespace Unik.Webapp.Pages.Booking
             businessModel.ToList().ForEach(dto => FindMedarbejderViewModel.Add(new FindMedarbejderViewModel
             {
                 MedarbejderId = dto.MedarbejderId,
-                startDato = dto.startDato,
+                StartDato = dto.startDato,
                 SlutDato = dto.SlutDato,
                 OpgaveId = opgaveId,
                 Varighed = varighed

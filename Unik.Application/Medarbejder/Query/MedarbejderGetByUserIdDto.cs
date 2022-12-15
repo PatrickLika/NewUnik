@@ -13,8 +13,8 @@ namespace Unik.Applicaiton.Medarbejder.Query
         public string Titel { get; set; }
         public byte[] RowVersion { get; set; }
         public string UserId { get; set; }
-        public List<medarbejderkompetenceEntityDto>? KompetenceListe { get; set; }
-        public List<OpgaveEntity>? OpgaverListe { get; set; }
-        public List<BookingEntity>? BookingListe { get; set; }
+        public List<KompetenceEntityDto>? KompetenceListe { get; set; }
+        public List<BookingEntityDto>? BookingListe { get; set; }
+
     }
 }

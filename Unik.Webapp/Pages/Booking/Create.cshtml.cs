@@ -13,16 +13,17 @@ namespace Unik.Webapp.Pages.Booking
         {
             _bookingService = bookingService;
         }
-        [BindProperty] public BookingCreateViewModel OpgaveCreateViewModel { get; set; } = new();
-        public async Task<IActionResult> OnGet(int MedarbejderId, DateTime SlutDato, int opgaveId, int varighed)
+        [BindProperty] public BookingCreateViewModel BookingCreateViewModel { get; set; } = new();
+        public async Task<IActionResult> OnGet(int medarbejderId,string slutDato, int opgaveId, int varighed)
         {
             if (opgaveId == null) return NotFound();
 
-            OpgaveCreateViewModel.MedarbejderId = MedarbejderId;
-            OpgaveCreateViewModel.startDato = SlutDato.AddDays(1);
-            OpgaveCreateViewModel.OpgaveId = opgaveId;
-            OpgaveCreateViewModel.Varighed = varighed;
-            OpgaveCreateViewModel.SlutDato = SlutDato.AddDays(varighed + 1);
+            BookingCreateViewModel.MedarbejderId = medarbejderId;
+            BookingCreateViewModel.StartDato = DateTime.Parse(slutDato).AddDays(1);
+            BookingCreateViewModel.OpgaveId = opgaveId;
+            BookingCreateViewModel.Varighed = varighed;
+            BookingCreateViewModel.SlutDato = DateTime.Parse(slutDato).AddDays(varighed + 1);
+
 
             return Page();
         }
@@ -34,6 +35,7 @@ namespace Unik.Webapp.Pages.Booking
 
             var dto = new BookingCreateRequestDto()
             {
+
                 OpgaveId = OpgaveCreateViewModel.OpgaveId.Value,
                 MedarbejderId = OpgaveCreateViewModel.MedarbejderId.Value,
                 startDato = OpgaveCreateViewModel.startDato.Value,

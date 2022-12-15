@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Sales.Query;
 using Unik.Applicaiton.Sales.Repositories;
+using Unik.Crosscut.Dto;
+using Unik.Domain.Medarbejder.Model;
+using Unik.Domain.Projekt.Model;
 using Unik.Domain.Sales.Model;
 using Unik.SqlServerContext;
 
@@ -55,9 +58,6 @@ namespace Unik.Infrastructure.Sales.Repositories
             _db.SalesEntities.Remove(model);
             _db.SaveChanges();
 
-
-            //_db.Remove(id);
-            //_db.SaveChanges();
         }
 
 
@@ -81,16 +81,33 @@ namespace Unik.Infrastructure.Sales.Repositories
 
         SalesGetQueryDto ISalesRepository.Get(int id)
         {
-            //salesId sættes {int id} hvorefter EF automatISk kigger i Kompetence.sales tabellen for at se hvilke kompetencer salesen med {int id} har 
-            // var kompetencer bliver Kompetenceliste = kompetencer i DTO.
-
-            var projekter = _db.SalesEntities.Where(a => a.Id == id).SelectMany(b => b.ProjektListe).ToList();
-
-            var dbEntity = _db.SalesEntities.AsNoTracking().FirstOrDefault(a => a.Id == id);
+            var dbEntity = _db.SalesEntities.AsNoTracking().Include(a => a.ProjektListe).FirstOrDefault(a => a.Id == id);
             if (dbEntity == null) throw new Exception("Sælger findes ikke i databasen");
 
             return new SalesGetQueryDto
-            { Id = dbEntity.Id, Navn = dbEntity.Navn, Email = dbEntity.Email, Tlf = dbEntity.Tlf, Titel = dbEntity.Titel, RowVersion = dbEntity.RowVersion, UserId = dbEntity.UserId, ProjektListe = projekter };
+            { Id = dbEntity.Id,
+                Navn = dbEntity.Navn,
+                Email = dbEntity.Email,
+                Tlf = dbEntity.Tlf, 
+                Titel = dbEntity.Titel,
+                RowVersion = dbEntity.RowVersion,
+                UserId = dbEntity.UserId,
+                ProjektListe = FillProjektListe(dbEntity.ProjektListe)
+            };
+        
+        }
+        private List<ProjektEntityDto> FillProjektListe(List<ProjektEntity>? projektListe)
+        {
+            if (projektListe is null) throw new Exception("Kunne ikke finde medarbejder");
+
+            var res = new List<ProjektEntityDto>();
+            projektListe.ForEach(m => res.Add(new ProjektEntityDto
+            {
+                AntalBoliger = m.AntalBoliger,
+                Noter = m.Noter,
+            }));
+
+            return res;
         }
 
     }

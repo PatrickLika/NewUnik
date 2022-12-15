@@ -1,4 +1,5 @@
 ﻿using Unik.Applicaiton.Booking.Repositories;
+using Unik.Application.Booking.Queries.Implementation;
 
 namespace Unik.Applicaiton.Booking.Queries.Implementation
 {
@@ -11,7 +12,7 @@ namespace Unik.Applicaiton.Booking.Queries.Implementation
             _bookingRepository = bookingRepository;
         }
 
-        IEnumerable<BookingResultDto> IBookingGetAllQuery.GetAll()
+        IEnumerable<BookingGetAllResulstDto> IBookingGetAllQuery.GetAll()
         {
             return _bookingRepository.GetAll();
         }

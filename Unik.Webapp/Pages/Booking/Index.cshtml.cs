@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Unik.WebApp.Infrastructure.Booking.Contract;
 using Unik.WebApp.Infrastructure.Booking.Contract.Dto;
 
 namespace Unik.WebApp.Pages.Booking
@@ -15,15 +14,18 @@ namespace Unik.WebApp.Pages.Booking
         }
 
         [BindProperty] public List<BookingIndexViewModel> BookingIndexViewModels { get; set; }
-        public async Task OnGet()
+        public async Task<IActionResult> OnGet()
         {
             var liste = await _bookingService.GetAll();
 
-            liste.ToList().ForEach(dto=> BookingIndexViewModels.Add(new BookingIndexViewModel()
+            liste.ToList().ForEach(dto => BookingIndexViewModels.Add(new BookingIndexViewModel()
             {
-                
+                StartDato = dto.StartDato,
+                SlutDato = dto.SlutDato,
             }));
+
+            return Page();
         }
     }
-    //TODO Hele booking med DETAILS 
+
 }

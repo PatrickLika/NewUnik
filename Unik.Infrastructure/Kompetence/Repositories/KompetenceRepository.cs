@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Kompetence.Query;
 using Unik.Applicaiton.Kompetence.Repositories;
+using Unik.Application.Kompetence.Query.Implementation;
+using Unik.Crosscut.Dto;
 using Unik.Domain.Kompetence.Model;
 using Unik.Domain.Medarbejder.Model;
 using Unik.SqlServerContext;
@@ -29,40 +31,49 @@ namespace Unik.Infrastructure.Kompetence.Repositories
             _db.SaveChanges();
         }
 
-        KompetenceQueryResultDto IKompetenceRepository.Get(int id)
+        KompetenceGetQueryResultDto IKompetenceRepository.Get(int id)
         {
 
-            var Kompetence = _db.KompetenceEntities.AsNoTracking().FirstOrDefault(a => a.Id == id);
-            var medarbejderListe = _db.KompetenceEntities.AsNoTracking().Where(a => a.Id == id).SelectMany(b => b.MedarbejderListe).ToList();
+            var kompetence = _db.KompetenceEntities.AsNoTracking().Include(a => a.MedarbejderListe).FirstOrDefault(a => a.Id == id);
+            if (kompetence == null) throw new Exception("Booking findes ikke i databasen");
 
-            if(Kompetence == null) throw new Exception($"Kompetence med {id} findes ikke");
-
-            return new KompetenceQueryResultDto 
-            {       Id = Kompetence.Id,
-                    Navn = Kompetence.Navn,
-                    Type = Kompetence.Type,
-                    RowVersion = Kompetence.RowVersion,
-                    MedarbejderListe = medarbejderListe
+            return new KompetenceGetQueryResultDto
+            {
+                Navn = kompetence.Navn,
+                Type = kompetence.Type,
+                Id = kompetence.Id,
+                MedarbejderListe = FillMedarbejderListe(kompetence.MedarbejderListe)
             };
+
         }
 
+        private List<MedarbejderEntityDto> FillMedarbejderListe(List<MedarbejderEntity>? medarbejderListe)
+        {
+            if (medarbejderListe is null) throw new Exception("Kunne ikke finde medarbejder");
 
-        IEnumerable<KompetenceQueryResultDto> IKompetenceRepository.getAll()
+            var res = new List<MedarbejderEntityDto>();
+            medarbejderListe.ForEach(m => res.Add(new MedarbejderEntityDto
+            {
+                Navn = m.Navn,
+            }));
+
+            return res;
+        }
+
+        IEnumerable<KompetenceGetAllQueryResultDto> IKompetenceRepository.getAll()
         {
             foreach (var entity in _db.KompetenceEntities.AsNoTracking().ToList())
             {
-                var medarbejderListe = _db.KompetenceEntities.AsNoTracking().SelectMany(a => a.MedarbejderListe).ToList();
-
-                yield return new KompetenceQueryResultDto
+                yield return new KompetenceGetAllQueryResultDto
                 {
                     Id = entity.Id,
                     Type = entity.Type,
                     Navn = entity.Navn,
-                    MedarbejderListe = medarbejderListe
                 };
-            }
-        }
 
+            }
+
+        }
         KompetenceEntity IKompetenceRepository.Load(int KompetenceId)
         {
 

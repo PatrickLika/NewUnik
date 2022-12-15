@@ -1,6 +1,4 @@
-﻿using Unik.Domain.Kompetence.Model;
-using Unik.Domain.Opgave.Model;
-using Unik.Domain.Projekt.Model;
+﻿using Unik.Crosscut.Dto;
 
 namespace Unik.Applicaiton.Sales.Query
 {
@@ -13,7 +11,7 @@ namespace Unik.Applicaiton.Sales.Query
         public string Titel { get; set; }
         public byte[] RowVersion { get; set; }
         public string UserId { get; set; }
-        public List<ProjektEntity> ? ProjektListe { get; set; } 
+        public List<ProjektEntityDto>? ProjektListe { get; set; }
 
     }
 }

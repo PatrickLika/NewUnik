@@ -2,6 +2,7 @@
 using System.Net.Mime;
 using Unik.Applicaiton.Booking.Command;
 using Unik.Applicaiton.Booking.Queries;
+using Unik.Application.Booking.Queries.Implementation;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

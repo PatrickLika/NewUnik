@@ -1,5 +1,5 @@
 ﻿@page
-@model Unik.WebApp.Pages.Kunde.IndexModel
+@model Unik.WebApp.Pages.Booking.IndexModel
 @{
 }
 <form metod="post">
@@ -11,34 +11,29 @@
         </div>
         <br>
         <thead>
-        <tr>
-            <th>Kunde Id</th>
-            <th>Virksomhed</th>
-            <th>Navn</th>
-            <th>Email</th>
-            <th>Telefon nummer</th>
-            <th></th>
-        </tr>
+            <tr>
+                <th>Medarbejder</th>
+                <th>Opgave</th>
+                <th>StartD</th>
+                <th>Telefon Nummer</th>
+            </tr>
         </thead>
         <tbody>
-        @if (Model.KundeIndexViewModels.Any())
-        {
-            foreach (var kunde in Model.KundeIndexViewModels)
+            @if (Model.BookingIndexViewModels.Any())
             {
-                <tr>
-                    <td>@kunde.Id</td>
-                    <td>@kunde.VirksomhedNavn</td>
-                    <td>@kunde.Navn</td>
-                    <td>@kunde.Email</td>
-                    <td>@kunde.Tlf</td>
-                    <td>
-                        <!--<Snippet_Edit>-->
-                        <a class="btn" asp-page="./Edit" asp-route-id="@kunde.Id">Edit</a>
-                        <!--<Snippet Edit>-->
-                        <!--<Snippet_Delete>-->
-                        <a class="btn" asp-page-handler="./Delete" asp-route-id="@kunde.Id">Delete</a>
-                        <!--<Snippet_Delete>-->
-                    </td>
+                foreach (var booking in Model.BookingIndexViewModels)
+                {
+                    <tr>
+                        <td>@booking.</td>
+                        <td>@booking.StartDato</td>
+                        <td>@booking.StartDato</td>
+                        <td>@booking.StartDato</td>
+                        <td>
+                            <!--<Snippet_Delete>-->
+                            <a class="btn" asp-page-handler="./Delete" asp-route-id="@booking.">Delete</a>
+                            <!--<Snippet_Delete>-->
+                        </td>
+
 
                 </tr>
 

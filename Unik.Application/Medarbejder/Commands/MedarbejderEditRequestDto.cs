@@ -1,4 +1,4 @@
-using Unik.Domain.Kompetence.Model;
+using Unik.Crosscut.Dto;
 
 namespace Unik.Applicaiton.Medarbejder.Commands
 
@@ -12,6 +12,6 @@ namespace Unik.Applicaiton.Medarbejder.Commands
         public string Titel { get; set; }
         public byte[] RowVersion { get; set; }
         public string UserId { get; set; }
-        public List<KompetenceEntity>? KompetenceListe { get; set; }
+        public List<KompetenceEntityDto>? KompetenceListe { get; set; }
     }
 }
