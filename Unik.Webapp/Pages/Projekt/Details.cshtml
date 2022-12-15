@@ -6,8 +6,8 @@
     <br />
     <h1>Oversigt over projekter</h1>
     <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
-    <div class="col-sm-10">
-    </div>
+    <section class="col-sm-10">
+    </section>
     <table class="table">
         <thead>
         <tr>
@@ -16,6 +16,7 @@
             <th>Sælger ID</th>
             <th>Kunde ID</th>
             <th>Antal Boliger</th>
+            <th></th>
 
         </tr>
         </thead>
@@ -36,11 +37,12 @@
 
                         <thead>
                         <tr>
-                            <th>opgave Id</th>
-                            <th>Opgave Navn</th>
-                            <th>Opgave Medarbejder Id</th>
+                            <th>Opgave id</th>
+                            <th>Opgave navn</th>
+                            <th>Opgave medarbejder id</th>
                         </tr>
                         </thead>
+                        
                         <tbody>
 
                         @foreach (var opgave in projekt.Opgaver)
@@ -54,17 +56,11 @@
                         </tbody>
                     }
                     <td>
-
                         <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
-
                     </td>
-
                 </tr>
-
             }
-
         }
         </tbody>
-
     </table>
 </form>

@@ -19,8 +19,11 @@
                     <section class="col-sm-10">
                     </Section>
                     
-
                     <section class="form-floating mb-3">
+                        <input type="date" class="form-control" id="floatingInputStartDato" placeholder="Start dato" asp-for="BookingCreateViewModel.StartDato">
+                        <label>Start dato</label>
+                    </section>
+                    @*<section class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInputMedarbejderId" placeholder="Medarbejder Id" asp-for="BookingCreateViewModel.MedarbejderId">
                         <label>Medarbejder Id</label>
                     </section>
@@ -28,7 +31,7 @@
                     <section class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingInputOpgaveId" placeholder="Opgave Id" asp-for="BookingCreateViewModel.OpgaveId">
                         <label>Opgave Id</label>
-                    </section>
+                    </section>*@
                 </fieldset>
             </section>
        
@@ -36,13 +39,10 @@
                 <h1 style="color:white">Opret booking</h1>
                 <br />
                 <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
-                <div class="col-sm-10">
-                </div>
-
-                <section class="form-floating mb-3">
-                    <input type="date" class="form-control" id="floatingInputStartDato" placeholder="Start dato" asp-for="BookingCreateViewModel.StartDato">
-                    <label>Start dato</label>
+                <section class="col-sm-10">
                 </section>
+
+               
 
                 <section class="form-floating mb-3">
                     <input type="date" class="form-control" id="floatingInputSlutDato" placeholder="Slut dato" asp-for="BookingCreateViewModel.SlutDato">
