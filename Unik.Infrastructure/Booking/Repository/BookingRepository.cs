@@ -81,6 +81,8 @@ public class BoookingRepository
         IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string type)
         {
 
+            //_db.MedarbejderEntities
+
             foreach (var entity in _db.KompetenceEntities.Where(a => a.Navn == type).Include(a => a.MedarbejderListe)
                 .SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe)
                 .SelectMany(a => a.BookingListe).OrderBy(a => a.SlutDato).ToList())

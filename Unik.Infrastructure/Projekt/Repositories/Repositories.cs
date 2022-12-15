@@ -50,7 +50,7 @@ public class Repositories : IProjektRepositories
 
     private List<OpgaveEntityDto> FillOpgaveListe(List<OpgaveEntity>? opgaveListe)
     {
-        if (opgaveListe is null) throw new Exception("Kunne ikke finde medarbejder");
+        if (opgaveListe is null) throw new Exception("Kunne ikke finde Opgaver");
 
         var res = new List<OpgaveEntityDto>();
         opgaveListe.ForEach(m => res.Add(new OpgaveEntityDto

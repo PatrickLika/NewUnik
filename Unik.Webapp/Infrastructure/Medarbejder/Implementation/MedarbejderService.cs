@@ -28,6 +28,7 @@ namespace Unik.WebApp.Infrastructure.Medarbej.Implementation
         async Task IMedarbejderService.CreateMedarbejderKompetence(MedarbejderKompetenceCreateDto dto)
         {
             var response = await _httpClient.PostAsJsonAsync("api/Medarbejder/Kompetence", dto);
+            if(response.IsSuccessStatusCode) return;
             var messages = await response.Content.ReadAsStringAsync();
             throw new Exception(messages);
         }
