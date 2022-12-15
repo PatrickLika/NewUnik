@@ -33,18 +33,31 @@ namespace Unik.WebApp.Pages.Kunde
 
         public async Task<IActionResult> OnPost()
         {
-            await _kundeService.Edit(new KundeEditRequestDto
-            {
-                Id = EditViewModel.Id,
-                Navn = EditViewModel.Navn,
-                VirksomhedsNavn = EditViewModel.VirksomhedsNavn,
-                Tlf = EditViewModel.Tlf,
-                RowVersion = EditViewModel.RowVersion,
-                ProjektId = EditViewModel.ProjektId
+            if (!ModelState.IsValid) return Page();
 
-            });
+
+            try
+            {
+                await _kundeService.Edit(new KundeEditRequestDto
+                {
+                    Id = EditViewModel.Id.Value,
+                    Navn = EditViewModel.Navn,
+                    VirksomhedsNavn = EditViewModel.VirksomhedsNavn,
+                    Tlf = EditViewModel.Tlf,
+                    RowVersion = EditViewModel.RowVersion,
+                    ProjektId = EditViewModel.ProjektId
+                });
+            }
+
+            catch (Exception e)
+            {
+                ModelState.AddModelError(string.Empty, e.Message);
+                return Page();
+            }
+
+
+
             return RedirectToPage("./Index");
         }
     }
-    //TODO lave ui på EDIT
 }

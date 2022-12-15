@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using Unik.WebApp.Infrastructure.Medarbej.Contract;
 using Unik.WebApp.Infrastructure.Medarbej.Contract.Dto;
 
@@ -25,17 +26,33 @@ namespace Unik.WebApp.Pages.Medarbejder
 
         public async Task<IActionResult> OnPost(string message)
         {
-            if (!ModelState.IsValid) return Page();
-            var dto = new MedarbejderCreateRequestDto
+            try
             {
-                Navn = MedarbejderModel.Navn,
-                Tlf = MedarbejderModel.Tlf,
-                Titel = MedarbejderModel.Titel,
-                Email = message,
-                UserId = message,
-            };
+                if (!ModelState.IsValid || !MedarbejderModel.Navn.IsNullOrEmpty() ||
+                !MedarbejderModel.Tlf.IsNullOrEmpty() ||
+                !MedarbejderModel.Titel.IsNullOrEmpty()) new Exception("Udfyld felterne");
 
-            await _stamdataMedarbejderService.Create(dto);
+
+
+
+                var dto = new MedarbejderCreateRequestDto
+                {
+                    Navn = MedarbejderModel.Navn,
+                    Tlf = MedarbejderModel.Tlf,
+                    Titel = MedarbejderModel.Titel,
+                    Email = message,
+                    UserId = message
+                };
+
+
+                await _stamdataMedarbejderService.Create(dto);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(String.Empty, e.Message);
+                return Page();
+            }
+
 
             return new RedirectToPageResult("/Medarbejder/Index");
 

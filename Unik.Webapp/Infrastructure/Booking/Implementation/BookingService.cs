@@ -1,6 +1,5 @@
 ﻿using Unik.Webapp.Infrastructure.Booking.Contract.Dto;
 using Unik.WebApp.Infrastructure.Booking.Contract.Dto;
-using Unik.WebApp.Infrastructure.Kunde.Contract.Dto;
 
 namespace Unik.WebApp.Infrastructure.Booking.Implementation
 {
@@ -16,7 +15,10 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
 
         async Task IBookingService.Create(BookingCreateRequestDto createDto)
         {
-            await _httpClient.PostAsJsonAsync("api/Booking", createDto);
+            var response = await _httpClient.PostAsJsonAsync("api/Booking", createDto);
+            if (response.IsSuccessStatusCode) return;
+            var messages = await response.Content.ReadAsStringAsync();
+            throw new Exception(messages);
         }
 
         async Task IBookingService.Delete(int id)
@@ -37,12 +39,12 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
             return await _httpClient.GetFromJsonAsync<IEnumerable<FindMedarbejderDto>>($"api/Booking/Type/{type}");
         }
 
-        async Task<BookingResultDto> IBookingService.Get(int bookingId)
+        async Task<BookingResultDto?> IBookingService.Get(int bookingId)
         {
             return await _httpClient.GetFromJsonAsync<BookingResultDto>($"api/Booking/{bookingId}");
         }
 
-        async Task<IEnumerable<BookingResultDto>> IBookingService.GetAll()
+        async Task<IEnumerable<BookingResultDto>?> IBookingService.GetAll()
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<BookingResultDto>>("api/Booking");
         }

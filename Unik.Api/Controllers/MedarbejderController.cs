@@ -30,6 +30,56 @@ namespace Unik.Api.Controllers
             _medarbejderGetByUserId = medarbejderGetByUserId;
         }
 
+        [HttpPost]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult Post([FromBody] MedarbejderCreateRequestDto request)
+        {
+
+            try
+            {
+                _createMedarbejder.Create(request);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost("Kompetence")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult Post([FromBody] MedarbejderKompetenceCreateDto dto)
+        {
+
+            try
+            {
+                _createMedarbejderKompetenceCommand.Create(dto);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<MedarbejderGetAllQueryDto>> GetAll()
+        {
+            var result = _getAllMedarbejder.GetAll().ToList();
+            if (!result.Any())
+                return NotFound();
+
+            return result.ToList();
+        }
+
         [HttpGet("id/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -50,58 +100,6 @@ namespace Unik.Api.Controllers
             return result;
         }
 
-
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
-        public ActionResult<IEnumerable<MedarbejderGetAllQueryDto>> GetAll()
-        {
-            var result = _getAllMedarbejder.GetAll().ToList();
-            if (!result.Any())
-                return NotFound();
-
-            return result.ToList();
-        }
-
-
-        [HttpPost]
-        [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult Post([FromBody] MedarbejderCreateRequestDto request)
-        {
-
-            try
-            {
-                _createMedarbejder.Create(request);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-
-                return BadRequest(e.Message);
-            }
-        }
-
-
-        [HttpDelete("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult Delete(int id)
-        {
-            try
-            {
-                _deleteMedarbejder.Delete(id);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-
-                return BadRequest(e.Message);
-            }
-
-        }
-
-
         [HttpPut]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
@@ -120,16 +118,14 @@ namespace Unik.Api.Controllers
 
         }
 
-        [HttpPost("Kompetence")]
-        [Consumes(MediaTypeNames.Application.Json)]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult Post([FromBody] MedarbejderKompetenceCreateDto dto)
+        public ActionResult Delete(int id)
         {
-
             try
             {
-                _createMedarbejderKompetenceCommand.Create(dto);
+                _deleteMedarbejder.Delete(id);
                 return Ok();
             }
             catch (Exception e)
@@ -137,6 +133,7 @@ namespace Unik.Api.Controllers
 
                 return BadRequest(e.Message);
             }
+
         }
 
     }
