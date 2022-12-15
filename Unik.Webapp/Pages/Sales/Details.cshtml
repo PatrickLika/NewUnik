@@ -3,7 +3,11 @@
 @{
 }
 <form metod="post">
-    <h2> Oversigt over tilnyttede projekter</h2>
+    <br />
+    <h1>Opdater sælgere</h1>
+    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+    <div class="col-sm-10">
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -11,6 +15,7 @@
             <th>Navn</th>
             <th>Titel</th>
             <th>Telefon nummer</th>
+            <th></th>
 
         </tr>
         </thead>
@@ -47,11 +52,6 @@
                         }
                         </tbody>
                     }
-                    <td>
-
-                        <a asp-page="./index">Tilbage til Oversigt</a>
-
-                    </td>
 
                 </tr>
 
@@ -61,4 +61,6 @@
         </tbody>
 
     </table>
+    <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
+
 </form>
