@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Unik.WebApp.Infrastructure.Medarbej.Contract;
-using Unik.WebApp.Infrastructure.Medarbej.Contract.Dto;
-using Unik.WebApp.Infrastructure.Medarbej.Implementation;
 
 namespace Unik.WebApp.Pages.Medarbejder
 {
@@ -14,10 +12,6 @@ namespace Unik.WebApp.Pages.Medarbejder
         {
             _medarbejderService = medarbejderService;
         }
-
-        [BindProperty]
-        public MedarbejderDeleteViewModel MedarbejderDeleteModel { get; set; }
-
         public async Task<IActionResult> OnGet(int? id)
         {
             if (id == null) return NotFound();
@@ -26,6 +20,6 @@ namespace Unik.WebApp.Pages.Medarbejder
 
             return RedirectToPage("./Index");
         }
-       
+
     }
 }
