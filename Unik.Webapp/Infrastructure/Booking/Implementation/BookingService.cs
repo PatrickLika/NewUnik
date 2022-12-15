@@ -12,7 +12,6 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
             _httpClient = httpClient;
         }
 
-
         async Task IBookingService.Create(BookingCreateRequestDto createDto)
         {
             var response = await _httpClient.PostAsJsonAsync("api/Booking", createDto);
@@ -34,7 +33,6 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
             throw new Exception(messages);
         }
 
-
         async Task<IEnumerable<FindMedarbejderDto>?> IBookingService.FindMedarbejder(string type)
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<FindMedarbejderDto>>($"api/Booking/Type/{type}");
@@ -50,9 +48,5 @@ namespace Unik.WebApp.Infrastructure.Booking.Implementation
             return await _httpClient.GetFromJsonAsync<IEnumerable<BookingResultDto>>("api/Booking");
         }
 
-        async Task<IEnumerable<FindMedarbejderDto>?> IBookingService.FindMedarbejder(string type)
-        {
-            return await _httpClient.GetFromJsonAsync<IEnumerable<FindMedarbejderDto>>($"api/Booking/Type/{type}");
-        }
     }
 }

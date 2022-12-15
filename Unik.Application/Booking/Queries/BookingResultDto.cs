@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Unik.Applicaiton.Booking.Queries
+﻿namespace Unik.Applicaiton.Booking.Queries
 {
     public class BookingResultDto
     {
