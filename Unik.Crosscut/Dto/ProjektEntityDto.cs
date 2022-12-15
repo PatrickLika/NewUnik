@@ -4,7 +4,6 @@ namespace Unik.Crosscut.Dto;
 
 public class ProjektEntityDto
 {
-    public string VirksomhedensNavn { get; set; }
     public int Id { get; set; }
     public string Noter { get; set; }
     public int AntalBoliger { get; set; }

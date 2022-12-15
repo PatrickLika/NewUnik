@@ -13,5 +13,6 @@ namespace Unik.Applicaiton.Sales.Query
         public byte[] RowVersion { get; set; }
         public string UserId { get; set; }
         public List<ProjektEntityDto>? ProjektListe { get; set; }
+        public KundeEntityDto kunde { get; set; }
     }
 }

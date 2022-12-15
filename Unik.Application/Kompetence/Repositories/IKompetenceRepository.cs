@@ -1,4 +1,5 @@
 ﻿using Unik.Applicaiton.Kompetence.Query;
+using Unik.Application.Kompetence.Query.Implementation;
 using Unik.Domain.Kompetence.Model;
 
 namespace Unik.Applicaiton.Kompetence.Repositories
@@ -6,10 +7,10 @@ namespace Unik.Applicaiton.Kompetence.Repositories
     public interface IKompetenceRepository
     {
         void Create(KompetenceEntity kompetence);
-        IEnumerable<KompetenceQueryResultDto> getAll();
+        IEnumerable<KompetenceGetAllQueryResultDto> getAll();
         void Update(KompetenceEntity model);
         void Delete(int id);
         KompetenceEntity Load(int KompetenceId);
-        KompetenceQueryResultDto Get(int id);
+        KompetenceGetQueryResultDto Get(int id);
     }
 }

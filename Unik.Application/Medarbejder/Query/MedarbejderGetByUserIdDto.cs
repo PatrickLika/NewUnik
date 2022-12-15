@@ -12,7 +12,6 @@ namespace Unik.Applicaiton.Medarbejder.Query
         public byte[] RowVersion { get; set; }
         public string UserId { get; set; }
         public List<KompetenceEntityDto>? KompetenceListe { get; set; }
-        public List<OpgaveEntityDto>? OpgaverListe { get; set; }
         public List<BookingEntityDto>? BookingListe { get; set; }
     }
 }

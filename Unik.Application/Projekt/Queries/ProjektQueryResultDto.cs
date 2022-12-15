@@ -9,6 +9,6 @@ public class ProjektQueryResultDto
     public byte[] RowVersion { get; set; }
     public int kundeID { get; set; }
     public int SalesId { get; set; }
-    public List<OpgaveEntityDto>? Opgaver { get; set; }
     public int AntalBoliger { get; set; }
+    public List<OpgaveEntityDto> OpgaveListe { get; set; }
 }

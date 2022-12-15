@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 using Unik.Applicaiton.Kompetence.Commands;
 using Unik.Applicaiton.Kompetence.Query;
+using Unik.Application.Kompetence.Query.Implementation;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -26,7 +27,7 @@ namespace Unik.Api.Controllers
             _deletekompetenceCommand = deletekompetenceCommand;
             _getAllQuery = getAllQuery;
             _getQuery = getQuery;
-            
+
         }
 
         [HttpPost]
@@ -52,7 +53,7 @@ namespace Unik.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status202Accepted)]
-        public ActionResult<IEnumerable<KompetenceQueryResultDto>> GetAll()
+        public ActionResult<IEnumerable<KompetenceGetAllQueryResultDto>> GetAll()
         {
             var result = _getAllQuery.GetAll().ToList();
             if (!result.Any())
@@ -64,7 +65,7 @@ namespace Unik.Api.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<KompetenceQueryResultDto> Get(int id)
+        public ActionResult<KompetenceGetQueryResultDto> Get(int id)
         {
             var result = _getQuery.Get(id);
             return result;

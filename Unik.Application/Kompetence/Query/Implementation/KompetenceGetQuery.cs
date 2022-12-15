@@ -1,4 +1,5 @@
 ﻿using Unik.Applicaiton.Kompetence.Repositories;
+using Unik.Application.Kompetence.Query.Implementation;
 
 namespace Unik.Applicaiton.Kompetence.Query.Implementation
 {
@@ -11,7 +12,7 @@ namespace Unik.Applicaiton.Kompetence.Query.Implementation
             _repository = repository;
         }
 
-        KompetenceQueryResultDto iKompetenceGetQuery.Get(int id)
+        KompetenceGetQueryResultDto iKompetenceGetQuery.Get(int id)
         {
             return _repository.Get(id);
         }

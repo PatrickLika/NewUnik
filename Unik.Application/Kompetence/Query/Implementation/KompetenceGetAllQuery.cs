@@ -12,7 +12,7 @@ namespace Unik.Applicaiton.Kompetence.Query.Implementation
             _repository = repository;
         }
 
-        IEnumerable<KompetenceQueryResultDto> iKompetenceGetAllQuery.GetAll()
+        IEnumerable<KompetenceGetAllQueryResultDto> iKompetenceGetAllQuery.GetAll()
         {
             return _repository.getAll();
 

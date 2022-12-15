@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Unik.Applicaiton.Kompetence.Query;
 using Unik.Applicaiton.Kompetence.Repositories;
-using Unik.Application.Booking.Queries.Implementation;
+using Unik.Application.Kompetence.Query.Implementation;
 using Unik.Crosscut.Dto;
 using Unik.Domain.Kompetence.Model;
 using Unik.Domain.Medarbejder.Model;
@@ -31,47 +31,22 @@ namespace Unik.Infrastructure.Kompetence.Repositories
             _db.SaveChanges();
         }
 
-        KompetenceQueryResultDto IKompetenceRepository.Get(int id)
+        KompetenceGetQueryResultDto IKompetenceRepository.Get(int id)
         {
 
-            //var bookingliste = _db.MedarbejderEntities.Include(a => a.BookingListe).ThenInclude(a => a.OpgaveId).SelectMany(
-            //    a => a.BookingListe, (entity, bookingEntity) => new BookingGetAllResulstDto
+            var kompetence = _db.KompetenceEntities.AsNoTracking().Include(a => a.MedarbejderListe).FirstOrDefault(a => a.Id == id);
+            if (kompetence == null) throw new Exception("Booking findes ikke i databasen");
 
-            var test = _db.MedarbejderEntities.Include(a => a.KompetenceListe).SelectMany(
-                a => a.KompetenceListe, (entity, kompetenceEntity) => new KompetenceQueryResultDto
-                {
-                    Id = entity.Id,
-                    Navn = entity.Navn,
-                    Type = kompetenceEntity.Type,
-                    RowVersion = kompetenceEntity.RowVersion,
-                    UserId = entity.UserId,
-                    MedarbejderListe = FillMedarbejderListe(kompetenceEntity.MedarbejderListe)
-                });
-
-            throw new NotImplementedException();
-
-        }
-
-
-     
-
-        IEnumerable<KompetenceQueryResultDto> IKompetenceRepository.getAll()
-        {
-            foreach (var entity in _db.KompetenceEntities.AsNoTracking().ToList())
+            return new KompetenceGetQueryResultDto
             {
-                var medarbejderListe = _db.KompetenceEntities.AsNoTracking().SelectMany(a => a.MedarbejderListe).ToList();
+                Navn = kompetence.Navn,
+                Type = kompetence.Type,
+                Id = kompetence.Id,
+                MedarbejderListe = FillMedarbejderListe(kompetence.MedarbejderListe)
+            };
 
-                yield return new KompetenceQueryResultDto
-                {
-                    Id = entity.Id,
-                    Type = entity.Type,
-                    Navn = entity.Navn,
-                    MedarbejderListe = FillMedarbejderListe(kompetenceEntity.MedarbejderListe)
-                };
-
-            }
-            
         }
+
         private List<MedarbejderEntityDto> FillMedarbejderListe(List<MedarbejderEntity>? medarbejderListe)
         {
             if (medarbejderListe is null) throw new Exception("Kunne ikke finde medarbejder");
@@ -80,17 +55,25 @@ namespace Unik.Infrastructure.Kompetence.Repositories
             medarbejderListe.ForEach(m => res.Add(new MedarbejderEntityDto
             {
                 Navn = m.Navn,
-                Titel = m.Titel,
-
             }));
 
             return res;
         }
 
+        IEnumerable<KompetenceGetAllQueryResultDto> IKompetenceRepository.getAll()
+        {
+            foreach (var entity in _db.KompetenceEntities.AsNoTracking().ToList())
+            {
+                yield return new KompetenceGetAllQueryResultDto
+                {
+                    Id = entity.Id,
+                    Type = entity.Type,
+                    Navn = entity.Navn,
+                };
 
+            }
 
-
-
+        }
         KompetenceEntity IKompetenceRepository.Load(int KompetenceId)
         {
 

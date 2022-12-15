@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Booking\DomainService\" />
+    <Compile Remove="Booking\DomainService\**" />
+    <EmbeddedResource Remove="Booking\DomainService\**" />
+    <None Remove="Booking\DomainService\**" />
   </ItemGroup>
 
   <ItemGroup>

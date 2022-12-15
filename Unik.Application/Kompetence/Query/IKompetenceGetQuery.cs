@@ -1,7 +1,9 @@
-﻿namespace Unik.Applicaiton.Kompetence.Query
+﻿using Unik.Application.Kompetence.Query.Implementation;
+
+namespace Unik.Applicaiton.Kompetence.Query
 {
     public interface iKompetenceGetQuery
     {
-        KompetenceQueryResultDto Get(int id);
+        KompetenceGetQueryResultDto Get(int id);
     }
 }
