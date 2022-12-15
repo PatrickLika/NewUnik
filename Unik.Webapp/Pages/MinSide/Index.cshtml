@@ -5,7 +5,10 @@
 
 @if (User.HasClaim(a => a.Type == "Tekniker") || User.HasClaim(a => a.Type == "Konsulent") || User.HasClaim(a => a.Type == "Konverter"))
 {
-    <h2>@Model.MedarbejderModel.Navn's' side</h2>
+    <br/>
+    <h1>@Model.MedarbejderModel.Navn's' side</h1>
+    <section class="form-group row">
+    </Section>
     <form method="post">
         <table class="table">
             <tbody>
