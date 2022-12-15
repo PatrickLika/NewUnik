@@ -10,7 +10,7 @@
             <section class="col-md-6">
                 <fieldset>
                     <br />
-                    <h1>Opret Sælger</h1>
+                    <h1>Opret sælger</h1>
                     <section class="form-group row">
                     </Section>
                     <section class="col-sm-10">
@@ -20,31 +20,33 @@
                     </Section>
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputNavn" placeholder="Navn" asp-for="CreateViewModel.Navn">
+                        <input type="text" class="form-control rounded" id="floatingInputNavn" placeholder="Navn" asp-for="CreateViewModel.Navn">
                         <label>Navn</label>
                     </section>
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputTitel" placeholder="Titel" asp-for="CreateViewModel.Titel">
+                        <input type="text" class="form-control rounded" id="floatingInputTitel" placeholder="Titel" asp-for="CreateViewModel.Titel">
                         <label>Titel</label>
                     </section>
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputEmail" placeholder="Email" asp-for="CreateViewModel.Email">
+                        <input type="text" class="form-control rounded" id="floatingInputEmail" placeholder="Email" asp-for="CreateViewModel.Email">
                         <label >Email</label>
                     </section>
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputTlf" placeholder="Tlf" asp-for="CreateViewModel.Tlf">
+                        <input type="text" class="form-control rounded" id="floatingInputTlf" placeholder="Tlf" asp-for="CreateViewModel.Tlf">
                         <label>Tlf</label>
                     </section>
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputUserId" placeholder="UserId" asp-for="CreateViewModel.UserId">
+                        <input type="text" class="form-control rounded" id="floatingInputUserId" placeholder="UserId" asp-for="CreateViewModel.UserId">
                         <label>User Id</label>
                     </section>
 
                     <button type="submit" class="btn btn-success rounded">Opret sælger</button>
+                    <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
+
                 </fieldset>
             </section>
         </section>

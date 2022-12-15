@@ -2,7 +2,11 @@
 @model Unik.WebApp.Pages.Projekt.IndexModel
 @{
 }
-<h1>Oversigt over Projekter</h1>
+<br />
+<h1>Oversigt over projekter</h1>
+<hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+<div class="col-sm-10">
+</div>
 <form metod="post">
     <table class="table">
         <thead>
@@ -12,7 +16,7 @@
                 <th>Sælger ID</th>
                 <th>Kunde ID</th>
                 <th>Antal Boliger</th>
-
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,9 +31,9 @@
                         <td>@projekt.kundeID</td>
                         <td>@projekt.AntalBoliger</td>
                         <td>
-                            <a asp-page="./Details" asp-route-id="@projekt.Id">Details</a>
-                            <a asp-page="./Edit" asp-route-Id="@projekt.Id">Edit</a>
-                            <a asp-page="./Delete" asp-route-id="@projekt.Id">Delete</a>
+                            <a asp-page="./Details" asp-route-id="@projekt.Id">Details</a> |
+                            <a asp-page="./Edit" asp-route-Id="@projekt.Id">Edit</a> |
+                            <a asp-page="./Delete" asp-route-id="@projekt.Id">Delete</a> |
                             <a asp-page="/Opgave/Create" asp-route-id="@projekt.Id">Tilføj Opgave</a>
                         </td>
                     </tr>
@@ -38,5 +42,5 @@
         </tbody>
 
     </table>
-    <a asp-page="Create">Create now</a>
+    <a asp-page="Create" class="btn btn-success rounded">Opret ny</a>
 </form>

@@ -2,7 +2,11 @@
 @model Unik.WebApp.Pages.Opgave.TilføjMedarbejderModel
 @{
 }
-
+<br />
+<h1>Tilføj medarbejder</h1>
+<hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+<div class="col-sm-10">
+</div>
 ProjektId: <input type="hidden" asp-for="EditViewModel.ProjektId" />
 ProjektId: <input type="hidden" asp-for="EditViewModel.RowVersion" />
 Id: <input type="hidden" asp-for="EditViewModel.Id" />
@@ -11,7 +15,6 @@ Navn: <input type="text" asp-for="EditViewModel.Navn" />
 MedarbejderId :<input type="text" asp-for="EditViewModel.MedarbejderId" />
 
 
-<h1>Liste over Medarbejdere</h1>
 <thead>
 <tr>
     <th>ID</th>

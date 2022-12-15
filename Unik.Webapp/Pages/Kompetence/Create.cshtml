@@ -23,15 +23,17 @@
             <div class="col-sm-10">
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInputNavn" placeholder="Navn" asp-for="CreateViewModel.Navn">
+                <input type="text" class="form-control rounded" id="floatingInputNavn" placeholder="Navn" asp-for="CreateViewModel.Navn">
                 <label>Navn</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInputType" placeholder="Type" asp-for="CreateViewModel.Type">
+                <input type="text" class="form-control rounded" id="floatingInputType" placeholder="Type" asp-for="CreateViewModel.Type">
                 <label>Type</label>
             </div>
+            
 
             <button type="submit" class="btn btn-success rounded">Tilføj Kompetence</button>
+            <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
         </form>
     </div>
 </div>

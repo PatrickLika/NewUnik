@@ -40,12 +40,12 @@
                     </Section>
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputNavn" placeholder="Navn" asp-for="MedarbejderModel.Navn">
+                        <input type="text" class="form-control rounded" id="floatingInputNavn" placeholder="Navn" asp-for="MedarbejderModel.Navn">
                         <label>Navn</label>
                     </section>
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputTitel" placeholder="Titel" asp-for="MedarbejderModel.Titel">
+                        <input type="text" class="form-control rounded" id="floatingInputTitel" placeholder="Titel" asp-for="MedarbejderModel.Titel">
                         <label>Titel</label>
                     </section>
 
@@ -55,7 +55,7 @@
                     </section>*@
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputTlf" placeholder="Tlf" asp-for="MedarbejderModel.Tlf">
+                        <input type="text" class="form-control rounded" id="floatingInputTlf" placeholder="Tlf" asp-for="MedarbejderModel.Tlf">
                         <label>Tlf</label>
                     </section>
 
@@ -65,6 +65,8 @@
                     </section>*@
 
                     <button type="submit" class="btn btn-success rounded">Opret medabejder</button>
+                    <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
+
                 </fieldset>
             </section>
         </section>
