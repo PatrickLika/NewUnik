@@ -24,20 +24,22 @@ namespace Unik.Webapp.Pages.Booking
             BookingCreateViewModel.Varighed = varighed;
             BookingCreateViewModel.SlutDato = DateTime.Parse(slutDato).AddDays(varighed + 1);
 
+
             return Page();
         }
 
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid || !OpgaveCreateViewModel.OpgaveId.HasValue || !OpgaveCreateViewModel.MedarbejderId.HasValue || !OpgaveCreateViewModel.SlutDato.HasValue || !OpgaveCreateViewModel.startDato.HasValue) return Page();
 
 
             var dto = new BookingCreateRequestDto()
             {
-                OpgaveId = BookingCreateViewModel.OpgaveId,
-                MedarbejderId = BookingCreateViewModel.MedarbejderId,
-                startDato = BookingCreateViewModel.StartDato,
-                SlutDato = BookingCreateViewModel.SlutDato,
+
+                OpgaveId = OpgaveCreateViewModel.OpgaveId.Value,
+                MedarbejderId = OpgaveCreateViewModel.MedarbejderId.Value,
+                startDato = OpgaveCreateViewModel.startDato.Value,
+                SlutDato = OpgaveCreateViewModel.SlutDato.Value,
             };
 
             try

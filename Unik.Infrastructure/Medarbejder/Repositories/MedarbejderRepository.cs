@@ -5,6 +5,7 @@ using Unik.Applicaiton.Medarbejder.Repositories;
 using Unik.Crosscut.Dto;
 using Unik.Domain.Booking.Model;
 using Unik.Domain.Kompetence.Model;
+
 using Unik.Domain.Medarbejder.Model;
 using Unik.SqlServerContext;
 
@@ -101,6 +102,7 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
             var medarbejder = _db.MedarbejderEntities.Include(a => a.KompetenceListe).Include(a => a.BookingListe).ThenInclude(a => a.OpgaveId)
                 .FirstOrDefault(a => a.UserId == userId);
 
+
             return new MedarbejderGetByUserIdDto
             {
                 Id = medarbejder.Id,
@@ -112,6 +114,7 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
                 UserId = medarbejder.UserId,
                 KompetenceListe = FillKompetenceListe(medarbejder.KompetenceListe),
                 BookingListe = FillBookingListe(medarbejder.BookingListe)
+
             };
 
         }

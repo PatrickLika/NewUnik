@@ -3,7 +3,7 @@
 @{
 }
 
-<form method="post">
+@*<form method="post">
     <section class="container">
         <section class="row ">
 
@@ -18,17 +18,27 @@
                     <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
                     <section class="col-sm-10">
                     </Section>
-                    
+
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputMedarbejderId" placeholder="Medarbejder Id" asp-for="BookingCreateViewModel.MedarbejderId">
+                        <input type="text" class="form-control rounded" id="floatingInputNavn" placeholder="Navn" asp-for="BookingCreateViewModel.Navn">
+                        <label>Navn</label>
+                    </section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control rounded" id="floatingInputId" placeholder="Id" asp-for="BookingCreateViewModel.Id">
+                        <label>Id</label>
+                    </section>
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control rounded" id="floatingInputMedarbejderId" placeholder="Medarbejder Id" asp-for="BookingCreateViewModel.MedarbejderId">
                         <label>Medarbejder Id</label>
                     </section>
 
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputOpgaveId" placeholder="Opgave Id" asp-for="BookingCreateViewModel.OpgaveId">
+                        <input type="text" class="form-control rounded" id="floatingInputOpgaveId" placeholder="Opgave Id" asp-for="BookingCreateViewModel.OpgaveId">
                         <label>Opgave Id</label>
-                    </section>
+                    </section>*@
                     
 
                     
@@ -44,26 +54,26 @@
                     </section>*@
 
                     @*<button type="submit" class="btn btn-success rounded">Opret Booking</button>*@
-                </fieldset>
+               @* </fieldset>
             </section>
        
             <section class="col-md-6">
                 <h1 style="color:white">Opret booking</h1>
                 <br />
                 @*<label for="text">Start og slut dato</label>*@
-                <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+               @* <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
                 <div class="col-sm-10">
                 </div>
 
                 <section class="form-floating mb-3">
-                    <input type="date" class="form-control" id="floatingInputStartDato" placeholder="Start dato" asp-for="BookingCreateViewModel.StartDato">
+                    <input type="date" class="form-control rounded" id="floatingInputStartDato" placeholder="Start dato" asp-for="BookingCreateViewModel.StartDato">
                     <label>Start dato</label>
                 </section>
 
                 <section class="form-floating mb-3">
-                    <input type="date" class="form-control" id="floatingInputSlutDato" placeholder="Slut dato" asp-for="BookingCreateViewModel.SlutDato">
+                    <input type="date" class="form-control rounded" id="floatingInputSlutDato" placeholder="Slut dato" asp-for="BookingCreateViewModel.SlutDato">
                     <label>Slut dato</label>
-                </section>
+                </section>*@
 
                 @*<div class="form-group">
                     <label for="exampleSelect1" class="form-label mt-4">Example select</label>
@@ -90,12 +100,14 @@
                     <textarea class="form-control" id="noter" rows="3"></textarea>
                 </div>*@
               
-                <fieldset class="form-group">
+                @*<fieldset class="form-group">
                 </fieldset>
                 <br />
                 <button type="submit" class="btn btn-success rounded">Opret booking</button>
+                <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
+
             </section>
         </section>
     </section>
-</form>
+</form>*@
 

@@ -52,8 +52,9 @@ namespace Unik.Api.Controllers
 
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
-        public ActionResult<IEnumerable<KompetenceGetAllQueryResultDto>> GetAll()
+        [ProducesResponseType(StatusCodes.Status200Ok)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<KompetenceQueryResultDto>> GetAll()
         {
             var result = _getAllQuery.GetAll().ToList();
             if (!result.Any())

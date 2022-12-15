@@ -1,4 +1,6 @@
 ﻿using Unik.Crosscut.Dto;
+using Unik.Domain.Booking.Model;
+using Unik.Domain.Opgave.Model;
 
 namespace Unik.Applicaiton.Medarbejder.Query
 {
@@ -13,5 +15,6 @@ namespace Unik.Applicaiton.Medarbejder.Query
         public string UserId { get; set; }
         public List<KompetenceEntityDto>? KompetenceListe { get; set; }
         public List<BookingEntityDto>? BookingListe { get; set; }
+
     }
 }

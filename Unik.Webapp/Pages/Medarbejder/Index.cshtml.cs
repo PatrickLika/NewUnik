@@ -21,12 +21,13 @@ namespace Unik.WebApp.Pages.Medarbejder
         {
             var businessModel = await _MedarbejderService.GetAll();
 
-            businessModel.ToList().ForEach(dto => IndexGetAllViewModel.Add(new MedarbejderGetAllViewModel 
-            {   Id = dto.Id, 
-                Navn = dto.Navn, 
-                Email = dto.Email, 
+            businessModel?.ToList().ForEach(dto => IndexGetAllViewModel.Add(new MedarbejderGetAllViewModel
+            {
+                Id = dto.Id,
+                Navn = dto.Navn,
+                Email = dto.Email,
                 Tlf = dto.Tlf,
-                Titel = dto.Titel, 
+                Titel = dto.Titel,
                 UserId = dto.UserId,
                 KompetenceListe = dto.KompetenceListe
             }));

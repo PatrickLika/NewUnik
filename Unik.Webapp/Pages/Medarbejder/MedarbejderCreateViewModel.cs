@@ -1,6 +1,4 @@
-﻿using Unik.WebApp.Infrastructure.Kompetence.Contract.Dto;
-
-namespace Unik.WebApp.Pages.Medarbejder
+﻿namespace Unik.WebApp.Pages.Medarbejder
 {
     public class MedarbejderCreateViewModel
     {

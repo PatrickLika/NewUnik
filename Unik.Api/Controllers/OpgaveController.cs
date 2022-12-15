@@ -27,7 +27,7 @@ namespace Unik.Api.Controllers
             _opgaveGetQuery = getQuery;
         }
 
-         [HttpPost]
+        [HttpPost]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -49,7 +49,8 @@ namespace Unik.Api.Controllers
 
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<OpgaveQueryResultDto>> GetAll()
         {
             var result = _opgaveGetAllQuery.GetAll().ToList();

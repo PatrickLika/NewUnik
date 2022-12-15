@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Unik.WebApp.Infrastructure.Kompetence.Contract;
 using Unik.WebApp.Infrastructure.Kunde.Contract;
 using Unik.WebApp.Infrastructure.Medarbej.Contract;
 using Unik.WebApp.Infrastructure.Opgave.Contract;
@@ -14,13 +15,15 @@ namespace Unik.WebApp.Pages.MinSide
         private readonly IMedarbejderService _medarbejderService;
         private readonly IKundeService _kundeService;
         private readonly IProjektService _projektService;
+        private readonly IkompetenceService _kompetenceService;
 
-        public IndexModel(IOpgaveService opgaveService, IMedarbejderService medarbejderService, IKundeService kundeService, IProjektService projektService)
+        public IndexModel(IOpgaveService opgaveService, IMedarbejderService medarbejderService, IKundeService kundeService, IProjektService projektService, IkompetenceService kompetenceService)
         {
             _opgaveService = opgaveService;
             _medarbejderService = medarbejderService;
             _kundeService = kundeService;
             _projektService = projektService;
+            _kompetenceService = kompetenceService;
         }
 
         [BindProperty] public IndexMedarbejderModel MedarbejderModel { get; set; } = new();
@@ -32,6 +35,7 @@ namespace Unik.WebApp.Pages.MinSide
             if (User.HasClaim(a => a.Type == "Tekniker") || User.HasClaim(a => a.Type == "Konsulent") || User.HasClaim(a => a.Type == "Konverter"))
             {
                 var user = await _medarbejderService.GetByUserId(User.Identity.Name);
+
 
                 MedarbejderModel.BookingListe = user.BookingListe;
                 MedarbejderModel.Email = user.Email;

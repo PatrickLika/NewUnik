@@ -2,15 +2,20 @@
 @model Unik.WebApp.Pages.Sales.IndexModel
 @{
 }
-<h1>Oversigt over Sælgere</h1>
-<form metod="post">
+<br />
+<h1>Oversigt over sælgere</h1>
+<hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+<div class="col-sm-10">
+</div>
+<br><form metod="post">
     <table class="table">
         <thead>
         <tr>
             <th>Sælger Id</th>
             <th>Navn</th>
             <th>Titel</th>
-            <th>Telefon Nummer</th>
+            <th>Telefon nummer</th>
+            <th></th>
 
         </tr>
         </thead>
@@ -20,13 +25,13 @@
             foreach (var sælger in Model.IndexViewModel)
             {
                 <tr>
-                    <td>@sælger.Id</td>
-                    <td>@sælger.Navn</td>
+                    <td>@sælger.Id</td> 
+                    <td>@sælger.Navn </td>
                     <td>@sælger.Titel</td>
                     <td>@sælger.Tlf</td>
                     <td>
-                        <a asp-page="./Details" asp-route-id="@sælger.Id">Details</a>
-                            <a asp-page="./Edit" asp-route-Id="@sælger.Id">Edit</a>
+                            <a asp-page="./Details" asp-route-id="@sælger.Id">Details</a> |
+                            <a asp-page="./Edit" asp-route-Id="@sælger.Id">Edit</a> |
                             <a asp-page="./Delete" asp-route-id="@sælger.Id">Delete</a>
                     </td>
                 </tr>
@@ -35,5 +40,5 @@
         </tbody>
 
     </table>
-    <a asp-page="Create">Create now</a>
+    <a asp-page="Create" class="btn btn-success rounded">Opret ny</a>
 </form>

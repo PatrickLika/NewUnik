@@ -7,10 +7,10 @@ namespace Unik.WebApp.Infrastructure.Medarbej.Contract
     {
         Task Create(MedarbejderCreateRequestDto dto);
         Task Edit(MedarbejderEditRequestDto bmiEditRequestDto);
-        Task<IEnumerable<MedarbejderGetAllQueryDto>> GetAll();
-        Task<MedarbejderGetQueryDto> Get(int id);
-        Task Delete(int id); 
+        Task<IEnumerable<MedarbejderGetAllQueryDto>?> GetAll();
+        Task<MedarbejderGetQueryDto?> Get(int id);
+        Task Delete(int id);
         Task CreateMedarbejderKompetence(MedarbejderKompetenceCreateDto dto);
-        Task <MedarbejderGetByUserIdDto> GetByUserId(string userId);
+        Task<MedarbejderGetByUserIdDto?> GetByUserId(string userId);
     }
 }

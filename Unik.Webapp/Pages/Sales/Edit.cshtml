@@ -2,13 +2,19 @@
 @model Unik.WebApp.Pages.Sales.EditModel
 @{
 }
-
+<br />
+<h1>Opdater sælgere</h1>
+<hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+<div class="col-sm-10">
+</div>
 <form method="post">
     
     <section>
         <input type="hidden" asp-for="EditViewModel.RowVersion" class="form-control" />
         <input type="hidden" asp-for="EditViewModel.Id" class="form-control" />
-        <br>
+        <input type="hidden" asp-for="EditViewModel.UserId" class="form-control" />
+
+        @*<br>
         Navn: <input type="text" asp-for="EditViewModel.Navn"/>
         <br>
         Titel: <input type="text" asp-for="EditViewModel.Titel"/>
@@ -18,7 +24,45 @@
         TLF: <input type="text" asp-for="EditViewModel.Tlf"/>
         <br>
         UserId: <input type="text" asp-for="EditViewModel.UserId"/>
-        <br>
-        <button type="submit">Rediger Sælger</button>
+        <br>*@
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+
+                    <br/>
+                    <div class="form-group">
+                        <label>Navn</label>
+                        <input asp-for="EditViewModel.Navn" class="form-control rounded"/>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label>Titel</label>
+                        <input asp-for="EditViewModel.Titel" class="form-control rounded"/>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input asp-for="EditViewModel.Email" class="form-control rounded"/>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <label>Tilf</label>
+                        <input asp-for="EditViewModel.Tlf" class="form-control rounded"/>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                </div>
+            </div>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-success rounded">Opdater sælger</button>
+        <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
     </section>
 </form>

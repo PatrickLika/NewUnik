@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using Unik.WebApp.Infrastructure.Kompetence.Contract;
 using Unik.WebApp.Infrastructure.Kompetence.Contract.Dto;
 
@@ -23,7 +24,7 @@ namespace Unik.WebApp.Pages.Kompetence
 
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid || !CreateViewModel.Navn.IsNullOrEmpty() || !CreateViewModel.Type.IsNullOrEmpty()) return Page();
 
 
             var dto = new KompetenceCreateRequestDto

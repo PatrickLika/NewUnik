@@ -1,0 +1,39 @@
+﻿@page
+@model Unik.Webapp.Pages.MinSide.TilføjKompetenceModel
+@{
+}
+@if (User.HasClaim(a => a.Type == "Tekniker") || User.HasClaim(a => a.Type == "Konsulent") || User.HasClaim(a => a.Type == "Konverter"))
+{
+    <form method="post">
+        <table class="table">
+            <tbody>
+            @if (@Model.KompetenceViewIndexModel.Any())
+            {
+                foreach (var kompetence in Model.KompetenceViewIndexModel)
+                {
+                       
+                    <tr>
+                        <th>Kompetence id</th>
+                        <th>Kompentence navn</th>
+                        <th>Medarbejder type</th>
+                    </tr>
+                    <tr>
+                        <td> @kompetence.Id</td>
+                        <td> @kompetence.Navn</td>
+                        <td> @kompetence.Type</td>
+                        <td> <a asp-page="./tilføj" asp-route-id="@kompetence.Id">Tilføj kompetencen</a></td>
+                    </tr>
+                }
+            }
+            <tr>
+            </tr>
+            </tbody>
+        </table>
+        <a asp-page="./TilføjKompetence" asp-route-id="">Tilføj kompetence</a>
+    </form>
+}
+else
+{
+    <h2>ÆV DU SKAL IKKE NOGET HERINDE</h2>
+}
+

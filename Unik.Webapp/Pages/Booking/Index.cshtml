@@ -4,6 +4,12 @@
 }
 <form metod="post">
     <table class="table">
+        <br />
+        <h1>Oversigt over booking</h1>
+        <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+        <div class="col-sm-10">
+        </div>
+        <br>
         <thead>
             <tr>
                 <th>Medarbejder</th>
@@ -28,13 +34,14 @@
                             <!--<Snippet_Delete>-->
                         </td>
 
-                    </tr>
 
-                }
+                </tr>
 
             }
+
+        }
         </tbody>
 
     </table>
-    <a asp-page="Create">Create now</a>
+    <a asp-page="Create" class="btn btn-success rounded">Opret ny</a>
 </form>
