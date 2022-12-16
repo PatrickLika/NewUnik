@@ -67,7 +67,7 @@ namespace Unik.Api.KundeControllers
         }
 
         // GET api/<KundeController>/5
-        [HttpGet("/userId/{userId}")]
+        [HttpGet("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<KundeUserResultDto> GetUser(string userId)

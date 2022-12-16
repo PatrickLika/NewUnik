@@ -8,6 +8,7 @@ public interface IKundeService
     Task Edit(KundeEditRequestDto dto);
     Task<HttpResponseMessage> Delete(int id);
     Task<KundeGetQueryDto?> Get(int bookingId);
+    Task<KundeUserResultDto?> GetByUserId(string userId);
     Task<IEnumerable<KundeGetAllQueryDto>?> GetAll();
 
 }

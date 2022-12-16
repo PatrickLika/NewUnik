@@ -1,9 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Unik.Applicaiton.Booking.Queries;
 using Unik.Applicaiton.Booking.Repositories;
-using Unik.Applicaiton.Kompetence.Query;
 using Unik.Application.Booking.Queries;
 using Unik.Domain.Booking.Model;
 using Unik.SqlServerContext;
@@ -80,22 +77,72 @@ public class BoookingRepository
 
         }
 
-        IEnumerable<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string navn)
+        List<FindMedarbejderDto> IBookingRepository.FindMedarbejder(string navn)
         {
-            ///TODO DETTE SKAL FIXES!!!!
-            var test = _db.KompetenceEntities.AsNoTracking().Where(a => a.Navn == navn).Include(a => a.MedarbejderListe)
-                .ThenInclude(a => a.BookingListe).SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe)
-                .SelectMany(a => a.BookingListe).OrderBy(a => a.SlutDato).ToList();
+            var minliste = new List<int>();
 
-            foreach (var entity in test)
-                     
-            yield return new FindMedarbejderDto
+            var booking = _db.BookingEntities.AsNoTracking().Select(a => a.MedarbejderId).ToList();
+
+            foreach (var entity in booking)
             {
-                MedarbejderId = entity.MedarbejderId,
-                startDato = entity.StartDato,
-                SlutDato = entity.SlutDato
-            };
+                minliste.Add(entity);
+            }
 
+
+
+            var ingenBookingListe = _db.KompetenceEntities.Where(a => a.Navn == navn).Include(a => a.MedarbejderListe).SelectMany(a => a.MedarbejderListe).Where(c => !minliste.Contains(c.Id)).ToList();
+
+
+
+            var allerede = _db.MedarbejderEntities.
+                Include(a => a.BookingListe).
+                SelectMany(a => a.BookingListe).
+                OrderBy(a => a.SlutDato > DateTime.Now).ToList();
+
+
+
+            var findMedarbejdeListe = new List<FindMedarbejderDto>();
+
+            foreach (var entity in ingenBookingListe)
+            {
+                var dto = new FindMedarbejderDto()
+                {
+                    MedarbejderId = entity.Id
+                };
+
+                findMedarbejdeListe.Add(dto);
+            }
+
+            foreach (var entity in allerede)
+            {
+                var dto = new FindMedarbejderDto()
+                {
+                    MedarbejderId = entity.Id,
+                    SlutDato = entity.SlutDato,
+                    startDato = entity.StartDato
+                };
+                findMedarbejdeListe.Add(dto);
+            }
+
+
+
+            return findMedarbejdeListe;
+
+
+
+            //var test = _db.KompetenceEntities.AsNoTracking().Where(a => a.Navn == navn).Include(a => a.MedarbejderListe)
+            //    .ThenInclude(a => a.BookingListe).SelectMany(a => a.MedarbejderListe).Include(a => a.BookingListe)
+            //    .SelectMany(a => a.BookingListe).OrderBy(a => a.SlutDato).ToList();
+
+            //foreach (var entity in test)
+
+            //    yield return new FindMedarbejderDto
+            //    {
+            //        MedarbejderId = entity.MedarbejderId,
+            //        startDato = entity.StartDato,
+            //        SlutDato = entity.SlutDato
+
+            //    };
 
         }
     }

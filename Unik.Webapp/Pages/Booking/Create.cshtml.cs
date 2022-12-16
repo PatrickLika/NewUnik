@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Unik.WebApp.Infrastructure.Booking.Contract.Dto;
 using Unik.WebApp.Pages.Booking;
-using Unik.WebApp.Pages.Opgave;
 
 namespace Unik.Webapp.Pages.Booking
 {
@@ -15,7 +14,7 @@ namespace Unik.Webapp.Pages.Booking
             _bookingService = bookingService;
         }
         [BindProperty] public BookingCreateViewModel BookingCreateViewModel { get; set; } = new();
-        public async Task<IActionResult> OnGet(int medarbejderId,string slutDato, int opgaveId, int varighed)
+        public async Task<IActionResult> OnGet(int medarbejderId, string slutDato, int opgaveId, int varighed)
         {
             if (opgaveId == null) return NotFound();
 
@@ -30,16 +29,16 @@ namespace Unik.Webapp.Pages.Booking
 
         public async Task<IActionResult> OnPost()
         {
-            if (!ModelState.IsValid || !BookingCreateViewModel.OpgaveId.HasValue || !BookingCreateViewModel.MedarbejderId.HasValue || !BookingCreateViewModel.SlutDato.HasValue || !BookingCreateViewModel.StartDato.HasValue) return Page();
+            //if (!ModelState.IsValid) return Page();
 
 
             var dto = new BookingCreateRequestDto()
             {
 
-                OpgaveId = BookingCreateViewModel.OpgaveId.Value,
-                MedarbejderId = BookingCreateViewModel.MedarbejderId.Value,
-                startDato = BookingCreateViewModel.StartDato.Value,
-                SlutDato = BookingCreateViewModel.SlutDato.Value,
+                OpgaveId = BookingCreateViewModel.OpgaveId,
+                MedarbejderId = BookingCreateViewModel.MedarbejderId,
+                startDato = BookingCreateViewModel.StartDato,
+                SlutDato = BookingCreateViewModel.SlutDato,
             };
 
             try

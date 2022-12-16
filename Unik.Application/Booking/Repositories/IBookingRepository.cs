@@ -12,6 +12,6 @@ namespace Unik.Applicaiton.Booking.Repositories
         BookingEntity Load(int bookingId);
         BookingResultDto Get(int bookingId);
         IEnumerable<BookingGetAllResulstDto> GetAll();
-        IEnumerable<FindMedarbejderDto> FindMedarbejder(string type);
+        List<FindMedarbejderDto> FindMedarbejder(string type);
     }
 }
