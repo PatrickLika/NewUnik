@@ -1,5 +1,4 @@
-﻿using Unik.WebApp.Infrastructure.Kompetence.Contract;
-using Unik.WebApp.Infrastructure.Kunde.Contract;
+﻿using Unik.WebApp.Infrastructure.Kunde.Contract;
 using Unik.WebApp.Infrastructure.Kunde.Contract.Dto;
 
 namespace Unik.WebApp.Infrastructure.Kunde.Implementation
@@ -15,7 +14,7 @@ namespace Unik.WebApp.Infrastructure.Kunde.Implementation
 
         async Task IKundeService.Create(KundeCreateRequestDto createDto)
         {
-           var response = await _httpClient.PostAsJsonAsync("api/Kunde", createDto);
+            var response = await _httpClient.PostAsJsonAsync("api/Kunde", createDto);
             if (response.IsSuccessStatusCode) return;
 
             var message = await response.Content.ReadAsStringAsync();
@@ -25,7 +24,7 @@ namespace Unik.WebApp.Infrastructure.Kunde.Implementation
 
         async Task<HttpResponseMessage> IKundeService.Delete(int id)
         {
-           return await _httpClient.DeleteAsync($"api/Kunde/{id}");
+            return await _httpClient.DeleteAsync($"api/Kunde/{id}");
         }
 
 
@@ -46,6 +45,11 @@ namespace Unik.WebApp.Infrastructure.Kunde.Implementation
         async Task<IEnumerable<KundeGetAllQueryDto>?> IKundeService.GetAll()
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<KundeGetAllQueryDto>>("api/Kunde");
+        }
+
+        async Task<KundeUserResultDto?> IKundeService.GetByUserId(string userId)
+        {
+            return await _httpClient.GetFromJsonAsync<KundeUserResultDto>($"api/Medarbejder/{userId}");
         }
     }
 }

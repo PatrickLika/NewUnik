@@ -99,6 +99,8 @@ namespace Unik.Infrastructure.Medarbejder.Repositories
 
         MedarbejderGetByUserIdDto IMedarbejderRepository.GetByUserId(string userId)
         {
+
+
             var medarbejder = _db.MedarbejderEntities.Include(a => a.KompetenceListe).Include(a => a.BookingListe).
                 FirstOrDefault(a => a.UserId == userId);
 

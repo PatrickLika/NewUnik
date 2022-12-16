@@ -1,0 +1,64 @@
+﻿@page
+@model Unik.Webapp.Pages.Kunde.KundeprojekterModel
+@{
+}
+<br />
+<h1>Min Side</h1>
+<section class="form-group row">
+</Section>
+<table class="table">
+    <thead>
+    <tr>
+        <th>booking Id</th>
+        <th>Tilknyttede medarbejder</th>
+        <th>Hvilket opgaveNr</th>
+        <th>Start Dato</th>
+        <th>Slut Dato</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.KundeIndexViewModel.BookingListe.Any())
+    {
+        foreach (var kunde in Model.KundeIndexViewModel.BookingListe)
+        {
+            <tr>
+                <td>@kunde.Id </td>
+                <td>@kunde.MedarbejderId</td>
+                <td>@kunde.OpgaveId</td>
+                <td>@kunde.SlutDato</td>
+                <td>@kunde.StartDato</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+<section class="form-group row">
+</Section>
+<table class="table">
+    <thead>
+    <tr>
+        <th>opgave Id</th>
+        <th>booking Id</th>
+        <th>Medarbejder E-mail</th>
+        <th>opgave navn</th>
+        <th>Projekt Id</th>
+        <th>antal dage indtil færdig</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.KundeIndexViewModel.OpgaveListe.Any())
+    {
+        foreach (var opgave in Model.KundeIndexViewModel.OpgaveListe)
+        {
+            <tr>
+                <td>@opgave.Id </td>
+                <td>@opgave.BookingId</td>
+                <td>@opgave.Medarbejder.Email</td>
+                <td>@opgave.Navn</td>
+                <td>@opgave.ProjektId</td>
+                <td>@opgave.Varighed</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
