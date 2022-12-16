@@ -42,6 +42,7 @@ namespace Unik.Infrastructure.Kompetence.Repositories
                 Navn = kompetence.Navn,
                 Type = kompetence.Type,
                 Id = kompetence.Id,
+                RowVersion = kompetence.RowVersion,
                 MedarbejderListe = FillMedarbejderListe(kompetence.MedarbejderListe)
             };
 

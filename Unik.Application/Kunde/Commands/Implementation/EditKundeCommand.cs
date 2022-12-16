@@ -18,7 +18,7 @@ namespace Unik.Applicaiton.Kunde.Commands.Implementation
 
                 requestDto.Id,
                 requestDto.Navn,
-                requestDto.VirksomhedsNavn,
+                requestDto.VirksomhedNavn,
                 requestDto.Tlf,
                 requestDto.RowVersion
 

@@ -40,7 +40,7 @@ namespace Unik.WebApp.Pages.Kunde
             {
                 await _kundeService.Edit(new KundeEditRequestDto
                 {
-                    Id = EditViewModel.Id.Value,
+                    Id = EditViewModel.Id,
                     Navn = EditViewModel.Navn,
                     VirksomhedNavn = EditViewModel.VirksomhedNavn,
                     Tlf = EditViewModel.Tlf,
