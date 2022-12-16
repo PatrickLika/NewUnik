@@ -16,8 +16,8 @@
         <thead>
         <tr>
             <th>Kunde Id</th>
-            <th>Virksomheden</th>
             <th>Kontakt Person</th>
+            <th>Virksomheden</th>
             <th>Email</th>
             <th>Kontakt nummer</th>
         </tr>
@@ -28,8 +28,8 @@
             foreach (var kunde in Model.KundeIndexViewModels)
             {
                 <tr>
-                    <td> @kunde.Id </td>
-                    <td> @kunde.Navn </td>
+                    <td>@kunde.Id </td>
+                    <td>@kunde.Navn </td>
                     <td>@kunde.VirksomhedNavn</td>
                     <td>@kunde.Email</td>
                     <td>

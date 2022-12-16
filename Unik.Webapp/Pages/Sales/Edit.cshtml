@@ -31,11 +31,36 @@
                 <section class="col-lg-4 col-md-12">
 
                     <br/>
-                    <section class="form-group">
+                   @* <section class="form-group">
                         <label>Navn</label>
                         <input asp-for="EditViewModel.Navn" class="form-control rounded"/>
+                    </section>*@
+
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control rounded"  id="floatingInputNavn" placeholder="Navn" asp-for="EditViewModel.Navn">
+                        <label >Navn</label>
                     </section>
+
                     <br/>
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control rounded" id="floatingInputTitel" placeholder="Titel" asp-for="EditViewModel.Titel">
+                        <label>Titel</label>
+                    </section>
+                    
+                    <br/>
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control rounded" id="floatingInputEmail" placeholder="Email" asp-for="EditViewModel.Email">
+                        <label>Email</label>
+                    </section>
+
+                    <br/>
+                    <section class="form-floating mb-3">
+                        <input type="text" class="form-control rounded"  id="floatingInputTlf" placeholder="Tlf" asp-for="EditViewModel.Tlf">
+                        <label >Tlf</label>
+                    </section>
+                    
+
+                   @* <br/>
                     <section class="form-group">
                         <label>Titel</label>
                         <input asp-for="EditViewModel.Titel" class="form-control rounded"/>
@@ -51,7 +76,7 @@
                     <section class="form-group">
                         <label>Tilf</label>
                         <input asp-for="EditViewModel.Tlf" class="form-control rounded"/>
-                    </section>
+                    </section>*@
                 </section>
 
                 <section class="col-lg-4 col-md-6">

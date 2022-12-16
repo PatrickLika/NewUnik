@@ -4,26 +4,29 @@
 }
 <form method="post">
     <input type="hidden" asp-for="Opgaveviewmodel.ProjektId" class="form-control" />
+                    <br/>
+                    <h1>Tilføj opgave til Projekt @Model.Opgaveviewmodel.ProjektId </h1>
+                    <hr style="height: 1px; border: none; color: #000000; background-color: #000000; opacity: 1"/>
+                    <section class="col-sm-10">
+                    </section>
     <section class="container">
         <section class="row ">
             <section class="col-md-6">
                 <fieldset>
-                    <br/>
-                    <h2>Tilføj opgave til Projekt @Model.Opgaveviewmodel.ProjektId </h2>
-                    <hr style="height: 1px; border: none; color: #000000; background-color: #000000; opacity: 1"/>
-                    <section class="col-sm-10">
-                    </section>
+
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control rounded" id="floatingInputNavn" placeholder="Sales Id" asp-for="@Model.Opgaveviewmodel.Navn">
+                        <input type="text" class="form-control rounded" id="floatingInputNavn" placeholder="Opgave navn" asp-for="@Model.Opgaveviewmodel.Navn">
                         <label>Opgave navn</label>
                     </section>
+
                     <section class="form-floating mb-3">
-                        <input type="text" class="form-control rounded" id="floatingInputKundeId" placeholder="Kunde Id" asp-for="@Model.Opgaveviewmodel.Type">
+                        <input type="text" class="form-control rounded" id="floatingInputKundeId" placeholder="Opgave type" asp-for="@Model.Opgaveviewmodel.Type">
                         <label>Opgave type</label>
+
                     </section>
+            <button type="submit" class="btn btn-success rounded">Opret opgave</button>
                 </fieldset>
             </section>
-            <button type="submit" class="btn btn-success rounded">Opret Projekt</button>
         </section>
     </section>
 
