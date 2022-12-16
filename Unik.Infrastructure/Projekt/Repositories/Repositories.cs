@@ -33,7 +33,7 @@ public class Repositories : IProjektRepositories
 
     ProjektQueryResultDto IProjektRepositories.Get(int id)
     {
-        var projekt = _db.ProjektEntities.AsNoTracking().FirstOrDefault(a => a.Id == id);
+        var projekt = _db.ProjektEntities.AsNoTracking().Include(a => a.Opgaver).FirstOrDefault(a => a.Id == id);
         if (projekt == null) throw new Exception("Projektet findes ikke i databasen");
 
         return new ProjektQueryResultDto

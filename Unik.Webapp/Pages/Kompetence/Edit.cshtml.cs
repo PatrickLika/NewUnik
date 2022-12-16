@@ -14,7 +14,7 @@ namespace Unik.WebApp.Pages.Kompetence
             _ikompetenceService = ikompetenceService;
         }
 
-        [BindProperty] public KompetenceIndexViewModel EditViewModel { get; set; }
+        [BindProperty] public KompetenceIndexViewModel EditViewModel { get; set; } = new();
 
         public async Task<IActionResult> OnGet(int? id)
         {

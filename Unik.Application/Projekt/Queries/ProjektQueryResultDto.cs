@@ -10,5 +10,5 @@ public class ProjektQueryResultDto
     public int kundeID { get; set; }
     public int SalesId { get; set; }
     public int AntalBoliger { get; set; }
-    public List<OpgaveEntityDto> OpgaveListe { get; set; }
+    public List<OpgaveEntityDto>? OpgaveListe { get; set; }
 }
