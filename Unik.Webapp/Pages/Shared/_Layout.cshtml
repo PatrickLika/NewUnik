@@ -61,12 +61,19 @@
                                     </ul>
                                     </li>*@
                             }
-                            <li class="nav-item">
-                                <a class="nav-link  text-white" asp-page="/Minside/Index" role="button" aria-expanded="false">Min Side</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link  text-white" asp-page="/Minside/Index" role="button" aria-expanded="false">Min Side</a>
-                            </li>
+                            @if (User.HasClaim(a => a.Type == "Tekniker") || User.HasClaim(a => a.Type == "Konsulent") || User.HasClaim(a => a.Type == "Konverter"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link  text-white" asp-page="/Minside/Index" role="button" aria-expanded="false">Min Side</a>
+                                </li>
+                            }
+                            @if (User.HasClaim(a => a.Type == "Kunde"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link  text-white" asp-page="/Minside/Kundeprojekter" role="button" aria-expanded="false">Min kunde Side</a>
+                                </li>
+                            }
+                            
 
                             <li>
                             </li>

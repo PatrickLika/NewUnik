@@ -49,7 +49,7 @@ namespace Unik.WebApp.Infrastructure.Kunde.Implementation
 
         async Task<KundeUserResultDto?> IKundeService.GetByUserId(string userId)
         {
-            return await _httpClient.GetFromJsonAsync<KundeUserResultDto>($"api/Medarbejder/{userId}");
+            return await _httpClient.GetFromJsonAsync<KundeUserResultDto>($"api/Kunde/{userId}");
         }
     }
 }
