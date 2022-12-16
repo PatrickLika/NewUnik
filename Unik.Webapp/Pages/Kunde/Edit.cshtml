@@ -36,7 +36,7 @@
             </section>
 
             <section class="form-floating mb-3">
-                <input type="text" class="form-control rounded"  id="floatingInputVirksomhedNavn" placeholder="Virksomhed navn" asp-for="@Model.EditViewModel.VirksomhedsNavn">
+                <input type="text" class="form-control rounded"  id="floatingInputVirksomhedNavn" placeholder="Virksomhed navn" asp-for="@Model.EditViewModel.VirksomhedNavn">
                 <label >Virksomhedens navn</label>
             </section>
 
@@ -45,7 +45,9 @@
                 <label>Tlf</label>
             </section>
 
-            <button type="submit" class="btn btn-default">Opdater Kunde</button>
+@*            <button type="submit" class="btn btn-default">Opdater Kunde</button>
+*@            <button type="submit" class="btn btn-success rounded">Opdater kunde</button>
+
             <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
 
         </form>

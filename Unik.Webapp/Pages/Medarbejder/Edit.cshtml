@@ -32,13 +32,26 @@
             <section class="col-lg-4 col-md-12">
 
                 <br/>
-                 <section class="form-group">
-                    <input asp-for="MedarbejderModel.Navn" class="form-control rounded" />
+                <section class="form-floating mb-3">
+                    <input type="text" class="form-control rounded"  id="floatingInputNavn" placeholder="Navn" asp-for="MedarbejderModel.Navn">
+                    <label >Navn</label>
                 </section>
+
+                @*<section class="form-group">
+                    <label>Navn</label>
+                    <input asp-for="MedarbejderModel.Navn" class="form-control rounded"/>
+                </section>*@
+
                 <br/>
-                 <section class="form-group">
-                    <input asp-for="MedarbejderModel.Tlf" class="form-control rounded" />
-                 </section>
+                <section class="form-floating mb-3">
+                    <input type="text" class="form-control rounded" id="floatingInputTlf" placeholder="Tlf" asp-for="MedarbejderModel.Tlf">
+                    <label>Tlf</label>
+                </section>
+
+                @*<section class="form-group">
+                    <label>Tlf</label>
+                    <input asp-for="MedarbejderModel.Tlf" class="form-control rounded"/>
+                </section>*@
             </section>
 
             <section class="col-lg-4 col-md-6">
@@ -51,5 +64,5 @@
     <br/>
     @*<button>Update Medarbejder</button>*@
     <button type="submit" class="btn btn-success rounded">Opdater medarbejder</button>
-@*    <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
-*@</form>
+    <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
+    </form>

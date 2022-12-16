@@ -23,7 +23,7 @@ namespace Unik.WebApp.Pages.Kunde
             {
                 Id = id.Value,
                 Navn = dto.Navn,
-                VirksomhedsNavn = dto.VirskomhedsNavn,
+                VirksomhedNavn = dto.VirksomhedNavn,
                 Tlf = dto.Tlf,
                 RowVersion = dto.Rowversion,
                 ProjektId = dto.ProjektId
@@ -42,7 +42,7 @@ namespace Unik.WebApp.Pages.Kunde
                 {
                     Id = EditViewModel.Id.Value,
                     Navn = EditViewModel.Navn,
-                    VirksomhedsNavn = EditViewModel.VirksomhedsNavn,
+                    VirksomhedNavn = EditViewModel.VirksomhedNavn,
                     Tlf = EditViewModel.Tlf,
                     RowVersion = EditViewModel.RowVersion,
                     ProjektId = EditViewModel.ProjektId
