@@ -2,14 +2,9 @@
 @model Unik.WebApp.Pages.Medarbejder.EditModel
 @{
 }
-<form method="post">
-    <section asp-validation-summary="ModelOnly" class="text-danger"></section>
-    <br />
-    <h1>Rediger medarbejder</h1>
-    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
-    <section class="col-sm-10">
-    </section>
 
+@*<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <input type="hidden" asp-for="MedarbejderModel.Id" class="form-control"/>
     <input type="hidden" asp-for="MedarbejderModel.RowVersion" class="form-control"/>
@@ -17,52 +12,55 @@
     <input type="hidden" asp-for="MedarbejderModel.UserId" class="form-control"/>
     <input type="hidden" asp-for="MedarbejderModel.Titel" class="form-control"/>
 
-    @*<label for="navn">Navn:</label>
-    <input type="text" asp-for="MedarbejderModel.Navn">
-    <span asp-validation-for="@Model.MedarbejderModel.Navn" class="text-danger"></span>
-    <br>
+    Navn: <input type="text" asp-for="MedarbejderModel.Navn"/>
+    Navn: <input type="text" asp-for="MedarbejderModel.Tlf"/>
+    
+    <button type="submit" class="btn btn-success rounded">Opdater medarbejder</button>
+</form>*@
 
-    <br>
-    <label for="tlf">Tlf:</label>
-    <input type="text" asp-for="MedarbejderModel.Tlf">
-    <span asp-validation-for="@Model.MedarbejderModel.Tlf" class="text-danger"></span>*@
+
+
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <br />
+    <h1>Rediger medarbejder</h1>
+    <hr style="height:1px;border:none;color:#000000;background-color:#000000; opacity: 1" />
+    <section class="col-sm-10">
+    </section>
+
+    
+    <input type="hidden" asp-for="MedarbejderModel.Id" class="form-control"/>
+    <input type="hidden" asp-for="MedarbejderModel.RowVersion" class="form-control"/>
+    <input type="hidden" asp-for="MedarbejderModel.Email" class="form-control"/>
+    <input type="hidden" asp-for="MedarbejderModel.UserId" class="form-control"/>
+    <input type="hidden" asp-for="MedarbejderModel.Titel" class="form-control"/>
+
+   
 
     <section class="container">
         <section class="row">
             <section class="col-lg-4 col-md-12">
-
+                
                 <br/>
                 <section class="form-floating mb-3">
                     <input type="text" class="form-control rounded"  id="floatingInputNavn" placeholder="Navn" asp-for="MedarbejderModel.Navn">
                     <label >Navn</label>
                 </section>
 
-                @*<section class="form-group">
-                    <label>Navn</label>
-                    <input asp-for="MedarbejderModel.Navn" class="form-control rounded"/>
-                </section>*@
-
                 <br/>
                 <section class="form-floating mb-3">
                     <input type="text" class="form-control rounded" id="floatingInputTlf" placeholder="Tlf" asp-for="MedarbejderModel.Tlf">
                     <label>Tlf</label>
                 </section>
-
-                @*<section class="form-group">
-                    <label>Tlf</label>
-                    <input asp-for="MedarbejderModel.Tlf" class="form-control rounded"/>
-                </section>*@
             </section>
-
             <section class="col-lg-4 col-md-6">
             </section>
-
             <section class="col-lg-4 col-md-6">
             </section>
         </section>
     </section>
     <br/>
-    @*<button>Update Medarbejder</button>*@
     <button type="submit" class="btn btn-success rounded">Opdater medarbejder</button>
     <a asp-page="Index" type="submit" class="btn btn-info rounded">Tilbage til oversigt</a>
     </form>
