@@ -39,7 +39,7 @@ namespace Unik.WebApp.Infrastructure.Kunde.Implementation
 
         async Task<KundeGetQueryDto?> IKundeService.Get(int kundeId)
         {
-            return await _httpClient.GetFromJsonAsync<KundeGetQueryDto>($"api/Kunde/{kundeId}");
+            return await _httpClient.GetFromJsonAsync<KundeGetQueryDto>($"api/Kunde/id/{kundeId}");
         }
 
         async Task<IEnumerable<KundeGetAllQueryDto>?> IKundeService.GetAll()

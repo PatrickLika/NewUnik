@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Unik.WebApp.Pages.Kunde
+﻿namespace Unik.WebApp.Pages.Kunde
 {
     public class KundeDetailsViewModel
     {
@@ -10,5 +8,6 @@ namespace Unik.WebApp.Pages.Kunde
         public string Email { get; set; }
         public string Tlf { get; set; }
         public string UserId { get; set; }
+        public int ProjektId { get; set; }
     }
 }

@@ -14,21 +14,17 @@
         <th>Virksomheds navn</th>
         <th>Tlf</th>
         <th>Email</th>
+        <th>Projekt Id</th>
     </tr>
     </thead>
     <tbody>
-    @if (Model.DetailsViewModel.Any())
-    {
-        foreach (var kunde in Model.DetailsViewModel)
-        {
-            <tr>
-                <td>@kunde.Id </td>
-                <td>@kunde.Navn </td>
-                <td>@kunde.VirksomhedsNavn</td>
-                <td>@kunde.Tlf</td>
-                <td>@kunde.Email</td>
-            </tr>
-        }
-    }
+        <tr>
+                <td>@Model.DetailsViewModel.Id </td>
+                <td>@Model.DetailsViewModel.Navn </td>
+                <td>@Model.DetailsViewModel.VirksomhedsNavn</td>
+                <td>@Model.DetailsViewModel.Tlf</td>
+                <td>@Model.DetailsViewModel.Email</td>
+                <td>@Model.DetailsViewModel.ProjektId</td>
+        </tr>
     </tbody>
 </table>

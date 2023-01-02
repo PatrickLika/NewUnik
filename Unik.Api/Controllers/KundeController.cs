@@ -56,7 +56,7 @@ namespace Unik.Api.KundeControllers
         }
 
         // GET api/<KundeController>/5
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
